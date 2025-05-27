@@ -1,0 +1,101 @@
+[ 프로젝트, 앱 생성 ]
+1. 프로젝트 생성 - wpjt
+django-admin startproject w01pjt
+2. 프로젝트 폴더 이동
+cd w01pjt
+3. 앱 생성 - students
+python manage.py startapp students
+4. 서버실행
+python manage.py runserver
+http://127.0.0.1:8000/
+5. setting.py
+- 한글,한국어 설정(ko-kr, Asia/Seoul)
+6. 프로젝트 urls.py
+- 추가한 앱 등록
+ path('students/', include('students.urls')),
+7. 앱 urls.py
+- 앱 설정
+- app_name설정
+app_name='students'
+- path설정
+path('list/', views.list,name='list'),
+8. views.py 설정
+list 함수 선언
+def list(request):
+    return render(request,'list.html')
+9. html생성
+- templates 폴더 생성 후 html파일 생성
+10. app추가
+- home app 추가
+python manage.py startapp home
+-------------------------------------
+[ db생성 ]
+1. db생성 - 관리자,db연결
+python manage.py migrate
+2. db반영해야 할것이 있는지 확인
+python manage.py makemigrations
+3. 관리자 superuser 등록
+python manage.py createsuperuser
+사용자 이름 (leave blank to use 'kosmo'): admin
+이메일 주소: admin@naver.com
+Password:
+Password (again):
+This password is too short. It must contain at least 8 characters.
+비밀번호가 너무 일상적인 단어입니다.
+비밀번호가 전부 숫자로 되어 있습니다.
+Bypass password validation and create user anyway? [y/N]: y
+4. models.py table객체 생성
+5. admin.py 생성된 객체연결
+6. db변경에 대한 정보 반영
+python manage.py makemigrations
+python manage.py migrate
+--------------------------------
+[ db접근해서 db추가 ]
+python manage.py shell
+>> from students.models import Student
+< select > 검색
+- 디장고 사용하는 db select구문
+Student.objects.all()
+- select * from student
+Student.objects.get(name='홍길동')
+select * from student where name='홍길동'
+qs = Student.objects.get(name='홍길동')
+qs.name
+qs.age
+qs.major
+- filter 검색
+qs = Student.objects.filter(age__lt=22)
+- 22살보다 작은 나이
+qs = Student.objects.filter(name__contains='순')
+- 순이 들어가 있는 이름을 검색
+[ 모든 데이터 읽어와서 1개씩 분리할때 ]
+qs = Student.objects.all()
+qs[0]  -- 1번째 데이터
+qs[1]  -- 2번째 데이터
+< 저장하기 > insert
+qs = Student(name='유관순',major='국문학과',age=21,grade=2,gender='여자')
+qs.save()
+Student(name='유관순',major='국문학과',age=21,grade=2,gender='여자').save()
+Student.objects.create(
+name='유관순',major='국문학과',age=21,grade=2,gender='여자')
+< 수정하기 > update변경
+qs = Student.objects.get(name='홍길동')
+qs.age = 22
+qs.save()
+< 삭제하기 > delete 삭제
+Student.objects.get(name='홍길동').delete()
+qs = Student.ojbects.get(name='홍길동')
+qs.delete()
+Student.objects.all().delete() # 모두삭제
+<null> 검색
+select * from stuscore where name is null;
+Student.objects.filter(name__=True)
+< exists > 파일 존재 유무
+Student.objects.filter(age=20).exists()
+< aggregate() > 그룹함수
+select max(age) from stuscore ;
+Student.objects.aggregate(sum('age'))
+<order_by('age')> 순차정렬
+Student.objects.order_by('age')
+<order_by('-age')> 역순정렬
+Student.objects.order_by('-age')

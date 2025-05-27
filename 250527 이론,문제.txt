@@ -1,0 +1,47 @@
+250527
+데이터 전달
+1. form: get,post
+2. parameter
+ - 변수파라미터  /?id=aaa
+ - api방식 url 데이터를 포함해서 보내는 방식
+   /aaa/10
+http://127.0.0.1:8000/students/send/홍길동/20
+
+3. 자바스크립트: ajax
+<!-- / root,  ./ 현재폴더,  ../ 이전폴더 -->
+
+user  -request->  server
+user <-response- server
+
+-----------------------------
+Q2.
+프로젝트 - wform
+form 방식 데이터 전송 - post방식
+home,students app
+- write.html 아이디,패스워드,이름,성별,취미
+- result.html 결과를 출력하시오.
+------------
+프로젝트 - wParam1
+home,students
+index.html -> students/result.html 출력,  링크 파라미터 전송
+아이디,패스워드,이름
+------------
+프로젝트 - wRestapi
+home,students
+아이디,패스워드,이름
+index.html -> students/result.html 출력
+
+-----------------------------
+Q1. w0527/w03
+students/write.html
+국어점수 입력
+영어점수 입력
+취미
+체크박스 게임,골프
+
+result.html
+이름: 홍길동
+국어: 100
+영어: 100
+합계: 200
+취미: [게임,골프]
