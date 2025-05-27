@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>학생성적리스트</title>
+    <style>
+        h2{text-align:center;}
+        table,th,td{border:1px solid black; border-collapse:collapse;
+        text-align:center;}
+        th{height:35px;}
+        td{height:30px;}
+        table{width:1000px; margin:10px auto;}
+    </style>
+</head>
+<body>
+    <h2>학생성적리스트</h2>
+    {% if list %}
+    <table>
+        <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>국어</th>
+            <th>영어</th>
+            <th>수학</th>
+            <th>합계</th>
+            <th>평균</th>
+        </tr>
+        {% for s in list %}
+            <tr>
+                <td>{{s.no}}</td>
+                <td>{{s.name}}</td>
+                <td>{{s.kor}}</td>
+                <td>{{s.eng}}</td>
+                <td>{{s.math}}</td>
+                <td>{{s.total}}</td>
+                <td>{{s.avg}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>데이터가 없습니다.</p>
+    {% endif %}
+</body>
+</html>
