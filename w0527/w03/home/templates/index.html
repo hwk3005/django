@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인페이지</title>
+</head>
+<body>
+    <h2>메인페이지</h2>
+    <!-- 데이터 전달 -->
+    <!-- 1. form : get,post -->
+    <!-- 2. get:parameter -->
+    <!-- 3. 자바스크립트 : ajax -->
+    <!-- /:root, ./:현재폴더, ../:이전폴더 -->
+     <p><a href='/students/write/'>write 페이지 열기</a></p>
+     <p><a href='/students/send/홍길동/20/'>2.2 우아한 url 페이지 - rest api 방식</a></p>
+     <hr>
+     <p><a href='/students/view/?name=홍길동&age=20'>2.1 get:parameter전달방식</a></p>
+     <hr>
+     <p> 1. form 전달방식</p>
+     <form name='frm' method='post' action='/students/list/'>
+        {% csrf_token %}
+        <label>아이디</label>
+        <input type='text' name='id'>
+        <br>
+        <label>패스워드</label>
+        <input type='text' name='pw' >
+        <br>
+        <label>전화번호</label>
+        <input type='text' name='tel' >
+        <br>
+        <label>성별</label><br>
+        <input type='radio' name='gender' value='남자' id='man'>
+        <label for='man'>남자</label>
+        <input type='radio' name='gender' value='여자' id='woman'>
+        <label for='woman'>여자</label>
+        <br>
+        <label>취미</label><br>
+        <input type='checkbox' name='hobby' value='게임' id='game'>
+        <label for='game'>게임</label>
+        <input type='checkbox' name='hobby' value='골프' id='golf'>
+        <label for='golf'>골프</label>
+        <br>
+        <input type='submit' value='전송'>
+        <br>
+     </form>
+
+    
+</body>
+</html>

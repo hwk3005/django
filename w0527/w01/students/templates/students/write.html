@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>학생등록페이지</title>
+</head>
+<body>
+    <h2>학생등록</h2>
+    <form name='frm' action='/students/write2/' method='post'>
+        {% csrf_token %}
+        <label>이름</label>
+        <input type='text' name='name'><br>
+        <label>전공</label>
+        <input type='text' name='major'><br>
+        <label>학년</label>
+        <input type='text' name='grade'><br>
+        <label>나이</label>
+        <input type='text' name='age'><br>
+        <label>성별</label><br>
+        <input type='radio' name='gender' value='남자' id='man'>
+        <label for='man'>남자</label>
+        <input type='radio' name='gender' value='여자' id='woman'>
+        <label for='woman'>여자</label>
+        <br>
+        <input type='submit' value='저장'>
+    </form>
+    
+</body>
+</html>
