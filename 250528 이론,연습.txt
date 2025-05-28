@@ -1,0 +1,47 @@
+250528
+w02 연습
+1. 학생정보리스트
+2. 학생등록
+까지 함
+3. view
+4. update
+5. delete
+
+-------------------------------------
+1. 리스트 출력
+- Student.objects.all()
+- Student.objects.order_by('id')
+2. 학생정보등록
+- Student(데이터).save()
+- Student.objects.create(데이터)
+3. 학생정보보기
+- Student.objects.get(name=name)
+4. 학생정보수정
+- qs = Student.objects.get(name=name)
+- qs.major = major
+- qs.save()
+5. 학생정보삭제
+- qs = Student.objects.get(name=name)
+- qs.delete()
+- Student.objects.all().delete() 모두삭제
+-------------------------
+## DB저장
+        ## 1. 데이터.save() / 2. create()
+
+## DB검색
+        # objects.all():전체가져오기
+        # objects.get():해당되는것 가져오기
+        # objects.filter():검색기능(__contains, gte, gt, lte, lt)
+        # objects.order_by(): 정렬, - 역순정렬
+gt 크다
+gte 크거나 같다
+contains 같다
+lte 작거나 같다
+lt 작다
+-------------------
+html → server
+방법1) form → get, post
+방법2) 파라미터
+방법3) 자바
+-------------------
+form에 method-post 아닌 경우 다 get방식임

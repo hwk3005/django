@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h2{text-align:center;}
+        table,th,td{border:1px solid black; border-collapse:collapse;}
+        table{width:800px; margin:20px auto;}
+        th,td{height:40px; text-align:center;}
+        div{width:500px; margin:0 auto;}
+        button{width:150px; height:50px; font-size:20px;}
+    </style>
+</head>
+<body>
+    <h2>상세보기</h2>
+    <table>
+        <tr>
+            <th>이름</th>
+            <td>{{stu.name}}</td>
+        </tr>
+        <tr>
+            <th>전공</th>
+            <td>{{stu.major}}</td>
+        </tr>
+        <tr>
+            <th>학년</th>
+            <td>{{stu.grade}}</td>
+        </tr>
+        <tr>
+            <th>나이</th>
+            <td>{{stu.age}}</td>
+        </tr>
+        <tr>
+            <th>성별</th>
+            <td>{{stu.gender}}</td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        <a href='/students/list/'><button>학생리스트</button></a>
+        <a href='/students/update/{{stu.name}}/'><button>수정</button></a>
+        <button onclick='deleteBtn()'>삭제</button>
+    </div>
+    <script>
+        function deleteBtn(){
+            if(confirm('정말 삭제하시겠습니까?')){
+                location.href='/students/delete/{{stu.name}}/';
+            }
+        }
+    </script>
+</body>
+</html>

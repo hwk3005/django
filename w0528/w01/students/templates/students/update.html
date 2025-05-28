@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>학생수정페이지</h2>
+    <form action='/students/update/{{stu.name}}/' method='post' name='frm'>
+        {% csrf_token %}
+        <label>이름</label>
+        <input type='text' name='name' value='{{stu.name}}'><br>
+        <label>전공</label>
+        <input type='text' name='major' value='{{stu.major}}'><br>
+        <label>학년</label>
+        <input type='text' name='grade' value='{{stu.grade}}'><br>
+        <label>나이</label>
+        <input type='text' name='age' value='{{stu.age}}'><br>
+        <label>성별</label><br>
+        <input type='radio' name='gender' value='남자' id='man' {% if '남자' in stu.gender %}checked{% endif %} >
+        <label for='man'>남자</label>
+        <input type='radio' name='gender' value='여자' id='woman' {% if '여자' in stu.gender %}checked{% endif %} >
+        <label for='woman'>여자</label>
+        <br>
+        <br>
+        <input type='submit' value='수정'>
+        <a href='/students/view/?name={{stu.name}}'><button type='button'>취소</button></a>
+    </form>
+
+</body>
+</html>
