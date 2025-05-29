@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h2{text-align:center;}
+        table,th,td{border:1px solid black; border-collapse:collapse;}
+        table{width:900px; margin:20px auto;}
+        th,td{height:40px; text-align:center;}
+        div{width:400px; margin:0 auto;}
+        button{width:150px; height:50px; font-size:20px;}
+    </style>
+</head>
+<body>
+    <h2>학생정보리스트</h2>
+    <table>
+        <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>학과</th>
+            <th>날짜</th>
+        </tr>
+        {% for s in list %}
+        <tr>
+            <th>{{s.no}}</th>
+            <th>{{s.name}}</th>
+            <th>{{s.major}}</th>
+            <th>{{s.sdate}}</th>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <div>
+        <a href='/'><button>홈으로</button></a>
+        <a href='/students/write/'><button>학생등록</button></a>
+    </div>
+</body>
+</html>

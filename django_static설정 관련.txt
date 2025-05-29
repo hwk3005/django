@@ -1,0 +1,12 @@
+[ static 설정 ]
+1. settings.py  (static 설정)
+  1) import os
+  2) INSTALLED_APPS = ['home', 'member',]
+  3) # 한글, 한국시간 설정 ('ko-kr, Asia/Seoul')
+  4) # static파일 위치 설정  - 현재root 모든 staticc폴더를 가져옴
+     # 정적파일: css,js,image
+	STATIC_URL = 'static/' 뒤에 입력
+	STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)
+
+2. w03 - static파일 - css, js, image파일 만들기
+

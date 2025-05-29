@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>메인페이지</h2>
+    <ul>
+        <li><a href='/admin'>관리자페이지</a></li>
+        <!-- html href : /  ./ ../   -->
+        <li><a href='/students/list/'>회원정보리스트</a></li>
+        <hr>
+        <!-- html -> server 1.파라미터 2.우아한url  -->
+        <li>데이터 전달방법 : html -> server 1.파라미터 2.우아한url</li>
+        <li><a href='/students/list/?name=1'>파라미터전달 / 없음 : /students/list/?name=1</a></li>
+        <li><a href='/students/list/1/'>api방식으로 전달 / 있음 : /students/list/1/</a></li>
+    </ul>
+</body>
+</html>

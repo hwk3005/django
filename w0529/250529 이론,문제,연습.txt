@@ -1,0 +1,40 @@
+w07
+메인페이지 home - index(main.html)
+로그인페이지 member - login.html
+리스트페이지 board - list(notice_list.html)
+--------------------------------------------
+w06
+.html에서
+images =>  /static/images 변경
+
+--------------------------------------------
+w04
+settings, css-style.css 붙여넣기까지 완료
+
+--------------------------------------------
+w02 - Q.
+학생정보리스트
+학생등록 views.py 부터 하기
+
+----------------------
+# app_name는  / 붙이지 않음
+# path  / 붙임!!!!!!!!
+# html -> server  1.파라미터 2.api방식 3.js(javaScript)
+
+----------------------
+### 학생정보수정
+# value
+<input type='text' name='name' value='{{stu.name}}'><br>
+# checked
+<input type='radio' name='gender' value='남자' id='man' {% if '남자' in stu.gender %}checked{% endif %} >
+----------
+# readonly (input타입) - f12에서 수정 가능함
+# ex)
+<input type='hidden' name='no' value='{{stu.no}}'>
+<label>번호</label>
+        <input type='text' name='no1' value='{{stu.no}}' readonly ><br>
+----------
+# hidden (input타입 X)
+<input type='hidden' name='no' value='{{stu.no}}'>
+        <label>번호</label>
+        {{stu.no}}<br>
