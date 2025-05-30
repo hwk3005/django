@@ -1,0 +1,11 @@
+250530 (오전수업)
+
+-----------------------
+w02  앱 생성
+ - home: index.html
+ - member: login.html
+ - board: list.html
+로그인부분 구현
+=> home, member, board 생성및구현 완료, home->member로그인페이지 a href삽입 완료,
+	member_models.py까지 설정 완료
+=> member_login.html, views.py 설정부터 하면 됨
