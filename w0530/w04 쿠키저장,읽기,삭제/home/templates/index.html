@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<h2>로그인페이지</h2>
+	<form action='/' method='post'>
+		{% csrf_token %}
+		<label>아이디</label>
+		<input type='text' name='id'><br>
+		<label>패스워드</label>
+		<input type='text' name='pw'><br>
+		<input type='checkbox' name='idsave'>
+		<label>아이디저장</label><br>
+		<input type='submit' value='로그인'>
+	</form>
+	<p> 쿠키정보 : {{cook_info}}</p>
+	
+</body>
+</html>
