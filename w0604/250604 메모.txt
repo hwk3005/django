@@ -1,0 +1,15 @@
+250604(수)
+--- 오늘 한 것 ---
+1. home, board
+2. board
+ - list
+ - write
+ - view
+ - update
+ - delete
+ - reply
+
+--- 내일 할 것 ---
+3. board
+ - 파일첨부
+ - 하단넘버링 (10개씩 가져와서 번호부여)
