@@ -66,8 +66,9 @@
     <h1>게시글 수정</h1>
     <hr>
 
-    <form action="{% url 'board:update' board.bno %}" name="updateFrm" method="post">
+    <form action="{% url 'board:update' board.bno %}" name="updateFrm" method="post" enctype='multipart/form-data'>
       {% csrf_token %}
+      <input type='hidden' name='bfile_pre' value='{{board.bfile}}'>
       <table>
         <colgroup>
           <col width="15%">

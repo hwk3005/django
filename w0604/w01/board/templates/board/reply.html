@@ -65,7 +65,7 @@
   <section>
     <h1>답글달기</h1>
     <hr>
-    <form action="{% url 'board:reply' board.bno %}" name="replyFrm" method="post">
+    <form action="{% url 'board:reply' board.bno %}" name="replyFrm" method="post" enctype='multipart/form-data'>
       {% csrf_token %}
       {#  답글달기에 필요한 컬럼  #}       
       <input type='hidden' name='bgroup' value='{{board.bgroup}}'>

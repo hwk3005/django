@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-95s)xj%^c=zndm726=z@fexu=8wnf5z373oe*22%mjxh%9bl#1'
+SECRET_KEY = 'django-insecure-&r8(xm3vyz+)#y91$d7kdj(+9fcnwpbxivv@l+r8b)(nr8rjr9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -94,7 +94,6 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
 LANGUAGE_CODE = 'ko-kr'
-
 TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
@@ -106,9 +105,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+# static파일 위치 설정 - 현재root 모든 static폴더를 가져옴
+# 정적파일 : css,js,image
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR,'static'),
-  )
+)
+
+### 파일업로드 위치
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+# MEDIA_ROOT = 'c:/aaa' # 로컬드라이브 설정
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 

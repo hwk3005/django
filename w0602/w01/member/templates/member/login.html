@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="/static/css/style.css">
   <link rel="stylesheet" href="/static/css/login.css">
   <script>
-    if('{{msg}}' == '0'){
+    if('{{msg}}'=='0'){
       alert('아이디 또는 패스워드가 일치하지 않습니다. 다시 입력하세요.');
     }
     else if ('{{msg}}'=='1'){
@@ -35,7 +35,7 @@
   </header>
 
   <nav>
-    <div class="logo"></div>
+    <a href='/'><div class="logo"></div></a>
 
     <div id="search">
       <div class="search"></div><br>
@@ -80,7 +80,7 @@
       <div id="save">
         <div class="save"></div>
         <span>아이디 저장</span>
-        <input type='checkbox' name='idCheck' {% if save_id %}checked{% endif %} >
+        <input type='checkbox' name='idCheck' {% if save_id %}checked{%endif%} >
       </div>
   
       <div id="find">

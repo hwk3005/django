@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('bstep', models.IntegerField(default=0)),
                 ('bindent', models.IntegerField(default=0)),
                 ('bhit', models.IntegerField(default=0)),
-                ('bdate', models.DateTimeField(auto_now=True)),
+                ('bdate', models.DateField(auto_now=True)),
             ],
         ),
     ]

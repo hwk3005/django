@@ -10,20 +10,20 @@
   <link rel="stylesheet" href="/static/css/style.css">
   <link rel="stylesheet" href="/static/css/write.css">
   <script>
-    if('{{msg}}' == '1'){
+     if('{{msg}}' == '1'){
       alert('글쓰기가 완료되었습니다.');
       location.href = '/board/list/';
-    }
+     }
 
-    // 작성완료 버튼 클릭시
-    function writeBtn(){
+     // 작성완료 버튼 클릭시
+     function writeBtn(){
       if($("#btitle").val().length<2){
         alert("제목은 한글자 이상 입력하셔야 등록이 가능합니다.");
         $("#btitle").focus();
         return;
       }
-      writeFrm.submit();  // 완료시 저장시킴.
-    }
+      writeFrm.submit(); //완료시 저장시킴.
+     }
   </script>
 </head>
 
@@ -66,7 +66,7 @@
     <h1>관리자 글쓰기</h1>
     <hr>
 
-    <form action="/board/write/" name="writeFrm" method="post">
+    <form action="/board/write/" name="writeFrm" method="post" enctype='multipart/form-data'>
       {% csrf_token %}
       <table>
         <colgroup>

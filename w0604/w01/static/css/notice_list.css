@@ -1,4 +1,7 @@
 /* Main Section */
+a {text-decoration: none;}
+.on{background: #e56e00; color:white;}
+
 section {
   text-align: center;
 }
@@ -138,8 +141,8 @@ td {
   position: relative;
   top: -15px;
   height: 33px !important;
-  margin-left: 15px;
-  margin-right: 15px;
+  margin-left: 2px;
+  margin-right: 2px;
   border: 1px #989898 solid;
 }
 

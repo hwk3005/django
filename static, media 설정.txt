@@ -1,0 +1,41 @@
+[ static 설정 ]
+1. settings.py  (static 설정)
+  1) import os
+  2) INSTALLED_APPS = ['home', 'member',]
+  3) # 한글, 한국시간 설정 ('ko-kr, Asia/Seoul')
+  4) # static파일 위치 설정  - 현재root 모든 staticc폴더를 가져옴
+     # 정적파일: css,js,image
+	STATIC_URL = 'static/' 뒤에 입력
+	STATICFILES_DIRS = (
+    os.path.join(BASE_DIR,'static'),
+  )
+
+2. w03 - static파일 - css, js, image파일 만들기
+
+[ 파일첨부 관련 ]
+1. settings.py
+### 파일업로드 위치
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+2. w01-w01-urls.py
+  1)
+    from django.conf import settings
+    from django.conf.urls.static import static
+  2)
+    # 파일업로드 url구성을 urlpatterns에 추가
+    urlpatterns += static(settings.MEDIA_URL,
+                      document_root=settings.MEDIA_ROOT)
+
+3. board - models.py
+bfile = models.ImageField(null=True,blank=True,upload_to='board')
+
+4. write.html
+form 타입 추가: enctype='multipart/form-data'
+
+5. views.py
+  1) 게시글 쓰기
+    bfile = request.FILES.get('bfile','')
+    print('파일부분: ',request.FILES)
+
+    

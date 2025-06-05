@@ -5,19 +5,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pages - Login</title>
-  <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
   <link rel="stylesheet" href="/static/css/style.css">
   <link rel="stylesheet" href="/static/css/write.css">
   <script>
-    function boardBtn(){
-      if($("#btitle").val().length<2){
-        alert("게시글 제목은 1자리 이상 입력하셔야 합니다.")
-        $("#btitle").focus()
-        return;
+      function boardBtn(){
+        if($("#btitle").val().length<2){
+          alert("게시글 제목은 1자리 이상 입력하셔야 합니다.");
+          $("#btitle").focus();
+          return;
+        }
+        writeFrm.submit();
       }
-      writeFrm.submit()
-    }
   </script>
 </head>
 
@@ -60,7 +60,7 @@
     <h1>관리자 글쓰기</h1>
     <hr>
 
-    <form action="/board/write/" name="writeFrm" method="post">
+    <form action="/board/write/" name="writeFrm" method="post" enctype='multipart/form-data'>
       {% csrf_token %}
       <table>
         <colgroup>
@@ -93,13 +93,13 @@
         <tr>
           <th>이미지 표시</th>
           <td>
-            <input type="file" name="file" id="bfile">
+            <input type="file" name="bfile" id="file">
           </td>
         </tr>
       </table>
       <hr>
       <div class="button-wrapper">
-        <button type="button" onclick="boardBtn()" class="write">작성완료</button>
+        <button type="button" onclick='boardBtn()' class="write">작성완료</button>
         <button type="button" class="cancel">취소</button>
       </div>
     </form>

@@ -77,7 +77,7 @@ input:hover {
   width: 26px;
   height: 26px;
 
-  background: url('/static/images/ico_set.png') no-repeat 0 -40px;
+  background: url(/static/images/ico_set.png) no-repeat 0 -40px;
   background-size: 800px 800px;
 }
 
@@ -132,19 +132,19 @@ button {
 }
 
 .phone {
-  background: url(https://www.cjcookit.com/cjkit/web/images/common/login_set.png) no-repeat 0 0;
+  background: url(/static/images/login_set.png) no-repeat 0 0;
 }
 
 .kakao {
-  background: url(https://www.cjcookit.com/cjkit/web/images/common/login_set.png) no-repeat -58px 0;
+  background: url(/static/images/login_set.png) no-repeat -58px 0;
 }
 
 .naver {
-  background: url(https://www.cjcookit.com/cjkit/web/images/common/login_set.png) no-repeat -116px 0;
+  background: url(/static/images/login_set.png) no-repeat -116px 0;
 }
 
 .facebook {
-  background: url(https://www.cjcookit.com/cjkit/web/images/common/login_set.png) no-repeat -174px 0;
+  background: url(/static/images/login_set.png) no-repeat -174px 0;
 }
 
 .sign-up-info {
@@ -179,6 +179,6 @@ button {
   width: 18px;
   height: 18px;
 
-  background: url('/static/images/ico_set.png') no-repeat -635px 0;
+  background: url(/static/images/ico_set.png) no-repeat -635px 0;
   background-size: 800px 800px;
 }

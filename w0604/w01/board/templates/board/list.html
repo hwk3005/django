@@ -5,10 +5,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
   <link rel="stylesheet" href="/static/css/style.css">
   <link rel="stylesheet" href="/static/css/notice_list.css">
+  <script>
+     function searchBtn(){
+      if($('#stxt').val().length<2){
+        alert("검색 내용을 입력하세요.");
+        $("#stxt").focus();
+        return;
+      }
+      searchFrm.submit();
+     }
+  </script>
 </head>
 <body>
   <header>
@@ -48,19 +59,18 @@
   <section>
     <h1>NOTICE</h1>
     <div class="wrapper">
-      <form action="/search" name="search" method="post">
+      <form action="/board/list/" name="searchFrm" method="get">
         {% csrf_token %}
         <select name="category" id="category">
-          <option value="0">전체</option>
-          <option value="title">제목</option>
-          <option value="content">내용</option>
+          <option value="all">전체</option>
+          <option value="btitle">제목</option>
+          <option value="bcontent">내용</option>
         </select>
 
         <div class="title">
-          <input type="text" size="16">
+          <input type="text" size="16" name='search' id='stxt'>
         </div>
-  
-        <button type="submit"><i class="fas fa-search"></i></button>
+        <button type="button" onclick='searchBtn()'><i class="fas fa-search"></i></button>
       </form>
     </div>
 
@@ -83,9 +93,9 @@
       <tr>
         <td>{{board.bno}}</td>
         <td class="table-title">
-          <a href='{% url "board:view" board.bno %}'>
-            <!-- -->
-            {% for i in ""|rjust:board.bindent %}▶{% endfor %}
+          <a href='/board/view/{{board.bno}}/?category={{category}}&search={{search}}'>
+            <!-- board.bindent 숫자개념으로 변경  -->
+            {% for i in ""|rjust:board.bindent %}▶{%endfor%}
             {{board.btitle}}
           </a>
         </td>
@@ -96,15 +106,39 @@
       {% endfor %}
 
     </table>
-
+    {% comment %}
+        - 여러줄 주석 - 
+        has_previous : 이전페이지가 있는지 확인
+        has_next : 다음페이지가 있는지 확인
+        previous_page_number : 이전페이지 번호
+        next_page_number : 이후페이지 번호
+        paginator.page_range : 페이지 배열
+        num_pages : 마지막 페이지
+    {% endcomment %}
+    <!-- 하단넘버링 -->
     <ul class="page-num">
-      <li class="first"></li>
-      <li class="prev"></li>
-      <li class="num">
-        <div>1</div>
-      </li>
-      <li class="next"></li>
-      <li class="last"></li>
+      {% if list.has_previous %}
+        <a href='?page=1&category={{category}}&search={{search}}'><li class="first"></li></a>
+        <a href='?page={{list.previous_page_number}}&category={{category}}&search={{search}}'><li class="prev"></li></a>
+      {% else %}
+        <li class="first"></li>
+        <li class="prev"></li>
+      {% endif %}
+      {% comment %} {% for p in list.number|add:3 %} {% endcomment %}
+      {% for p in list.paginator.page_range %}
+        {% if p != page %}
+          <a href='?page={{p}}&category={{category}}&search={{search}}'><li class="num"><div>{{p}}</div></li></a>  
+        {% else %}
+          <li class="num on"><div>{{p}}</div></li>
+        {% endif %}
+      {% endfor %}
+      {% if list.has_next %}
+        <a href='?page={{list.next_page_number}}&category={{category}}&search={{search}}'><li class="next"></li></a>
+        <a href='?page={{list.paginator.num_pages}}&category={{category}}&search={{search}}'><li class="last"></li></a>
+      {% else %}
+        <li class="next"></li>
+        <li class="last"></li>
+      {% endif %}
     </ul>
 
     <a href='{% url "board:write" %}'><div class="write">쓰기</div></a>

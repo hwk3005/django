@@ -10,7 +10,8 @@ class Board(models.Model):
     bstep = models.IntegerField(default=0)
     bindent = models.IntegerField(default=0)
     bhit = models.IntegerField(default=0)
-    bdate = models.DateTimeField(auto_now=True)
+    bfile = models.ImageField(null=True,blank=True,upload_to='board')
+    bdate = models.DateField(auto_now=True)
     
     def __str__(self):
         return f'{self.bno}, {self.id}, {self.btitle}'
