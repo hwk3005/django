@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name='csrf-token' content='{{csrf_token}}'>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+    <script>
+        $(function(){
+            $('.ajaxBtn').click(function(){
+                alert('ajax버튼이 클릭되었습니다.');
+                let id = $('.id').val();
+                let name = $('.name').val();
+                let csrfToken = $('meta[name="csrf-token"]').attr('content')
+                console.log('아이디 : ',id);
+                console.log('이름 : ',name);
+                console.log('csrfToken 값 : ',csrfToken);
+                //ajax사용 -> views.py로 값을 전달
+                $.ajax({
+                    url:'/board/view2/', //전송하는 url
+                    type:'post',
+                    headers:{'X-CSRFToken':csrfToken},
+                    data:{'id':id,'name':name}, //데이터전송
+                    success:function(data){     //성공시
+                        alert('성공');
+                        console.log('전송된 데이터 : ',data);
+                        let hdata = ``;
+                        hdata += `<h4>아이디 : ${data.id}</h4>`;
+                        hdata += `<h4>이름 : ${data.name}</h4>`;
+                        hdata += `<h4>결과 : ${data.result}</h4>`;
+                        hdata += `<h4>비밀번호 : ${data.pw}</h4>`;
+                        //html있는 위치 값을 넣어줘야 함.
+                        $(".pw").prepend(hdata);
+
+                    },
+                    error:function(){           //실패시
+                        alert('실패');
+                    }
+                });//ajax선언
+
+
+            });
+        });//jquery구문
+    </script>
+    <style>div{width:200px; height:500px; border:1px solid black; text-align:center; font-size:20px;}</style>
+</head>
+<body>
+    <h2>게시판리스트 : 데이터전송방법</h2>
+    <hr>
+        <h3>1. 폼 데이터</h3>
+        <form action='/board/view/' method='post' name='frm'>
+            {% csrf_token %}
+            <label>아이디</label>
+            <input type='text' name='id' ><br>
+            <label>이름</label>
+            <input type='text' name='name' ><br>
+            <input type='submit' value='전송'>
+
+        </form>
+    <hr>
+        <h3>4. ajax으로 전송방법</h3>
+        <label>아이디</label>
+        <input type='text' name='id' class='id'><br>
+        <label>이름</label>
+        <input type='text' name='name' class='name'><br>
+        <input type='button' class='ajaxBtn' value='전송'>
+        <div>결과: <span class='pw'>         </span></div>
+    
+    <ul>
+        <li><a href='/board/view/'>글상세보기</a></li>
+    </ul>
+</body>
+</html>

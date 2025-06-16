@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2><a href='{% url "board:list" %}'>글 상세보기</a></h2>
+    <h3>작성자 : {{board.id}} </h3>
+    <h3>조회수 : {{board.bhit}} </h3>
+    <h3>작성일 : {{board.bdate|date:'Y-m-d H:i:s'}} </h3>
+    <h3>제목 : {{board.btitle}} </h3>
+    <h3>내용 : {{board.bcontent}} </h3>
+</body>
+</html>

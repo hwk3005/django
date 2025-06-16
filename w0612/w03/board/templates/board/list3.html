@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name='csrf-token' content='{{csrf_token}}'>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>form게시판</title>
+    <style>
+        table{margin:10px auto; width:1200px;}
+        table,th,td{border:1px solid black; border-collapse:collapse;}
+        th,td{height:40px; text-align:center; }
+        textarea{width:300px; height:100px;}
+    </style>
+    <script>
+        $(function(){
+            
+
+
+
+            $('.writeBtn').click(function(){
+                alert("글쓰기를 진행합니다.");
+                id = $('.id').val();
+                btitle = $('.btitle').val();
+                bcontent = $('.bcontent').val();
+                cToken = $('meta[name="csrf-token"]').attr('content');
+                console.log('넘어온 데이터 : ',id,btitle,bcontent,cToken);
+
+                $.ajax({
+                    url:'/ajaxData/bwrite/', 
+                    type:'post',
+                    headers:{'X-CSRFToken':cToken},
+                    data:{'id':id,'btitle':btitle,'bcontent':bcontent},
+                    success:function(data){
+                        alert('성공');
+                        console.log(data);
+                        //json파싱
+                        let jData = JSON.parse(data.board);
+                        console.log(jData[0].pk);
+                        console.log(jData[0].fields.btitle);
+
+                        //태그추가
+                        /*
+                        let hdata = ``;
+                        hdata += `<tr>`;
+                            hdata += `<td>${data.board[0].bno}</td>`;
+                            hdata += `<td>${data.board[0].btitle}</td>`;
+                            hdata += `<td>${data.board[0].id}</td>`;
+                            hdata += `<td>${data.board[0].bhit}</td>`;
+                            hdata += `<td>${data.board[0].bdate}</td>`;
+                            hdata += `</tr>`;
+                            $('#tbody').prepend(hdata);
+                            */
+                        let hdata = ``;
+                        hdata += `<tr>`;
+                        hdata += `<td>${jData[0].pk}</td>`;
+                        hdata += `<td>${jData[0].fields.btitle}</td>`;
+                        hdata += `<td>${jData[0].fields.id}</td>`;
+                        hdata += `<td>${jData[0].fields.bhit}</td>`;
+                        hdata += `<td>${jData[0].fields.bdate}</td>`;
+                        hdata += `</tr>`;
+                        $('#tbody').prepend(hdata);
+
+                        // 빈공백처리
+                        $('.id').val('');
+                        $('.btitle').val('');
+                        $('.bcontent').val('');
+
+                    },
+                    error:function(){
+                        alert('실패');
+                    }
+                });//ajax선언
+            });
+        });//jquery선언
+        
+    </script>
+</head>
+<body>
+    <h2><a href='/'>3. 폼 데이터 - ajax</a></h2>
+        <label>아이디</label>
+        <input type='text' name='id' class='id' ><br>
+        <label>제목</label>
+        <input type='text' name='btitle' class='btitle' ><br>
+        <label>내용</label>
+        <textarea name='bcontent' class='bcontent' ></textarea><br>
+        <input type='button' class='writeBtn' value='전송'>
+
+    <table>
+        <colgroup>
+           <col width='12%'>
+           <col width='*'>
+           <col width='12%'>
+           <col width='12%'>
+           <col width='12%'>
+        </colgroup>
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>조회수</th>
+            <th>작성일</th>
+        </tr>
+        <tbody id='tbody'>
+            {% for board in list %}
+            <tr>
+                <td>{{board.bno}}</td>
+                <td>{{board.btitle}}</td>
+                <td>{{board.id}}</td>
+                <td>{{board.bhit}}</td>
+                <td>{{board.bdate|date:'Y-m-d H:i:s'}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</body>
+<script>
+    cToken = $('meta[name="csrf-token"]').attr('content');
+    $.ajax({
+                url:'/ajaxData/blist/', 
+                    type:'post',
+                    headers:{'X-CSRFToken':cToken},
+                    data:{'id':'aaa'},
+                    success:function(data){
+                        alert('성공');
+                        console.log(data);
+                        //json파싱
+                        //let jData = JSON.parse(data.board);
+                        //console.log(jData[0].pk);
+                        //console.log(jData[0].fields.btitle);
+
+                        
+                    },
+                    error:function(){
+                        alert('실패');
+                    }
+            });//
+
+</script>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name='csrf-token' content='{{csrf_token}}'>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>form게시판</title>
+    <style>
+        table{margin:10px auto; width:1200px;}
+        table,th,td{border:1px solid black; border-collapse:collapse;}
+        th,td{height:40px; text-align:center; }
+        textarea{width:300px; height:100px;}
+    </style>
+</head>
+<body>
+    <h2><a href='/'>2. 폼 데이터 - url api</a></h2>
+    <form action='/board/list2/' method='post' name='writeFrm'>
+        {% csrf_token %}
+        <label>아이디</label>
+        <input type='text' name='id' ><br>
+        <label>제목</label>
+        <input type='text' name='btitle' ><br>
+        <label>내용</label>
+        <textarea name='bcontent' ></textarea><br>
+        <input type='submit' value='전송'>
+    </form>
+
+    <table>
+        <colgroup>
+           <col width='12%'>
+           <col width='*'>
+           <col width='12%'>
+           <col width='12%'>
+           <col width='12%'>
+        </colgroup>
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>조회수</th>
+            <th>작성일</th>
+        </tr>
+        <tbody id='tbody'>
+            {% for board in list %}
+            <tr>
+                <td>{{board.bno}}</td>
+                <td><a href='/board/view2/{{board.bno}}/'>{{board.btitle}}</a></td>
+                <td>{{board.id}}</td>
+                <td>{{board.bhit}}</td>
+                <td>{{board.bdate|date:'Y-m-d H:i:s'}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</body>
+</html>

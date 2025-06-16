@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name='csrf-token' content='{{csrf_token}}'>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>form게시판</title>
+    <style>
+        table{margin:10px auto; width:1200px;}
+        table,th,td{border:1px solid black; border-collapse:collapse;}
+        th,td{height:40px; text-align:center; }
+        textarea{width:300px; height:100px;}
+    </style>
+    <script>
+        $(function(){
+            //alert("첫페이지 연결");
+            $.ajax({
+                url:'/ajaxData/blist/',
+                type:'post',
+                headers:{'X-CSRFToken':$('meta[name="csrf-token"]').attr('content')},
+                data:{'id':'aaa'},
+                success:function(data){
+                    alert('성공');
+                    console.log(data);
+                    console.log(data.list);
+                    console.log(data.list[0]);
+
+                    //tbody html태그를 생성해서 전달해줌.
+                    let hdata = ``;
+                    for(let i=0;i<data.list.length;i++){
+                        hdata += ` <tr>
+                                        <td>${data.list[i].bno}</td>
+                                        <td>${data.list[i].btitle}</td>
+                                        <td>${data.list[i].id}</td>
+                                        <td>${data.list[i].bhit}</td>
+                                        <td>${data.list[i].bdate}</td>
+                                        <td>
+                                            <button class='updateBtn'>수정</button>
+                                            <button class='delBtn'>삭제</button>
+                                        </td>
+                                    </tr>`;
+                        
+                    }
+                    $('#tbody').html(hdata);
+
+
+                },
+                error:function(){
+                    alert('실패');
+                }
+            });//ajax선언
+        });//jquery선언
+    </script>
+    
+</head>
+<body>
+    <h2><a href='/'>ajax게시판</a></h2>
+    <form action='/board/list/' method='post' name='writeFrm'>
+        {% csrf_token %}
+        <label>아이디</label>
+        <input type='text' name='id' ><br>
+        <label>제목</label>
+        <input type='text' name='btitle' ><br>
+        <label>내용</label>
+        <textarea name='bcontent' ></textarea><br>
+        <input type='button' class='writeBtn' value='저장'>
+        <input type='button' class='cancelBtn' value='취소'>
+    </form>
+
+    <table>
+        <colgroup>
+           <col width='12%'>
+           <col width='*'>
+           <col width='12%'>
+           <col width='12%'>
+           <col width='12%'>
+           <col width='12%'>
+        </colgroup>
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>조회수</th>
+            <th>작성일</th>
+            <th>버튼</th>
+        </tr>
+        <tbody id='tbody'>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <button class='updateBtn'>수정</button>
+                    <button class='delBtn'>삭제</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+</body>
+<script>
+    
+</script>
+</html>
