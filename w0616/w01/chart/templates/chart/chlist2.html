@@ -141,7 +141,7 @@
 				<ul>	
 					<li><a href="/chart/chlist/" id="leftNavi1">월별매출액</a></li>
 					<li><a href="/chart/chlist2/" id="leftNavi2">월별영업이익</a></li>
-					<li><a href="#" id="leftNavi3">FAQ</span></a></li>
+					<li><a href="/chart/chlist3/" id="leftNavi3">월별매출액</span></a></li>
 					<li class="last"><a href="#" id="leftNavi4">이용안내</a></li>
 				</ul>			
 			</div><script type="text/javascript">initSubmenu(1,0);</script>
@@ -150,97 +150,70 @@
 			<!-- contents -->
 			<div id="contents">
 				<div id="customer">
-					<h2><strong>월별 매출액 CHART</strong><span>쟈뎅샵 소식을 전해드립니다.</span></h2>
-					
+					<h2><strong>월별 영업이익 CHART</strong><span>쟈뎅샵 소식을 전해드립니다.</span></h2>
+					<!-- 게시판 -->
 					<div class="orderDivMt">
-						<!-- 차트 그리기 -->
+						<!-- 그래프가 나타나는 위치 -->
 						<div style='border:1px solid black;'>
 						  <canvas id="myChart"></canvas>
 						</div> 
 					</div>
 					<script>
-							let cToken = $('meta[name="csrf-token"]').attr('content');
-							let tSales = []; //월별매출액
-							let mon = [];    //월별이름
-							let pro = [];    //월별영업이익
-							console.log('cToken',cToken);
-							
-							// 년도별 ajax데이터 가져오기
-							function ajaxFunc(aYear){
-								$.ajax({
-									url:'/chart/chajax/',
-									type:'post',
-									headers:{'X-CSRFToken':cToken},
-									data:{'aYear':'aYear'},
-									success:function(data){
-										// 변수초기화
-										tSales = []; //월별매출액
-										mon = [];    //월별이름
-										pro = [];    //월별영업이익
-										alert('성공');
-										console.log('넘어온데이터 : ',data);
-										for(let i=0;i<data.ajaxlist.length;i++){
-											// 자바스크립트에서 배열에 데이터 추가명령어:push
-											tSales.push(data.ajaxlist[i].totalSales);
-											mon.push(data.ajaxlist[i].monthly);
-											pro.push(data.ajaxlist[i].profit);
-										}
-										console.log('월별매출액 : ',tSales);
-										console.log('월별이름 : ',mon);
-										console.log('월별영업이익 : ',pro);
-										//-- 차트그리기
-										// 차트 초기화
-										let charts = Chart.getChart('myChart');
-										// 처음 사용이 아니면
-										if (charts != undefined){
-											charts.destroy(); //삭제
-										}
-										const ctx = document.getElementById('myChart');
+						alert('그래프 출력');
+						//전역변수
+						let cToken = $('meta[name="csrf-token"]').attr('content')
+						$.ajax({
+							// url,type,headers,data,success,error
+							url:'/chart/chajax/',
+							type:'post',
+							headers:{'X-CSRFToken':cToken},
+							data:{'test':'aaa'},
+							success:function(data){
+								alert('성공');//확인용
+								console.log(data);
+								//자바스크립트 배열for문
+								//json타입 -> 리스트 형태로 변경
+								let m = []; //monthly - push,pop
+								let t = []; //totalSales
+								let p = []; //profit
 
-										new Chart(ctx, {
-											type: 'bar',
-											data: {
-											labels: mon,
-											datasets: [{
-												label: '월별 총 매출액',
-												data: tSales,
-												borderWidth: 1
-											}]
-											},
-											options: {
-											scales: {
-												y: {
-												beginAtZero: true
-												}
-											}
-											}
-										});
-										
-										//-- 차트그리기 end
-									
+								for(let c of data.ajaxlist){
+									console.log(c.profit);
+								}
+								//그래프 그리기
+								const ctx = document.getElementById('myChart');
+
+								new Chart(ctx, {
+									type: 'bar',
+									data: {
+									labels: m,  //monthly 배열
+									datasets: [{
+										label: '월별 영업이익',
+										data: p, //profit 배열
+										borderWidth: 1
+									}]
 									},
-									error:function(){
-										alert('실패');
+									options: {
+									scales: {
+										y: {
+										beginAtZero: true
+										}
 									}
-								});//ajax선언
-							}//ajaxFunc
-							
-
-							function chartBtn(e){
-								alert('검색을 시작합니다.');
-								let aYear = $('.searchInput').val();
-								console.log('년도: ',aYear);
-								//ajaxFunc호출
-								ajaxFunc(aYear);
-							}
-
-							$(function(){
-								$('.searchInput').keyup(function(key){
-									if(key.keyCode==13){
-										chartBtn();
 									}
 								});
-							});//제이쿼리
+								
+
+								//그래프 그리기 end
+
+
+							},
+							error:function(){
+								alert('실패');
+
+							}
+
+						});//ajax선언
+
 					</script>
 					<div class="searchWrap">
 						<div class="search">
