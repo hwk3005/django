@@ -2,6 +2,11 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from member.models import Member
 
+# login페이지
+def login(request):
+    return render(request,'member/login.html')
+
+
 # id중복확인
 def idchk(request):
     id = request.POST.get('id','')

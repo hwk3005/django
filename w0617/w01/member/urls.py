@@ -8,4 +8,5 @@ urlpatterns = [
     path('step03/', views.step03, name='step03'),
     path('step04/', views.step04, name='step04'),
     path('idchk/', views.idchk, name='idchk'),
+    path('login/', views.login, name='login'),
 ]

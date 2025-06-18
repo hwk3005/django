@@ -7,4 +7,5 @@ urlpatterns = [
     path('member/', include('member.urls')),
     path('chart/', include('chart.urls')),
     path('pboard/', include('pboard.urls')),
+    path('kakao/', include('kakao.urls')),
 ]

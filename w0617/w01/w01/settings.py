@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'board',
     'chart',
     'pboard',
+    'kakao',
 ]
 
 MIDDLEWARE = [
