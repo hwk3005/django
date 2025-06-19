@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+	<!-- container -->
+	<div id="container">
+
+		<div id="location">
+			<ol>
+				<li><a href="#">HOME</a></li>
+				<li><a href="#">MEMBERSHIP</a></li>
+				<li class="last">회원가입</li>
+			</ol>
+		</div>
+		
+		<div id="outbox">		
+			<div id="left">
+				<div id="title2">MEMBERSHIP<span>멤버쉽</span></div>
+				<ul>	
+					<li><a href="#" id="leftNavi1">로그인</a></li>
+					<li><a href="#" id="leftNavi2">회원가입</a></li>
+					<li><a href="#" id="leftNavi3">아이디/<span>비밀번호 찾기</span></a></li>
+					<li><a href="#" id="leftNavi4">회원약관</a></li>
+					<li><a href="#" id="leftNavi5">개인정보<span>취급방침</span></a></li>
+					<li class="last"><a href="#" id="leftNavi6">이메일무단<span>수집거부</span></a></li>
+				</ul>			
+			</div><script type="text/javascript">initSubmenu(2,0);</script>
+
+
+			<!-- contents -->
+			<div id="contents">
+				<div id="member">
+					<h2><strong>회원가입</strong><span>회원으로 가입하시면 보다 더 다양한 혜택을 누리실 수 있습니다.</span></h2>
+					
+					<!-- STEP -->
+					<div class="stepWrap">
+						<div class="step stepon">
+							<p class="web">STEP 01</p>
+							<p class="txt">실명확인</p>
+							<p class="ck"><img src="/static/images/bg/bg_step.png" alt="현재위치" /></p>
+						</div>
+
+						<div class="step">
+							<p class="web">STEP 02</p>
+							<p class="txt">약관 동의</p>
+						</div>
+
+						<div class="step">
+							<p class="web">STEP 03</p>
+							<p class="txt"><span>회원정보</span> <span>입력</span></p>
+						</div>
+
+						<div class="step">
+							<p class="web">STEP 04</p>
+							<p class="txt"><span>회원가입</span> <span>완료</span></p>
+						</div>
+					</div>
+					<!-- //STEP -->
+						
+
+					<div class="alertBox">
+						<ul>
+							<li>회원님의 실명확인 및 가입 여부를 확인하는 절차입니다.</li>
+							<li>회원님의 개인 정보 보호를 위해 실명확인을 실시하고 있습니다.</li>
+						</ul>
+					</div>
+
+					<!-- 실명확인 -->
+					<h3>실명확인 조회</h3>
+					<div class="checkDiv">
+						<table summary="실명확인 조회" class="checkTable" border="1" cellspacing="0">
+							<caption>실명확인 조회</caption>
+							<colgroup>
+							<col width="27%" class="tw30" />
+							<col width="*" />
+							</colgroup>
+							<script>
+								//전역변수
+								let emailChk = 0;
+								let confirmChk = 0;
+								let cToken = $('meta[name="csrf-token"]').attr('content');
+
+								// 이메일발송 함수
+								function emailBtn(){
+									alert('이메일을 발송합니다.');
+									email = $('input[name="email"]').val();
+									console.log('email : ',email);
+									//email정보 -> 디장고 보냄
+									// url,type,headers,data,success,error
+									$.ajax({
+										url:'/member/emailSend/',
+										type:'post',
+										headers:{'X-CSRFToken':cToken},
+										data:{'email':email},
+										success:function(data){
+											//alert('성공');
+											console.log('data : ',data);
+											emailChk = 1;
+										},
+										error:function(){
+											alert('실패');
+										}
+									});
+									
+								}//emailBtn
+
+								//랜덤번호 확인
+								function confirmBtn(){
+									// 이메일 체크가 되었는지 확인.
+									if (emailChk != 1){
+										alert('이메일 전송을 하셔야 확인이 가능합니다.');
+										$('input[name="email"]').focus();
+										return;
+									}
+									alert('확인')
+									confirmTxt = $('input[name="confirmTxt"]').val()
+									console.log('confirmTxt : ',confirmTxt);
+									//전송번호 -> 디장고 전송
+									$.ajax({
+										url:'/member/confirmChk/',
+										type:'post',
+										headers:{'X-CSRFToken':cToken},
+										data:{'confirmTxt':confirmTxt},
+										success:function(data){
+											//alert('성공');
+											console.log('data : ',data);
+											if(data.msg = 'success'){
+												alert('랜덤 비밀번호가 일치합니다.')
+												confirmChk = 1;
+											}else{
+												alert('랜덤 비밀번호가 일치하지 않습니다. 다시 확인하세요.')
+											}
+										},
+										error:function(){
+											alert('실패');
+										}
+
+									});//ajax
+
+								}//confirmBtn
+
+								function nextBtn(){
+									if (confirmChk != 1){
+										alert('랜덤전송번호가 확인이 되어야 다음으로 진행이 가능합니다.');
+										$('input[name="confirmTxt"]').focus();
+										return false;
+									}else{
+										location.href='/member/step02/';
+									}
+
+									
+								}//nextBtn
+							</script>
+							<tbody>
+								<tr>
+									<th scope="row"><span>이메일주소 입력</span></th>
+									<td>
+										<ul class="pta">
+											<li class="or10"><input type="text" class="w186" name='email' /></li>
+											<li><a onclick='emailBtn()' class="nbtnMini iw56">전송</a></li>
+										</ul>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row"><span>전송번호 입력</span></th>
+									<td>
+										<ul class="pta">
+											<li class="or10"><input type="text" class="w186" name='confirmTxt' /></li>
+											<li><a onclick='confirmBtn()' class="nbtnMini iw56">확인</a></li>
+										</ul>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div> 
+
+					<!-- Btn Area -->
+					<div class="btnAreaCenter">
+						<a onclick='nextBtn()' class="gbtn">다음으로</a></li>
+					</div>
+					<!-- //Btn Area -->
+
+
+				</div>
+			</div>
+			<!-- //contents -->
+
+
+		</div>
+	</div>
+	<!-- //container -->
+{% endblock content %}
