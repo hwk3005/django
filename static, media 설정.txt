@@ -39,3 +39,15 @@ form 타입 추가: enctype='multipart/form-data'
     print('파일부분: ',request.FILES)
 
     
+----------------------------------------------
+STATIC_URL = 'static/'
+# static파일 위치 설정 - 현재root 모든 static폴더를 가져옴
+# 정적파일 : css,js,image
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR,'static'),
+)
+
+### 파일업로드 위치
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+# MEDIA_ROOT = 'c:/aaa' # 로컬드라이브 설정
