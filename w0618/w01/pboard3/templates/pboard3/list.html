@@ -91,8 +91,46 @@
 										<option value="" />제목</option>
 									</select>
 								</li>
+								<script>
+									function searchBtn(){
+										alert('검색을 시작합니다.');
+										let searchInput = $('.searchInput').val()
+										console.log('searchInput: ',searchInput)
+										let cToken = $('meta[name="csrf-token"]').attr('content');
+										console.log('cToken: ',cToken);
+										//디장고 전송 - url,type,headers,data,success,error
+										$.ajax({
+											url:'/pboard3/searchAjax/',
+											type:'post',
+											headers:{'X-CSRFToken':cToken},
+											data:{'searchInput':searchInput},
+											success:function(data){
+												alert('성공');
+												console.log(data);
+
+												let hdata = ``;
+												for(var i=0; i<10; i++){
+													hdata = `<tr>
+														<td class="tnone">${data.list[i].rank}</td>
+														<td>${data.list[i].rankInten}</td>
+														<td class="left">
+															<a href="/pboard2/view/${data.list[i].movieCd}/">${data.list[i].movieNm}</a>
+														</td>
+														<td>{{d.openDt}}</td>
+														<td class="tnone right">${data.list[i].audiAcc}</td>
+														</tr>`
+												}
+												$('tbody').html(hdata);										
+										
+											},
+											error:function(){
+												alert('실패');
+											}
+										})//ajax
+									}//searchBtn	
+								</script>
 								<li><input type="text" class="searchInput" /></li>
-								<li class="web"><a href="#"><img src="/static/images/btn/btn_search.gif" alt="검색" /></a></li>
+								<li class="web"><a onclick='searchBtn()'><img src="/static/images/btn/btn_search.gif" alt="검색" /></a></li>
 								<li class="mobile"><a href="#"><img src="/static/images/btn/btn_search_m.gif" alt="검색" /></a></li>
 							</ul>
 						</div>
