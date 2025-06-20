@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+	{% block content %}
+	{% if not request.session.session_id %}
+		<script>
+			alert('로그인이 되어야 글쓰기가 가능합니다.');
+			location.href='/member/login/';
+		</script>
+	{% endif %}
+	<script>
+		if('{{msg}}' == '1'){
+			alert('게시글이 수정되었습니다.');
+			location.href='/customer/view/{{bno}}/';
+		}
+	</script>
+	<!-- container -->
+	<div id="container">
+
+		<div id="location">
+			<ol>
+				<li><a href="/">HOME</a></li>
+				<li><a href="/customer/list/">CUSTOMER</a></li>
+				<li class="last">NOTICE</li>
+			</ol>
+		</div>
+		
+		<div id="outbox">		
+			<div id="left">
+				<div id="title2">CUSTOMER<span>고객센터</span></div>
+				<ul>	
+					<li><a href="/customer/list/" id="leftNavi1">NOTICE</a></li>
+					<li><a href="#" id="leftNavi2">1:1문의</a></li>
+					<li><a href="#" id="leftNavi3">FAQ</span></a></li>
+					<li class="last"><a href="#" id="leftNavi4">이용안내</a></li>
+				</ul>			
+			</div><script type="text/javascript">initSubmenu(1,0);</script>
+
+			<!-- contents -->
+			<div id="contents">
+				<div id="mypage">
+					<h2><strong>고객게시판-수정</strong><span>쟈뎅샵 소식을 전해드립니다.</span></h2>
+					<form action='/customer/update/{{customer.bno}}/' method='post' name='cFrm' enctype='multipart/form-data'>
+						{% csrf_token %}
+						<input type='hidden' name='bno' value='{{customer.bno}}'>
+						<input type='hidden' name='bgroup' value='{{customer.bgroup}}'>
+						<input type='hidden' name='bstep' value='{{customer.bstep}}'>
+						<input type='hidden' name='bindent' value='{{customer.bindent}}'>
+						<input type='hidden' name='oldfile' value='{{customer.bfile}}'>
+						<input type='hidden' name='oldfile2' value='{{customer.bfile2}}'>
+						<div class="checkDivTab">
+							<table summary="분류, 구매여부, 평가, 제목, 상세 내용 순으로 상품평을 작성 하실수 있습니다." class="checkTable" border="1" cellspacing="0">
+								<caption>상품평 작성</caption>
+								<colgroup>
+								<col width="19%" class="tw30" />
+								<col width="*" />
+								</colgroup>
+								<tbody>
+									<tr>
+										<th scope="row"><span>제목</span></th>
+										<td>
+											<input type="text" name='btitle' class="wlong" value='{{customer.btitle}}' />
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><span>작성자</span></th>
+										<td>
+											{{request.session.session_id}}
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><span>상세 내용</span></th>
+										<td>
+											<textarea name='bcontent' class="tta">{{customer.bcontent}}</textarea>
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><span>첨부이미지1</span></th>
+										<td>
+											{{customer.bfile}}
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><span>첨부이미지2</span></th>
+										<td>
+											{{customer.bfile2}}
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><span>이미지1</span></th>
+										<td>
+											<input type="file" name='bfile' class="fileType" />
+										</td>
+									</tr>
+									<tr>
+										<th scope="row"><span>이미지2</span></th>
+										<td>
+											<input type="file" name='bfile2' class="fileType" />
+										</td>
+									</tr>								
+								</tbody>
+							</table>
+						</div>
+				    </form>
+					<script>
+						//글쓰기 취소
+						function cancelBtn(){
+							if(confirm('글쓰기를 수정하시겠습니까?')){
+								location.href='/customer/view/{{customer.bno}}/';
+							}
+						}//cancelBtn
+
+						function saveBtn(){
+							alert('게시글을 수정합니다.');
+							cFrm.submit();
+						}
+					</script>
+					<!-- Btn Area -->
+					<div class="btnArea">
+						<div class="bCenter">
+							<ul>																
+								<li><a onclick='cancelBtn()' class="nbtnbig">취소</a></li>
+								<li><a onclick='saveBtn()' class="sbtnMini">확인</a></li>
+							</ul>
+						</div>
+					</div>
+					<!-- //Btn Area -->
+					
+				</div>
+			</div>
+			<!-- //contents -->
+
+
+		</div>
+	</div>
+	<!-- //container -->
+	{% endblock content %} 
