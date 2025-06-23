@@ -1,0 +1,35 @@
+앱키
+d7b881ab422a9bbe1c5b2a51cf11d8ab
+
+[ 1. 인가code값 받기 ]
+method: get
+url: https://kauth.kakao.com/oauth/authorize
+client_id : d7b881ab422a9bbe1c5b2a51cf11d8ab
+redirect_uri : http://localhost:8000/kakao/oauth
+response_type : code
+
+예제:
+https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=d7b881ab422a9bbe1c5b2a51cf11d8ab&redirect_uri=http://localhost:8000/kakao/oauth
+
+[ 2. token키 받기 ]
+code:
+ymX6TYG0mgQ5-mvNaW94nn_AwN4hQtcCZpejLJUaKO8ezRABAlBb-QAAAAQKFwYuAAABl4H-WMTo6jj-qNQmaA
+
+메소드 : post
+url: https://kauth.kakao.com/oauth/token
+
+Content-Type : application/x-www-form-urlencoded;charset=utf-8
+grant_type : authorization_code
+client_id : d7b881ab422a9bbe1c5b2a51cf11d8ab
+redirect_uri : http://localhost:8000/kakao/oauth
+code : 
+ymX6TYG0mgQ5-mvNaW94nn_AwN4hQtcCZpejLJUaKO8ezRABAlBb-QAAAAQKFwYuAAABl4H-WMTo6jj-qNQmaA
+
+
+
+
+
+
+
+
+

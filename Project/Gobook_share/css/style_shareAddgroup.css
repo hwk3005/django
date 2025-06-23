@@ -1,0 +1,375 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
+body {font-family: 'Noto Sans KR', sans-serif;}
+/* body {font-family: 'Gowun Batang', 'Nanum Gothic', sans-serif; } */
+
+* {margin: 0; padding: 0; box-sizing: border-box; -moz-osx-font-smoothing: grayscale; -webkit-font-smoothing: antialiased;}
+
+input {
+    color: inherit; 
+    font-family: inherit; 
+    letter-spacing: inherit; 
+    appearance: none; 
+    background: none; 
+    border: 0; 
+    box-shadow: none; 
+    border-radius: 0; 
+    padding: 0; 
+    margin: 0;
+}
+
+a {
+    text-decoration: none; 
+    color: inherit; 
+    font-family: inherit; 
+    letter-spacing: inherit; 
+    cursor: pointer;
+}
+
+hr {
+    margin: 0; 
+    padding: 0;
+}
+
+
+ /* header 부분 */
+ .fig-header,
+ /* 중앙 부분*/
+ .fig-main{
+    max-width: 78%; /* 건들지 마세용 */
+    padding-left: 16px; 
+    padding-right: 16px; 
+    margin: 0 auto;
+  }
+  
+  .fig-main{
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+.fig-nav{
+    display: grid; 
+    grid-template-columns: 1fr auto auto; 
+    align-items: center; 
+    padding: 16px 18px 8px 30px;
+}
+
+/* 로고 + 교환독서 탭 */
+.fig-header-left {
+    display: flex;
+    align-items: center; 
+    gap: 12px; 
+}
+.fig-one{
+    display: inline-flex;
+    width: fit-content;
+    display: flex; 
+    align-items: center; 
+    gap: 0.5rem;
+}
+
+.fig-logo{
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2D7868;
+    margin: 0; 
+    font-size: 25px; 
+}
+
+.fig-exchangeimage {
+    height: 20px; 
+    margin-left: 20px; 
+    position: relative;
+}
+
+@media (max-width: 767px) {
+.exchangeimage :before {
+    content: '';
+    position: absolute;
+    display: block;
+    top: -8px;
+    left: -8px;
+    width: 40px;
+    height: 40px;
+    z-index: 1;
+    background-color: transparent;
+}
+}
+
+.fig-exchange-book{
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2D7868;
+    margin: 0; 
+    font-size: 17px; 
+}
+
+@media (max-width: 767px) {
+.fig-exchange-book{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+}
+}
+
+/* 검색바 */
+.fig-searchform {
+    position: absolute;
+    left: 700px;
+    width: 500px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.fig-tabindex {
+    flex: 1;
+    min-width: 0;
+}
+
+.fig-formlabel {
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    min-height: 40px;
+    background: #f5f5f5;
+    border-radius: 8px;
+}
+
+.fig-searchimage {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    color: #a5a5a5;
+    fill: currentColor;
+    display: inline-block;
+}
+
+.fig-instant {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+}
+
+.fig-forminput {
+    flex: 1;
+    width: 0;
+    min-width: 0;
+    height: 100%;
+    font-size: 15px;
+    line-height: 18px;
+    color: #141414;
+    caret-color: #2D7868;
+}
+
+/* 로그인 회원가입 */
+.fig-join {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.fig-signup,
+.fig-login {
+    padding: 11px 12px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 18px;
+    text-align: center;
+    color: #2D7868;
+}
+
+/* header 구분선 */
+.fig-hr{
+    display: block;
+    width: 100%;
+    height: 1px;
+    box-sizing: border-box;
+    border: none;
+    background: #f0f0f0;
+    margin-top: 5px;
+}
+/* 여기까지 공통header 고정 */
+
+
+
+/* 교환독서 메인페이지 */
+.feed__content{
+    margin:0 auto;
+    width: 900px;
+}
+/* 참여 중인 그룹 표시부분 */
+.feed__join{
+    /* border-bottom: 1px solid #2D7868; */
+    padding: 10px 20px;
+    height:285px;
+}
+.feed__join_title{
+    height: 38px;
+    align-items: center;
+    font-size: 23px;
+    font-weight: 650;
+}
+.feed__join_body{
+    margin-top:10px;
+    padding:0 5px;
+    display: flex;
+}
+.feed__join_body_item{
+    margin-right: 20px;
+    width:118px;
+    
+}
+.join_body_item_book{
+    display: flex;
+    width:118px;
+    height:172px;
+    object-fit: cover;
+}
+.join_body_item_book img{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    border-radius: 3px;
+    box-shadow:0 0 2px 0 #797e84;
+}
+.join_body_item_groupName{
+    margin-top:4px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* 꼬북꼬북 교환독서 그룹 List */
+.feed__tabs{
+    margin: 30px 0 25px;
+    padding: 0 20px 5px;
+    height: 38px;
+    align-items: center;
+    display: flex;
+}
+.feed__tabs_title{
+    width:450px;
+    font-size: 23px;
+    font-weight: 650;
+}
+.feed__tabs_search{
+    border:1px solid #2D7868;
+    margin:0 22px;
+    padding-left:13px;
+    width:300px;
+    height:30px;
+    display: flex;
+    align-items: center;
+    border-radius: 1000px;
+}
+.feed__tabs_search_input{
+    border: none;
+    outline: none;
+    padding-left:11px;
+    width:225px;
+    height:25px;
+    font-size: 15px;
+}
+.feed__tabs_button{
+    border:1px solid #2D7868;
+    width:100px;
+    height:35px;
+    font-size: 15px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+.feed__preview{
+    border-left: 2px solid #2D7868;
+    padding:0 20px;
+    height:172px;
+    margin-bottom: 25px;
+    display: flex;         /* 추가: 가로 정렬 시작 */
+}
+.feed__preview_text{
+    width:740px;
+    
+}
+.feed__preview_tags{
+    height:25px;
+    color: #2F80ED;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+}
+.group_name{
+    height:73.5px;
+    color: #212529;
+    font-size: 19px;
+    font-weight: 600;
+    align-items: center;
+}
+.group_leader{
+    height:73.5px;
+    color: #64686d;
+    font-size: 13px;
+    display: flex;
+}
+.group_leader img{
+    margin-right:5px;
+    width:20px;
+    height:20px;
+    border-radius: 20px;
+}
+.feed__preview_book{
+    display: flex;
+    width:118px;
+    height:172px;
+    object-fit: cover;
+}
+.feed__preview_book img{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    border-radius: 3px;
+    box-shadow:0 0 2px 0 #797e84;
+}
+
+/* footer */
+
+#footerWrap{    
+    background-color: #444;
+    color:white;
+    height:300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#footer{
+    width:1500px;
+    height:200px;
+    display: flex;
+    justify-content: center;
+}
+
+#totalReview{
+    text-align: center;
+}
+
+#totalReview>h1{
+    margin-bottom: 15px;
+}
