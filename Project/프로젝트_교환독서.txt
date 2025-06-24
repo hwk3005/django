@@ -13,7 +13,7 @@
 
 ▶그룹명
 ▶그룹인원
-- 2명~최대 50명
+- 2명~최대 10명 (or 15명)
 
 ▶그룹소개글
 ▶책 선택 (도서db연결)
@@ -33,4 +33,38 @@
 - 최대 2개월?
 
 ▶그룹 초대링크
+
+
+=====================================
+------------------------키워드 추가/삭제
+<script>
+  $(document).on("click", ".tags a", function(e){
+    e.preventDefault();
+    const clickedTag = $(this).text().replace("#", "").trim();
+    let input = $("#group_keyword");
+    let current = input.val();
+
+    // 이미 포함된 키워드 방지
+    if (!current.includes(clickedTag)) {
+      if (current.length > 0) {
+        input.val(current + ", " + clickedTag);
+      } else {
+        input.val(clickedTag);
+      }
+    }
+  });
+</script>
+
+----------------비밀번호 보기/가리기 기능 JS (선택)
+js
+복사
+편집
+$(document).on('click', '.toggle-pw', function(){
+  const input = $(this).siblings('input');
+  const type = input.attr('type') === 'password' ? 'text' : 'password';
+  input.attr('type', type);
+  
+  // 아이콘 토글
+  $(this).toggleClass('fa-eye-slash fa-eye');
+});
 
