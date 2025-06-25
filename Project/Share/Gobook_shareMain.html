@@ -7,10 +7,11 @@
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style__shareMain.css">
 
-    <title>꼬북꼬북 | 교환독서</title>
+    <title>꼬북꼬북 | 교환독서_메인페이지</title>
     <style>
     </style>
 </head>
+<!-- <body data-page="exchange">  교환독서-메인페이지 헤더 검색창 숨기기 js 관련 --> 
 <body>
     <!-- header -->
     <header class="fig-header">
@@ -103,7 +104,7 @@
                 </div>
                 <div class="feed__tabs_search">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" class="feed__tabs_search_input" placeholder="그룹 검색">
+                    <input type="text" class="feed__tabs_search_input" placeholder="그룹, 책 검색">
                 </div>
                 <div class="feed__tabs_button">
                     그룹 만들기
@@ -238,4 +239,16 @@
     </div>
     
 </body>
+
+<!-- 교환독서-메인페이지 헤더 검색창 숨기기 js 관련 -->
+<!-- <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        if (document.body.dataset.page === "exchange") {
+        const searchForm = document.querySelector(".fig-searchform");
+        if (searchForm) {
+            searchForm.style.display = "none";
+        }
+        }
+    });
+</script> -->
 </html>

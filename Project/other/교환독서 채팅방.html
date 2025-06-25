@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<!-- saved from url=(0132)file:///C:/Users/kosmo/Documents/%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%86%A1%20%EB%B0%9B%EC%9D%80%20%ED%8C%8C%EC%9D%BC/chatroom_GOBOOK.html -->
+<html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>교환독서 채팅방</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    body.dark { background: #1e1e1e; color: #eee; }
+    #chat-container {
+      width: 95vw; max-width: 1400px; height: 90vh;
+      display: flex; flex-direction: column;
+      background: #fff; border-radius: 7px;
+      overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      transition: background 0.3s ease;
+    }
+    body.dark #chat-container { background: #2c2c2c; }
+    #header {
+      background: white; color: #333;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 15px 20px; font-size: 22px;
+      font-weight: bold;
+      border-bottom: 1px solid #ccc;
+    }
+    .dark-toggle, .leave-btn {
+      background: #f0f0f0; color: black;
+      border:none; border-radius: 7px;
+      padding: 6px 12px; font-size: 14px; cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .dark-toggle:hover, .leave-btn:hover {
+      background: #2D7868; color: #fff;
+    }
+    #main-section { display: flex; flex: 1; overflow: hidden; }
+    #chat-box {
+      flex: 3; padding: 20px; overflow-y: auto;
+      display: flex; flex-direction: column; gap: 14px;
+      background: #f5f5f5; transition: background 0.3s ease;
+    }
+    body.dark #chat-box { background: #3b3b3b; }
+    .chat-entry { display: flex; align-items: flex-end; width: 100%; }
+    .chat-entry.mine { justify-content: flex-end; }
+    .chat-entry.bot  { justify-content: flex-start; }
+    .chat-profile {
+      width: 36px; height: 36px; border-radius: 50%;
+      object-fit: cover; border: 1px solid #aaa;
+      cursor: pointer;
+    }
+    .message {
+      position: relative; padding: 10px 14px;
+      border-radius: 7px; background: #e2e2e2;
+      max-width: 60%; word-break: break-word;
+      font-size: 15px; box-shadow: 2px 2px 6px rgba(0,0,0,0.08);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .chat-entry.bot .message {
+      margin-left: 8px; background: #ffe2f2;
+      border-radius: 20px 20px 20px 0;
+    }
+    .chat-entry.mine .message {
+      margin-right: 8px; background: #b2f2e4;
+      border-radius: 20px 20px 0 20px;
+    }
+    body.dark .chat-entry.bot .message { background: #555; color: #fff; }
+    body.dark .chat-entry.mine .message { background: #4a7b70; color: #fff; }
+    .message::before {
+      content: ""; position: absolute;
+      width: 0; height: 0; border: 8px solid transparent;
+      top: 12px;
+    }
+    .chat-entry.bot .message::before { left: -16px; border-right-color: #ffe2f2; }
+    .chat-entry.mine .message::before { right: -16px; border-left-color: #b2f2e4; }
+    .message img.chat-image {
+      max-width: 120px; border-radius: 8px;
+      cursor: pointer; display: block; margin-top: 6px;
+    }
+    .timestamp {
+      display: block; font-size: 11px;
+      color: #777; margin-top: 4px; text-align: right;
+    }
+    #sidebar {
+      flex: 1; background: white; padding: 15px;
+      border-left: 1px solid #ccc; font-size: 14px;
+      color: #333; overflow-y: auto;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    body.dark #sidebar { background: #333; color: #fff; }
+    .user-row { display: flex; align-items: center; margin: 10px 0; gap: 8px; }
+    .user-profile {
+      width: 32px; height: 32px; border-radius: 50%;
+      object-fit: cover; border: 1px solid #aaa;
+      cursor: pointer;
+    }
+    .user-name { flex: 1; font-weight: bold; }
+    .kick, .block {
+      background-color: #f0f0f0; border: none;
+      border-radius: 13px; padding: 4px 8px;
+      font-size: 12px; color: #333; cursor: pointer;
+    }
+    #user-input {
+      display: flex; flex-direction: column;
+      padding: 12px; border-top: 1px solid #ddd;
+      gap: 10px;
+    }
+    .input-row { display: flex; gap: 10px; }
+    #file-label {
+      background-color: #2D7868; color: white;
+      padding: 10px; border-radius: 10px;
+      cursor: pointer;
+    }
+    #preview {
+      max-height: 80px; border-radius: 8px;
+      border: 1px solid #aaa;
+    }
+    #message {
+      flex: 1; padding: 12px;
+      border-radius: 8px; border: 1px solid #ccc;
+      font-size: 15px;
+    }
+    #send {
+      background-color: #2D7868; color: white;
+      border: none; padding: 12px 20px;
+      border-radius: 7px; font-weight: bold;
+      cursor: pointer;
+    }
+    .share-btn {
+      background: #ffffff; color: #2D7868;
+      border: 1px solid #2D7868;
+      padding: 10px 16px; font-size: 14px;
+      border-radius: 10px; margin: 16px auto 12px;
+      display: block; cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .share-btn:hover { background: #2D7868; color: white; }
+    #image-popup {
+      display: none; position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center; align-items: center;
+      z-index: 1000;
+    }
+    #image-popup img {
+      max-width: 90%; max-height: 90%;
+      border-radius: 10px; cursor: grab;
+      transition: transform 0.2s ease;
+    }
+  </style>
+</head>
+<body class="">
+  <div id="chat-container">
+    <div id="header">
+      <div style="width:20%;"></div>
+      <div style="text-align:center; width:60%; display:flex; justify-content:center; align-items:center; gap:20px;">
+        <div>💬 어린왕자 채팅방</div>
+        <button id="toggle-dark" class="dark-toggle">다크모드</button>
+      </div>
+      <div style="width:20%; display:flex; justify-content:flex-end;">
+        <button class="leave-btn" onclick="leaveChat()">나가기</button>
+      </div>
+    </div>
+    <div id="main-section">
+      <div id="chat-box"></div>
+      <div id="sidebar">
+        👥 참여자 목록 (<span id="user-count-number">3</span>명)
+        <div id="user-list"><div class="user-row"><img src="https://via.placeholder.com/32" class="user-profile" onclick="showProfile(&#39;나(방장)&#39;,&#39;https://via.placeholder.com/80&#39;)">
+                         <div class="user-name">나(방장)</div>
+                         </div><div class="user-row"><img src="https://via.placeholder.com/32" class="user-profile" onclick="showProfile(&#39;뱌뱌뱌&#39;,&#39;https://via.placeholder.com/80&#39;)">
+                         <div class="user-name">뱌뱌뱌</div>
+                         <button class="kick" onclick="kickUser(&#39;뱌뱌뱌&#39;)">강퇴</button><button class="block" onclick="blockUser(&#39;뱌뱌뱌&#39;)">차단</button></div><div class="user-row"><img src="https://via.placeholder.com/32" class="user-profile" onclick="showProfile(&#39;라떼&#39;,&#39;https://via.placeholder.com/80&#39;)">
+                         <div class="user-name">라떼</div>
+                         <button class="kick" onclick="kickUser(&#39;라떼&#39;)">강퇴</button><button class="block" onclick="blockUser(&#39;라떼&#39;)">차단</button></div></div>
+        <form id="add-user-form" onsubmit="event.preventDefault(); addUser();">
+          <label for="add-user-input">+ ID로 유저 추가</label>
+          <input id="add-user-input" type="text" placeholder="예: ggobook93">
+          <button type="submit" id="add-user-btn">추가</button>
+        </form>
+      </div>
+    </div>
+    <div id="user-input">
+      <div id="preview-container" class="input-preview" style="display:none;"><img id="preview"></div>
+      <div class="input-row">
+        <label for="file-input" id="file-label">📎</label>
+        <input id="file-input" type="file" accept="image/*" style="display:none;">
+        <input id="message" type="text" placeholder="메시지를 입력하세요">
+        <button id="send">보내기</button>
+      </div>
+    </div>
+    <button class="share-btn" onclick="shareRoom()">🔗 채팅방 링크 복사하기</button>
+  </div>
+  <div id="image-popup" onclick="this.style.display=&#39;none&#39;;">
+    <img id="popup-img" style="cursor: grab;">
+  </div>
+  <script>
+    // 데이터 및 요소
+    let users = ['나(방장)', '뱌뱌뱌', '라떼'];
+    const blockedUsers = [];
+    const autoReplies = {
+      '뱌뱌뱌': ['좋은 생각이에요! 😊','저도 그렇게 느꼈어요!','같이 읽으니까 더 재미있네요~'],
+      '라떼': ['이 책 너무 좋아요! 🐶','라떼는 말이죠...','간식보다 독서가 좋아요!']
+    };
+    const chatBox = document.getElementById('chat-box');
+    const sendButton = document.getElementById('send');
+    const messageInput = document.getElementById('message');
+    const fileInput = document.getElementById('file-input');
+    const preview = document.getElementById('preview');
+    const previewContainer = document.getElementById('preview-container');
+    const userList = document.getElementById('user-list');
+    const userCount = document.getElementById('user-count-number');
+    let imageData = '';
+
+    function updateUserList() {
+      userList.innerHTML = '';
+      users.forEach(user => {
+        const row = document.createElement('div');
+        row.className = 'user-row';
+        row.innerHTML = `<img src="https://via.placeholder.com/32" class="user-profile" onclick="showProfile('${user}','https://via.placeholder.com/80')" />
+                         <div class="user-name">${user}</div>
+                         ${user.includes('나') ? '' : `<button class="kick" onclick="kickUser('${user}')">강퇴</button><button class="block" onclick="blockUser('${user}')">차단</button>`}`;
+        userList.appendChild(row);
+      });
+      userCount.textContent = users.length;
+    }
+
+    function addUser() {
+      const input = document.getElementById('add-user-input');
+      const id = input.value.trim();
+      if (!id) return;
+      if (users.some(u => u.toLowerCase() === id.toLowerCase())) {
+        alert('이미 입장한 유저입니다.');
+        input.value = '';
+        return;
+      }
+      if (confirm(`${id}님을 추가하시겠습니까?`)) {
+        users.push(id);
+        updateUserList();
+        input.value = '';
+      }
+    }
+
+    function kickUser(name) {
+      if (!confirm(`${name}님을 강퇴하시겠습니까?`)) return;
+      users = users.filter(u => u !== name);
+      updateUserList();
+      alert(`${name}님이 강퇴되었습니다.`);
+    }
+
+    function blockUser(name) {
+      if (!confirm(`${name}님을 차단하시겠습니까?`)) return;
+      blockedUsers.push(name);
+      alert(`${name}님이 차단되었습니다.`);
+    }
+
+    function getCurrentTime() {
+      return new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});
+    }
+
+    function addMessage(text, sender='mine', image='', botName='') {
+      const user = sender === 'mine' ? '나(방장)' : sender;
+      if (blockedUsers.includes(user)) return;
+      const entry = document.createElement('div');
+      entry.classList.add('chat-entry', sender==='mine' ? 'mine' : 'bot');
+      const prof = document.createElement('img'); prof.className='chat-profile'; prof.src=`https://via.placeholder.com/36?text=${sender==='mine'?'나':botName}`;
+      const bubble = document.createElement('div'); bubble.className='message';
+      bubble.innerHTML = `<strong>${sender==='mine'?'나':botName}:</strong> ${text}`;
+      if (image) bubble.innerHTML += `<img src='${image}' class='chat-image' onclick="openImagePopup('${image}')"/>`;
+      bubble.innerHTML += `<div class='timestamp'>🕒 ${getCurrentTime()}</div>`;
+      if (sender==='mine') entry.append(bubble, prof); else entry.append(prof, bubble);
+      chatBox.appendChild(entry);
+      chatBox.scrollTo({ top: chatBox.scrollHeight, behavior: 'smooth' });
+      if (sender==='mine') setTimeout(() => {
+        const botKeys = Object.keys(autoReplies);
+        const rb = botKeys[Math.floor(Math.random()*botKeys.length)];
+        const respList = autoReplies[rb];
+        const resp = respList[Math.floor(Math.random()*respList.length)];
+        addMessage(resp, rb, '', rb);
+      }, 1000);
+    }
+
+    fileInput.onchange = e => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = ev => {
+          imageData = ev.target.result;
+          preview.src = imageData;
+          previewContainer.style.display = 'flex';
+        };
+        reader.readAsDataURL(file);
+      }
+    };
+
+    sendButton.onclick = () => {
+      const msg = messageInput.value.trim();
+      if (!msg && !imageData) return;
+      if (imageData && !confirm('이 이미지를 전송하시겠습니까?')) {
+        previewContainer.style.display = 'none';
+        imageData = '';
+        return;
+      }
+      addMessage(msg, 'mine', imageData);
+      messageInput.value = '';
+      previewContainer.style.display = 'none';
+      imageData = '';
+    };
+
+    messageInput.addEventListener('keydown', e => {
+      if (e.key==='Enter' && !e.shiftKey) { e.preventDefault(); sendButton.click(); }
+    });
+
+    document.getElementById('toggle-dark').onclick = () => {
+      document.body.classList.toggle('dark');
+      document.getElementById('toggle-dark').textContent = document.body.classList.contains('dark') ? '라이트모드' : '다크모드';
+    };
+
+    function openImagePopup(src) {
+      const popup = document.getElementById('image-popup');
+      const img = document.getElementById('popup-img');
+      img.src = src;
+      popup.style.display = 'flex';
+    }
+
+    let zoomLevel = 1, isDragging = false, startX, startY;
+    const popupImg = document.getElementById('popup-img');
+    popupImg.addEventListener('wheel', e => {
+      e.preventDefault();
+      zoomLevel += e.deltaY * -0.001;
+      zoomLevel = Math.min(Math.max(zoomLevel, 0.5), 3);
+      popupImg.style.transform = `scale(${zoomLevel})`;
+    });
+    popupImg.addEventListener('mousedown', e => {
+      isDragging = true; startX = e.clientX; startY = e.clientY; popupImg.style.cursor = 'grabbing';
+    });
+    document.addEventListener('mouseup', () => { isDragging = false; popupImg.style.cursor = 'grab'; });
+    document.addEventListener('mousemove', e => {
+      if (!isDragging) return;
+      const dx = e.clientX - startX, dy = e.clientY - startY;
+      popupImg.style.transform = `scale(${zoomLevel}) translate(${dx}px,${dy}px)`;
+    });
+
+    function showProfile(name, image) {
+      const pop = document.createElement('div');
+      pop.id = 'profile-popup';
+      pop.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;color:#333;border:1px solid #aaa;border-radius:10px;padding:20px;z-index:9999;';
+      pop.innerHTML = `
+        <div style="text-align:center;">
+          <img src="${image}" style="width:80px;height:80px;border-radius:50%;margin-bottom:10px;" />
+          <h3 style="margin:5px 0;">${name}</h3>
+          <p style="font-size:13px;color:#666;">ID: ${name.toLowerCase()}</p>
+          <p>추가 정보는 여기에 표시됩니다.</p>
+          <button onclick="document.body.removeChild(document.getElementById('profile-popup'))" style="margin-top:10px;padding:6px 12px;background:#2D7868;color:#fff;border:none;border-radius:6px;">닫기</button>
+        </div>
+      `;
+      document.body.appendChild(pop);
+    }
+
+    function shareRoom() {
+      navigator.clipboard.writeText(window.location.href).then(() => alert('채팅방 링크가 복사되었습니다!'));
+    }
+
+    function leaveChat() {
+      if (confirm('정말 나가시겠습니까?')) window.location.href = 'about:blank';
+    }
+
+    updateUserList();
+  </script>
+
+
+</body></html>

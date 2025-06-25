@@ -7,10 +7,11 @@
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style_shareAddgroup.css">
 
-    <title>꼬북꼬북 | 교환독서</title>
+    <title>꼬북꼬북 | 교환독서_그룹만들기</title>
     <style>
     </style>
 </head>
+<!-- <body data-page="exchange"> -->
 <body>
     <!-- header -->
     <header class="fig-header">
@@ -114,7 +115,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th><label>관련 키워드</label></th>
+                                <th><label>관련 해시태그</label></th>
                                 <td>
                                     <div class="group_keyword">
                                         <input type="text" name="group_keyword_input" id="group_keyword_input" placeholder="직접 입력">
@@ -225,4 +226,16 @@
     </div>
     
 </body>
+
+<!-- 교환독서-메인페이지 헤더 검색창 숨기기 js 관련 -->
+<!-- <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        if (document.body.dataset.page === "exchange") {
+        const searchForm = document.querySelector(".fig-searchform");
+        if (searchForm) {
+            searchForm.style.display = "none";
+        }
+        }
+    });
+</script> -->
 </html>

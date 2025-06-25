@@ -1,0 +1,211 @@
+nav{
+        /*border: 1px solid black;*/
+        display: flex;
+}
+.left_side{
+    width: 192px;
+    height:622px;
+    /*border: 1px solid black;*/
+    margin: 247px 0px 0px; 
+}
+.main{
+    width: 1137px;
+    /*나중에 높이 수정 */
+    height: auto;
+    margin-bottom: 100px;
+    /*border: 1px solid black;*/
+}
+.category{
+    color: #2d7868;
+    /*border: 1px solid red;*/
+    width: 191px;
+    height: 500px;
+    text-align: justify;
+    margin-bottom: 10px;
+}
+.category li{margin-bottom: 16px;}
+
+.icon{display: flex;}
+.icon i{margin-right: 10px; margin-top: 5px;}
+.category li{margin-bottom: 16px; }
+.inform{
+    width: 191px;
+    height: 127px;
+    text-align: justify;
+}
+.inform li{
+    margin-bottom: 12px;
+    color:#2d7868;
+}
+.inform_check li{
+    border-top-right-radius:10px;
+    /*line-height: 45px;*/
+    width: 135px;
+    height: 30px;
+    background-color:#2d7868;
+    color: white;
+    margin-bottom: 12px;
+    text-align: center;
+    padding: 0 auto;
+    margin-left: 10px ;
+}
+
+/*세션 부분 */
+section{
+    flex: 1;
+    max-width: 1138px;
+    margin:245px 50px;
+    height: 500px;
+    /*border: 1px solid blue;*/
+}
+.field{
+    width:764 px;
+    height: 217px;
+    /*border: 1px solid red;*/
+}
+.profile_title{
+    display: flex;
+    align-items: center;
+    gap: 0 4px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    font-size: 18px;
+    line-height: 25px;
+}    
+.field_description{
+    padding-bottom: 10px;
+    color: #999;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 20px;
+}
+.sui_form_field{
+    display: block;
+    padding: 0px 0px 18px;
+    width: 764px;
+    height: 40px;
+    /* border: 1px solid black; */
+    padding-bottom: 18px;
+    margin-bottom: 15px;
+}
+.sui_form_field input{
+    border-top-right-radius:10px;
+    width: 764px;
+    height: 40px;
+    appearance: none;
+    /*background-color: rgba(45, 120, 104, 0.2);*/
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 20px;
+    padding: 0;
+    flex: 1;
+    display: flex;
+    position: relative;
+    padding-left: 20px;
+    border: 2px solid #999 ;
+}
+
+
+
+
+.field button{
+    width: 160px;
+    cursor: pointer;
+    background-color: #2D7868;
+    color: #fff;
+    height: 40px;
+    padding: 0 9px;
+    min-width: 140px;
+}
+.email_inserted button{
+    width: 160px;
+    cursor: pointer;
+    background-color: #2D7868;
+    color: #fff;
+    height: 40px;
+    padding: 0 9px;
+    min-width: 140px;
+}
+.pw_inserted  button{
+    width: 160px;
+    cursor: pointer;
+    background-color: #2D7868;
+    color: #fff;
+    height: 40px;
+    padding: 0 9px;
+    min-width: 140px;
+
+
+}
+
+
+
+
+
+
+.re_button{
+    text-align: right;
+    height: 40px;
+    width: 764px;
+}
+.sui_button{
+    height: 40px;
+    padding: 0 16px;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 10px;
+    line-height: 20px;
+    border: none;
+}
+/*.btn_dark{
+    color: #fff;
+    background-color: #282828;
+}*/
+
+.email_inserted{
+    width:764 px;
+    height: 217px;
+    /*border: 1px solid green;  */    
+    padding-top: 20px;
+}
+
+
+
+
+
+
+
+/* 계정 삭제 부분 */
+.field_delete{
+    width: 764px;
+    height: 75px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+.button_mini{
+    height: 28px;
+    padding: 0 12px;
+    font-size: 11px;
+    margin-top: 20px;
+}
+.button_disabled{
+    background-color: #e6e6e6;
+    color: #999;
+}
+.field_account_delete{
+    width: 75px;
+    height: 25px;
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+.field_description_delete{
+    padding: 0px 0px 13px;
+    color: #999;
+}
