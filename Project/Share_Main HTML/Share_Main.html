@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/955e8c2313.js" crossorigin="anonymous"></script>
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/Share_Main.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/paginator.css">
+
+    <title>꼬북꼬북 | 교환독서_메인페이지</title>
+    <style>
+    </style>
+</head>
+<!-- <body data-page="exchange">  교환독서-메인페이지 헤더 검색창 숨기기 js 관련 --> 
+<body>
+    <header class="fig-header">
+        <nav class="fig-nav">
+        <div class="fig-header-left">
+            <a class="fig-one" href="/" rel="noreferrer">
+            <h1 class="fig-logo">꼬북꼬북</h1>
+            <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                class="fig-exchangeimage">
+                <path d="M4.5 7h15M4.5 12h15M4.5 17h15" stroke="#2D7868" stroke-width="1.3" stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </svg>
+            <h4 class="fig-exchange-book">교환 독서</h4>
+            </a>
+        </div>
+
+        <form role="search" class="fig-searchform et3830u0">
+            <div tabindex="-1" class="fig-tabindex">
+            <div class="fig-q3rd3s et3830u1">
+                <label class="fig-formlabel">
+                <svg width="1em" height="1em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                    class="fig-searchimage">
+                    <path fill-rule="evenodd"
+                    d="M13.28 8.18a5.1 5.1 0 11-10.2 0 5.1 5.1 0 0110.2 0zm-1.031 5.069a6.5 6.5 0 11.991-.989l4.695 4.695a.7.7 0 11-.99.99l-4.696-4.696z">
+                    </path>
+                </svg>
+                <span class="fig-instant">인스턴트 검색</span>
+                <input type="text" maxlength="64" tabindex="-1" class="fig-forminput" value="">
+                </label>
+            </div>
+            </div>
+        </form>
+
+        <div class="fig-join">
+            <a href="" class="fig-signup">회원가입</a>
+            <a href="" class="fig-login">로그인</a>
+        </div>
+
+        </nav>
+    </header>
+
+    <hr class="fig-hr">
+        <div class="fig-main">
+            <div class="feed__content">
+                <!-- 참여중인 그룹 표시 -->
+                <div class="feed__join">
+                    <div class="feed__join_title">
+                        <span>회원님이 참여 중인 그룹</span>
+                        <span id="group_count">8/8</span>
+                    </div>
+                    <div class="feed__join_body">
+                        <div class="feed__join_body_item">
+                            <div class="join_body_item_book">
+                                <img src="https://image.aladin.co.kr/product/32379/9/cover150/8954695175_1.jpg" alt="귀하의 노고에 감사드립니다 - 월급사실주의 2023">
+                            </div>
+                            <div class="join_body_item_groupName">
+                                [📚수북플러스] 2. 귀하의 노고에 감...
+                            </div>
+                        </div>
+                        <div class="feed__join_body_item">
+                            <div class="join_body_item_book">
+                                <img src="https://image.aladin.co.kr/product/36249/44/cover150/k692038529_1.jpg" alt="다르게 걷기">
+                            </div>
+                            <div class="join_body_item_groupName">
+                                책 증정 [박산호 x 조영주] 인터뷰
+                            </div>
+                        </div>
+                        <div class="feed__join_body_item">
+                            <div class="join_body_item_book">
+                                <img src="https://image.aladin.co.kr/product/35872/76/cover150/k362037780_1.jpg" alt="">
+                            </div>
+                            <div class="join_body_item_groupName">
+                                [ Do it! 오라클로 배우는 SQL 입문 ]
+                            </div>
+                        </div>
+                        <div class="feed__join_body_item">
+                            <div class="join_body_item_book">
+                                <img src="https://image.aladin.co.kr/product/36582/74/cover150/k232039558_1.jpg" alt="">
+                            </div>
+                            <div class="join_body_item_groupName">
+                                어린왕자
+                            </div>
+                        </div>
+                        <div class="feed__join_body_item">
+                            <div class="join_body_item_book">
+                                <img src="https://image.aladin.co.kr/product/32379/9/cover150/8954695175_1.jpg" alt="귀하의 노고에 감사드립니다 - 월급사실주의 2023">
+                            </div>
+                            <div class="join_body_item_groupName">
+                                [📚수북플러스] 2. 귀하의 노고에 감...
+                            </div>
+                        </div>
+                        <div class="feed__join_body_item">
+                            <div class="join_body_item_book">
+                                <img src="https://image.aladin.co.kr/product/36249/44/cover150/k692038529_1.jpg" alt="다르게 걷기">
+                            </div>
+                            <div class="join_body_item_groupName">
+                                책 증정 [박산호 x 조영주] 인터뷰
+                            </div>
+                        </div>
+                        <div class="feed__join_body_item">
+                            <div class="join_body_item_book">
+                                <img src="https://image.aladin.co.kr/product/35872/76/cover150/k362037780_1.jpg" alt="">
+                            </div>
+                            <div class="join_body_item_groupName">
+                                [ Do it! 오라클로 배우는 SQL 입문 ]
+                            </div>
+                        </div>
+                        <div class="feed__join_body_item">
+                            <div class="join_body_item_book">
+                                <img src="https://image.aladin.co.kr/product/36582/74/cover150/k232039558_1.jpg" alt="">
+                            </div>
+                            <div class="join_body_item_groupName">
+                                어린왕자
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            
+
+                <!-- 꼬북꼬북 교환독서 그룹 목록 표시 -->
+                <div class="feed__tabs">
+                    <div class="feed__tabs_title">
+                        꼬북꼬북 교환독서 그룹
+                    </div>
+                    <div class="feed__tabs_search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" class="feed__tabs_search_input" placeholder="책, 그룹, 해시태그  검색">
+                    </div>
+                    <div class="feed__tabs_button">
+                        그룹 만들기
+                    </div>
+                </div>
+                <div class="feed__list">
+                    <div class="feed__preview">
+                        <div class="feed__preview_text">
+                            <div class="feed__preview_tags">
+                                <span class="feed__preview_tags_tag">#소설</span>
+                                <span class="feed__preview_tags_tag">#편하게이야기</span>
+                                <span class="feed__preview_tags_tag">#독서초보환영</span>
+                                <span class="feed__preview_tags_tag">#작가와함께</span>
+                                <span class="feed__preview_tags_tag">#편집자와함께</span>
+                            </div>
+                            <div class="group_name">
+                                <span>[📚수북플러스] 2. 귀하의 노고에 감사드립니다_수림문학상 작가와 함께 읽어요</span>
+                            </div>
+                            <div class="group_leader">
+                                <img src="https://gmeum-application-production.s3.ap-northeast-2.amazonaws.com/uploaded/profile/images-v2/profile_13588_2024_08_19_09_55_57_482.png">
+                                수북지기
+                            </div>
+                        </div>
+                        <div class="feed__preview_book">
+                            <img src="https://image.aladin.co.kr/product/32379/9/cover150/8954695175_1.jpg" alt="귀하의 노고에 감사드립니다 - 월급사실주의 2023">
+                        </div>
+                    </div>
+                    <div class="feed__preview">
+                        <div class="feed__preview_text">
+                            <div class="feed__preview_tags">
+                                <span class="feed__preview_tags_tag">#번역가와함께</span>
+                                <span class="feed__preview_tags_tag">#편하게이야기</span>
+                                <span class="feed__preview_tags_tag">#인문</span>
+                                <span class="feed__preview_tags_tag">#인터뷰</span>
+                                <span class="feed__preview_tags_tag">#글쓰기</span>
+                            </div>
+                            <div class="group_name">
+                                <span>[아티초크/책증정] 구병모 강력 추천! W.G. 제발트 『기억의 유령』 번역가와 함께해요.</span>
+                            </div>
+                            <div class="group_leader">
+                                <img src="https://gmeum-application-production.s3.ap-northeast-2.amazonaws.com/uploaded/profile/images-v2/profile_10743_2023_11_05_13_49_46_065.jpeg">
+                                아티초크
+                            </div>
+                        </div>
+                        <div class="feed__preview_book">
+                            <img src="https://image.aladin.co.kr/product/36502/16/cover150/k172039322_1.jpg" alt="기억의 유령 - 폭력의 시대, 불가능의 글쓰기는 어떻게 가능한가">
+                        </div>
+                    </div>
+                    <div class="feed__preview">
+                        <div class="feed__preview_text">
+                            <div class="feed__preview_tags">
+                                <span class="feed__preview_tags_tag">#에세이</span>
+                                <span class="feed__preview_tags_tag">#인터뷰</span>
+                                <span class="feed__preview_tags_tag">#철학</span>
+                                <span class="feed__preview_tags_tag">#인문</span>
+                                <span class="feed__preview_tags_tag">#편하게이야기</span>
+                                <span class="feed__preview_tags_tag">#독서초보환영</span>
+                                <span class="feed__preview_tags_tag">#오프라인북토크</span>
+                                <span class="feed__preview_tags_tag">#오프독서모임</span>
+                                <span class="feed__preview_tags_tag">#대담</span>
+                            </div>
+                            <div class="group_name">
+                                <span>책 증정 [박산호 x 조영주] 인터뷰집 <다르게 걷기>를 함께 읽어요</span>
+                            </div>
+                            <div class="group_leader">
+                                <img src="https://gmeum-application-production.s3.ap-northeast-2.amazonaws.com/uploaded/profile/images-v2/profile_11634_2025_03_22_22_59_34_738.jpg">
+                                조영주
+                            </div>
+                        </div>
+                        <div class="feed__preview_book">
+                            <img src="https://image.aladin.co.kr/product/36249/44/cover150/k692038529_1.jpg" alt="다르게 걷기">
+                        </div>
+                    </div>
+                    <div class="feed__preview">
+                        <div class="feed__preview_text">
+                            <div class="feed__preview_tags">
+                                <span class="feed__preview_tags_tag">#소설</span>
+                                <span class="feed__preview_tags_tag">#오프라인북토크</span>
+                                <span class="feed__preview_tags_tag">#앤솔러지</span>
+                                <span class="feed__preview_tags_tag">#김의경</span>
+                                <span class="feed__preview_tags_tag">#조영주</span>
+                                <span class="feed__preview_tags_tag">#김하율</span>
+                            </div>
+                            <div class="group_name">
+                                <span>[그믐앤솔러지클럽] 1. [책증정] 무모하고 맹렬한 처음 이야기, 『처음이라는 도파민』</span>
+                            </div>
+                            <div class="group_leader">
+                                <img src="https://gmeum-application-production.s3.ap-northeast-2.amazonaws.com/uploaded/profile/images-v2/profile_3108_2025_05_02_09_08_05_946.jpeg">
+                                수북강녕
+                            </div>
+                        </div>
+                        <div class="feed__preview_book">
+                            <img src="https://image.aladin.co.kr/product/36407/81/cover150/k672039882_1.jpg" alt="처음이라는 도파민 - 무모하고 맹렬한 모든 처음에 관한 이야기">
+                        </div>
+                    </div>
+                    <div class="feed__preview">
+                        <div class="feed__preview_text">
+                            <div class="feed__preview_tags">
+                                <span class="feed__preview_tags_tag">#벽돌책</span>
+                                <span class="feed__preview_tags_tag">#냉전</span>
+                                <span class="feed__preview_tags_tag">#역사</span>
+                                <span class="feed__preview_tags_tag">#정치사회</span>
+                                <span class="feed__preview_tags_tag">#신간</span>
+                                <span class="feed__preview_tags_tag">#편하게이야기</span>
+                            </div>
+                            <div class="group_name">
+                                <span>[책걸상 '벽돌 책' 함께 읽기] #23. &lt;냉전&gt;</span>
+                            </div>
+                            <div class="group_leader">
+                                <img src="https://gmeum-application-production.s3.ap-northeast-2.amazonaws.com/uploaded/profile/images/%EA%B0%95%EC%96%91%EA%B5%AC_1.jpg">
+                                YG
+                            </div>
+                        </div>
+                        <div class="feed__preview_book">
+                            <img src="https://image.aladin.co.kr/product/35978/40/cover150/k122037904_1.jpg" alt="냉전 - 우리 시대를 만든 냉전의 세계사">
+                        </div>
+                    </div>
+                                        <div class="feed__preview">
+                        <div class="feed__preview_text">
+                            <div class="feed__preview_tags">
+                                <span class="feed__preview_tags_tag">#소설</span>
+                                <span class="feed__preview_tags_tag">#편하게이야기</span>
+                                <span class="feed__preview_tags_tag">#독서초보환영</span>
+                                <span class="feed__preview_tags_tag">#작가와함께</span>
+                                <span class="feed__preview_tags_tag">#편집자와함께</span>
+                            </div>
+                            <div class="group_name">
+                                <span>[📚수북플러스] 2. 귀하의 노고에 감사드립니다_수림문학상 작가와 함께 읽어요</span>
+                            </div>
+                            <div class="group_leader">
+                                <img src="https://gmeum-application-production.s3.ap-northeast-2.amazonaws.com/uploaded/profile/images-v2/profile_13588_2024_08_19_09_55_57_482.png">
+                                수북지기
+                            </div>
+                        </div>
+                        <div class="feed__preview_book">
+                            <img src="https://image.aladin.co.kr/product/32379/9/cover150/8954695175_1.jpg" alt="귀하의 노고에 감사드립니다 - 월급사실주의 2023">
+                        </div>
+                    </div>
+                    <div class="feed__preview">
+                        <div class="feed__preview_text">
+                            <div class="feed__preview_tags">
+                                <span class="feed__preview_tags_tag">#번역가와함께</span>
+                                <span class="feed__preview_tags_tag">#편하게이야기</span>
+                                <span class="feed__preview_tags_tag">#인문</span>
+                                <span class="feed__preview_tags_tag">#인터뷰</span>
+                                <span class="feed__preview_tags_tag">#글쓰기</span>
+                            </div>
+                            <div class="group_name">
+                                <span>[아티초크/책증정] 구병모 강력 추천! W.G. 제발트 『기억의 유령』 번역가와 함께해요.</span>
+                            </div>
+                            <div class="group_leader">
+                                <img src="https://gmeum-application-production.s3.ap-northeast-2.amazonaws.com/uploaded/profile/images-v2/profile_10743_2023_11_05_13_49_46_065.jpeg">
+                                아티초크
+                            </div>
+                        </div>
+                        <div class="feed__preview_book">
+                            <img src="https://image.aladin.co.kr/product/36502/16/cover150/k172039322_1.jpg" alt="기억의 유령 - 폭력의 시대, 불가능의 글쓰기는 어떻게 가능한가">
+                        </div>
+                    </div>
+                    <div class="feed__preview">
+                        <div class="feed__preview_text">
+                            <div class="feed__preview_tags">
+                                <span class="feed__preview_tags_tag">#에세이</span>
+                                <span class="feed__preview_tags_tag">#인터뷰</span>
+                                <span class="feed__preview_tags_tag">#철학</span>
+                                <span class="feed__preview_tags_tag">#인문</span>
+                                <span class="feed__preview_tags_tag">#편하게이야기</span>
+                                <span class="feed__preview_tags_tag">#독서초보환영</span>
+                                <span class="feed__preview_tags_tag">#오프라인북토크</span>
+                                <span class="feed__preview_tags_tag">#오프독서모임</span>
+                                <span class="feed__preview_tags_tag">#대담</span>
+                            </div>
+                            <div class="group_name">
+                                <span>책 증정 [박산호 x 조영주] 인터뷰집 <다르게 걷기>를 함께 읽어요</span>
+                            </div>
+                            <div class="group_leader">
+                                <img src="https://gmeum-application-production.s3.ap-northeast-2.amazonaws.com/uploaded/profile/images-v2/profile_11634_2025_03_22_22_59_34_738.jpg">
+                                조영주
+                            </div>
+                        </div>
+                        <div class="feed__preview_book">
+                            <img src="https://image.aladin.co.kr/product/36249/44/cover150/k692038529_1.jpg" alt="다르게 걷기">
+                        </div>
+                    </div>
+                    <div class="feed__preview">
+                        <div class="feed__preview_text">
+                            <div class="feed__preview_tags">
+                                <span class="feed__preview_tags_tag">#소설</span>
+                                <span class="feed__preview_tags_tag">#오프라인북토크</span>
+                                <span class="feed__preview_tags_tag">#앤솔러지</span>
+                                <span class="feed__preview_tags_tag">#김의경</span>
+                                <span class="feed__preview_tags_tag">#조영주</span>
+                                <span class="feed__preview_tags_tag">#김하율</span>
+                            </div>
+                            <div class="group_name">
+                                <span>[그믐앤솔러지클럽] 1. [책증정] 무모하고 맹렬한 처음 이야기, 『처음이라는 도파민』</span>
+                            </div>
+                            <div class="group_leader">
+                                <img src="https://gmeum-application-production.s3.ap-northeast-2.amazonaws.com/uploaded/profile/images-v2/profile_3108_2025_05_02_09_08_05_946.jpeg">
+                                수북강녕
+                            </div>
+                        </div>
+                        <div class="feed__preview_book">
+                            <img src="https://image.aladin.co.kr/product/36407/81/cover150/k672039882_1.jpg" alt="처음이라는 도파민 - 무모하고 맹렬한 모든 처음에 관한 이야기">
+                        </div>
+                    </div>
+                    <div class="feed__preview">
+                        <div class="feed__preview_text">
+                            <div class="feed__preview_tags">
+                                <span class="feed__preview_tags_tag">#벽돌책</span>
+                                <span class="feed__preview_tags_tag">#냉전</span>
+                                <span class="feed__preview_tags_tag">#역사</span>
+                                <span class="feed__preview_tags_tag">#정치사회</span>
+                                <span class="feed__preview_tags_tag">#신간</span>
+                                <span class="feed__preview_tags_tag">#편하게이야기</span>
+                            </div>
+                            <div class="group_name">
+                                <span>[책걸상 '벽돌 책' 함께 읽기] #23. &lt;냉전&gt;</span>
+                            </div>
+                            <div class="group_leader">
+                                <img src="https://gmeum-application-production.s3.ap-northeast-2.amazonaws.com/uploaded/profile/images/%EA%B0%95%EC%96%91%EA%B5%AC_1.jpg">
+                                YG
+                            </div>
+                        </div>
+                        <div class="feed__preview_book">
+                            <img src="https://image.aladin.co.kr/product/35978/40/cover150/k122037904_1.jpg" alt="냉전 - 우리 시대를 만든 냉전의 세계사">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+
+                <!-- Paginator -->
+            <div _ngcontent-ng-c2831665569="" class="row flex flex-h-center ng-star-inserted">
+                <app-paginator _ngcontent-ng-c2831665569="" _nghost-ng-c522025578="" class="ng-star-inserted">
+                    <div _ngcontent-ng-c522025578="" class="numbers-pager">
+                    <button _ngcontent-ng-c522025578="" sui-icon-button="" _nghost-ng-c1936088117="" disabled="">
+                        <sui-icon _ngcontent-ng-c522025578="" name="끝화살표_왼쪽" _nghost-ng-c3051396554="">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_2830_122058)">
+                            <mask id="mask0_2830_122058" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                                <path d="M0 24L24 24L24 0L-2.09815e-06 2.09815e-06L0 24Z" fill="#fafafa"></path>
+                            </mask>
+                            <g mask="url(#mask0_2830_122058)">
+                                <path d="M21.9323 22.5362C22.6042 21.8162 22.6042 20.7122 21.8842 20.0162L13.5562 12.0002L23.1562 2.76019L21.4762 1.00819L10.0282 12.0002L21.4763 22.9922L21.9323 22.5122L21.9323 22.5362Z" fill="currentColor"></path>
+                                <path d="M12.4786 22.5362C13.1506 21.8162 13.1506 20.7122 12.4306 20.0162L4.10256 12.0002L13.7266 2.76019L12.0466 1.00819L0.598563 12.0002L12.0226 22.9922L12.4786 22.5122L12.4786 22.5362Z" fill="currentColor"></path>
+                            </g>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_2830_122058">
+                                <rect width="24" height="24" fill="#fafafa" transform="translate(24 24) rotate(180)"></rect>
+                            </clipPath>
+                            </defs>
+                        </svg>
+                        </sui-icon>
+                    </button>
+                    <button _ngcontent-ng-c522025578="" sui-icon-button="" _nghost-ng-c1936088117="" disabled="">
+                        <sui-icon _ngcontent-ng-c522025578="" name="화살표_왼쪽" _nghost-ng-c3051396554="">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_1668_163964)">
+                            <path d="M16.3325 1.47C17.0125 2.18 16.9925 3.3 16.2825 3.98L7.9425 12L17.5625 21.25L15.8825 23L4.4425 12L15.8825 1L16.3325 1.47Z" fill="currentColor"></path>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_1668_163964">
+                                <rect width="24" height="24" fill="#fafafa" transform="matrix(-1 0 0 1 24 0)"></rect>
+                            </clipPath>
+                            </defs>
+                        </svg>
+                        </sui-icon>
+                    </button>
+                    </div>
+                    <div _ngcontent-ng-c522025578="" class="numbers">
+                    <a _ngcontent-ng-c522025578="" class="active ng-star-inserted">1</a>
+                    <a _ngcontent-ng-c522025578="" class="ng-star-inserted">2</a>
+                    <a _ngcontent-ng-c522025578="" class="ng-star-inserted">3</a>
+                    <a _ngcontent-ng-c522025578="" class="ng-star-inserted">4</a>
+                    <a _ngcontent-ng-c522025578="" class="ng-star-inserted">5</a>
+                    <a _ngcontent-ng-c522025578="" class="hidden ng-star-inserted">6</a>
+                    </div>
+                    <div _ngcontent-ng-c522025578="" class="numbers-pager">
+                    <button _ngcontent-ng-c522025578="" sui-icon-button="" _nghost-ng-c1936088117="">
+                        <sui-icon _ngcontent-ng-c522025578="" name="화살표_오른쪽" _nghost-ng-c3051396554="">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_1668_163961)">
+                            <path d="M7.6675 1.47C6.9875 2.18 7.0075 3.3 7.7175 3.98L16.0575 12L6.4375 21.25L8.1175 23L19.5575 12L8.1175 1L7.6675 1.47Z" fill="currentColor"></path>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_1668_163961">
+                                <rect width="24" height="24" fill="#fafafa"></rect>
+                            </clipPath>
+                            </defs>
+                        </svg>
+                        </sui-icon>
+                    </button>
+                    <button _ngcontent-ng-c522025578="" sui-icon-button="" _nghost-ng-c1936088117="">
+                        <sui-icon _ngcontent-ng-c522025578="" name="끝화살표_오른쪽" _nghost-ng-c3051396554="">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_2830_122049)">
+                            <mask id="mask0_2830_122049" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                                <path d="M24 0H0V24H24V0Z" fill="#fafafa"></path>
+                            </mask>
+                            <g mask="url(#mask0_2830_122049)">
+                                <path d="M2.06775 1.46381C1.39575 2.18381 1.39575 3.28781 2.11575 3.98381L10.4437 11.9998L0.84375 21.2398L2.52375 22.9918L13.9718 11.9998L2.52375 1.00781L2.06775 1.48781V1.46381Z" fill="currentColor"></path>
+                                <path d="M11.5214 1.46381C10.8494 2.18381 10.8494 3.28781 11.5694 3.98381L19.8974 11.9998L10.2734 21.2398L11.9534 22.9918L23.4014 11.9998L11.9774 1.00781L11.5214 1.48781V1.46381Z" fill="currentColor"></path>
+                            </g>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_2830_122049">
+                                <rect width="24" height="24" fill="#fafafa"></rect>
+                            </clipPath>
+                            </defs>
+                        </svg>
+                        </sui-icon>
+                    </button>
+                    </div>
+                </app-paginator>
+                <!---->
+            </div>   
+
+        </div> <!-- fig-main -->
+
+         
+
+
+    <!-- footer -->
+  <div class="footerWrap">
+    <div class="totalReview">
+      <p>꼬북꼬북 모은 리뷰<span>15,738</span>개</p>
+    </div>
+    <!--리뷰수 아래 정보부분-->
+    <div class="footer">
+      <div class="footer-left">
+        <p>(주) 꼬북꼬북</p>
+        <div class="infoWrap">
+          <ul>
+            <li>대표자명: 꼬북이</li>
+            <li>사업자등록번호: 123-45-67890</li>
+            <li>통신판매업신고: 2025-하룰라라-01159</li>
+            <li>이메일: support@ggo.book</li>
+          </ul>
+          <ul>
+            <li>주소: 서울시 가산동 하룰라라로 궁전센터1차 123-01</li>
+            <li>Tel : 02-1991-1120</li>
+            <li>Fax : 02-1991-1120</li>
+          </ul>
+          <p>© 2025 꼬북꼬북 All rights reserved</p>
+        </div>
+        <div class="logos">
+          <img src="logos/notion_white.png" style="width:30px;">
+          <img src="logos/github_white.png" style="width:30px;">
+          <img src="logos/youtube_white.png" style="width:30px;">
+        </div>
+      </div>
+      <div class="footer-right">
+        <p>고객센터 1234-5678 (발신자 부담)</p>
+        <div class="csWrap">
+          <button class="ntcBtn">공지사항</button>
+          <button class="inqBtn">1:1문의</button>
+        </div>
+        <table class="gitIds">
+          <tbody>
+            <tr>
+              <td colspan="3">www.ggobookggobook.com</td>
+            </tr>
+            <tr>
+              <td>이승민 @null4848</td>
+              <td>김슬비 @kb4954</td>
+              <td>김민성 @LatteMeng</td>
+            </tr>
+            <tr>
+              <td>김혜원 @hwk3005</td>
+              <td>신민철 @resader1</td>
+              <td>공유현 @sharehyun</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+    <!--리뷰수 아래 정보부분-->
+    
+</body>
+
+
+<!-- -------------------- script ----------------------------------------- -->
+<!-- Share_Main 페이지일 때만 헤더-검색창 숨김 기능 (추후 설정) -->
+
+
+<!-- --------------------------------------------------------------------- -->
+
+</html>

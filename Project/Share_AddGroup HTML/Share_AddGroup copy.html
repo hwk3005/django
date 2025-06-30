@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/955e8c2313.js" crossorigin="anonymous"></script>
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/Share_AddGroup.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+    <title>꼬북꼬북 | 교환독서_그룹만들기</title>
+</head>
+<!-- <body data-page="exchange"> -->
+<body>
+  <header class="fig-header">
+    <nav class="fig-nav">
+      <div class="fig-header-left">
+        <a class="fig-one" href="/" rel="noreferrer">
+          <h1 class="fig-logo">꼬북꼬북</h1>
+          <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+            class="fig-exchangeimage">
+            <path d="M4.5 7h15M4.5 12h15M4.5 17h15" stroke="#2D7868" stroke-width="1.3" stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+          <h4 class="fig-exchange-book">교환 독서</h4>
+        </a>
+      </div>
+
+      <form role="search" class="fig-searchform et3830u0">
+        <div tabindex="-1" class="fig-tabindex">
+          <div class="fig-q3rd3s et3830u1">
+            <label class="fig-formlabel">
+              <svg width="1em" height="1em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                class="fig-searchimage">
+                <path fill-rule="evenodd"
+                  d="M13.28 8.18a5.1 5.1 0 11-10.2 0 5.1 5.1 0 0110.2 0zm-1.031 5.069a6.5 6.5 0 11.991-.989l4.695 4.695a.7.7 0 11-.99.99l-4.696-4.696z">
+                </path>
+              </svg>
+              <span class="fig-instant">인스턴트 검색</span>
+              <input type="text" maxlength="64" tabindex="-1" class="fig-forminput" value="">
+            </label>
+          </div>
+        </div>
+      </form>
+
+      <div class="fig-join">
+        <a href="" class="fig-signup">회원가입</a>
+        <a href="" class="fig-login">로그인</a>
+      </div>
+
+    </nav>
+  </header>
+
+  <hr class="fig-hr">
+    <div class="fig-main">
+
+        <!-- 교환독서 메인페이지  -->
+        <div class="feed__content">
+            <!-- 참여중이 그룹 표시 -->
+            <div class="feed__add">
+                <div class="feed__add_title">
+                    <span>꼬북꼬북 교환독서 새 그룹 만들기</span>
+                </div>
+                <!-- form (addgroupFrm)-->
+                <form action="/Project/Gobook_share/Gobook_shareAddgroup.html/" method="get" name="addgroupFrm">
+                    <table class="group_table">
+                        <tbody>
+                            <tr>
+                                <th>
+                                    <label>그룹명</label>
+                                    <span>*</span>
+                                </th>
+                                <td><input type="text" name="group_name" class="group_name" placeholder="그룹명을 입력해주세요."></td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <label>그룹 인원</label>
+                                    <span>*</span>
+                                </th>
+                                <td>
+                                    <div class="member">
+                                        <select id="member_count">
+                                            <option>2명</option>
+                                            <option>3명</option>
+                                            <option>4명</option>
+                                            <option>5명</option>
+                                            <option>6명</option>
+                                            <option>7명</option>
+                                            <option>8명</option>
+                                            <option>9명</option>
+                                            <option>10명</option>
+                                        </select>
+                                        <span class="group_otherText">*최소 2명 ~ 최대 10명</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <label>그룹 소개</label>
+                                    <span>*</span>
+                                </th>
+                                <td><textarea name="description" class="description" rows="4" placeholder="그룹 소개글을 입력해주세요."></textarea></td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <label>책 선택</label>
+                                    <span>*</span>
+                                </th>
+                                <td>
+                                    <input type="text" class="group_search" placeholder="책 제목을 검색해주세요.">
+                                    <a href='#'>
+                                        <div class="group_search_button">
+                                            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                                        </div>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label>관련 해시태그</label></th>
+                                <td>
+                                    <div class="group_keyword">
+                                        <div class="group_keyword_input">
+                                            <input type="text" name="group_keyword_input" placeholder="직접 입력 (ex. 시) ">
+                                            <div class="add_tag_btn">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </div>
+                                        </div>
+                                        <div class="group_keyword_output">
+                                            <!-- 생성된 태그가 여기에 들어감 -->
+                                        </div>
+                                        <!-- 폼 제출용 hidden input -->
+                                        <input type="hidden" name="group_keywords_hidden" id="group_keywords_hidden">
+                                        <div class="tags">
+                                            <a href=#>#시</a>
+                                            <a href=#>#소설</a>
+                                            <a href=#>#에세이</a>
+                                            <a href=#>#인문</a>
+                                            <a href=#>#경제</a>
+                                            <a href=#>#자기계발</a>
+                                            <a href=#>#과학</a>
+                                            <a href=#>#청소년</a>
+                                            <a href=#>#역사</a>
+                                            <a href=#>#철학</a>
+                                            <a href=#>#심리</a>
+                                            <a href=#>#상담</a>
+                                            <a href=#>#편하게이야기</a>
+                                            <a href=#>#우리끼리</a>
+                                            <a href=#>#독서초보환영</a>
+                                            <a href=#>#미션</a>
+                                            <a href=#>#글쓰기</a>
+                                            <a href=#>#세계문학</a>
+                                            <a href=#>#스토리텔링</a>
+                                            <a href=#>#여행</a>
+                                            <a href=#>#잡지</a>                                          
+                                            <a href=#>#베스트셀러</a>
+                                            <a href=#>#고전</a>
+                                            <a href=#>#신간</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <label>공개 여부</label>
+                                    <span>*</span>
+                                </th>
+                                <td>
+                                    <select id="is_public">
+                                        <option value="public">공개</option>
+                                        <option value="private">비공개</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr class="pw_hide">
+                                <th>
+                                    <label>그룹 비밀번호</label>
+                                    <span>*</span>
+                                </th>
+                                <td>
+                                  <div class="input-with-icon">
+                                    <input type="password" name="group_pw" class="group_pw" placeholder="비밀번호"
+                                    id="group_pw" inputmode="numeric" pattern="\d*" maxlength="10">
+                                  <i class="fa-solid fa-eye-slash toggle-visibility" id="togglePw"></i>
+                                </div>
+                                <span id="pw_message" class="pw-message"></span>
+                              </td>
+                            </tr>
+                            <tr>
+                                <th><label>그룹 운영기간</label></th>
+                                <td>
+                                    <select id="group_period">
+                                        <option>1일</option>
+                                        <option>2일</option>
+                                        <option>3일</option>
+                                        <option>4일</option>
+                                        <option>5일</option>
+                                        <option>6일</option>
+                                        <option>7일</option>
+                                        <option>8일</option>
+                                        <option>9일</option>
+                                        <option>10일</option>
+                                        <option>11일</option>
+                                        <option>12일</option>
+                                        <option>13일</option>
+                                        <option selected>14일</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+                <div class="group_button">
+                    <button type="button" id="group_button_1">취소</button>
+                    <button type="button" id="group_button_2">완료</button>
+                </div>
+            </div>
+        
+        </div>          
+    </div>
+    
+<!-- footer -->
+    <div class="footerWrap">
+    <div class="totalReview">
+      <p>꼬북꼬북 모은 리뷰<span>15,738</span>개</p>
+    </div>
+    <!--리뷰수 아래 정보부분-->
+    <div class="footer">
+      <div class="footer-left">
+        <p>(주) 꼬북꼬북</p>
+        <div class="infoWrap">
+          <ul>
+            <li>대표자명: 꼬북이</li>
+            <li>사업자등록번호: 123-45-67890</li>
+            <li>통신판매업신고: 2025-하룰라라-01159</li>
+            <li>이메일: support@ggo.book</li>
+          </ul>
+          <ul>
+            <li>주소: 서울시 가산동 하룰라라로 궁전센터1차 123-01</li>
+            <li>Tel : 02-1991-1120</li>
+            <li>Fax : 02-1991-1120</li>
+          </ul>
+          <p>© 2025 꼬북꼬북 All rights reserved</p>
+        </div>
+        <div class="logos">
+          <img src="logos/notion_white.png" style="width:30px;">
+          <img src="logos/github_white.png" style="width:30px;">
+          <img src="logos/youtube_white.png" style="width:30px;">
+        </div>
+      </div>
+      <div class="footer-right">
+        <p>고객센터 1234-5678 (발신자 부담)</p>
+        <div class="csWrap">
+          <button class="ntcBtn">공지사항</button>
+          <button class="inqBtn">1:1문의</button>
+        </div>
+        <table class="gitIds">
+          <tbody>
+            <tr>
+              <td colspan="3">www.ggobookggobook.com</td>
+            </tr>
+            <tr>
+              <td>이승민 @null4848</td>
+              <td>김슬비 @kb4954</td>
+              <td>김민성 @LatteMeng</td>
+            </tr>
+            <tr>
+              <td>김혜원 @hwk3005</td>
+              <td>신민철 @resader1</td>
+              <td>공유현 @sharehyun</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+    <!--리뷰수 아래 정보부분-->
+</body>
+
+
+
+
+
+
+
+<!-- -------------------- script ----------------------------------------- -->
+<!-- 해시태그 기능 추가
+    1) input에서 Enter로 태그 추가
+    2) + 버튼 클릭으로 태그 추가
+    3) 한글만 입력 가능
+    4) 최대 8개까지만 추가 가능
+    5) 중복 태그 방지
+    6) 태그 삭제 가능
+    7) 폼 제출용 hidden input에 자동 저장
+    8) 태그 선택시 tags목록에도 hover유지
+    9) 태그 삭제시 hover유지 취소
+    10) 태그도 최대 8개까지만 hover유지, alert띄움
+     -->
+  <script>
+    const input = document.querySelector("input[name='group_keyword_input']");
+    const addBtn = document.querySelector(".add_tag_btn");
+    const outputArea = document.querySelector(".group_keyword_output");
+    const hiddenInput = document.querySelector("#group_keywords_hidden");
+    const tagLinks = document.querySelectorAll(".tags a"); // 아래 해시태그 리스트
+    const addedTags = new Set();
+
+    const MAX_TAGS = 8;
+    const HANGUL_REGEX = /^[가-힣]+$/;
+
+    // hidden input에 저장
+    function updateHiddenInput() {
+      hiddenInput.value = Array.from(addedTags).join(",");
+    }
+
+    // 실제 태그 추가 함수 (중복, 제한 등 포함)
+    function addTag(tagText) {
+      if (!tagText || addedTags.has(tagText)) return;
+
+      if (addedTags.size >= MAX_TAGS) {
+        alert("최대 8개의 태그만 추가할 수 있습니다.");
+        return;
+      }
+
+      addedTags.add(tagText);
+
+      const tag = document.createElement("div");
+      tag.className = "added-tag";
+      tag.textContent = tagText;
+
+      const delBtn = document.createElement("span");
+      delBtn.className = "tag-delete";
+      delBtn.innerHTML = "&times;";
+
+      // ⬇ 삭제 버튼 기능은 이 안에!
+      delBtn.onclick = () => {
+        addedTags.delete(tagText);
+        tag.remove();
+        updateHiddenInput();
+
+        // ⬇ 아래 해시태그에서 hover 유지용 클래스도 제거
+        tagLinks.forEach(link => {
+          if (link.textContent.trim() === tagText) {
+            link.classList.remove("clicked");
+          }
+        });
+      };
+
+      tag.appendChild(delBtn);
+      outputArea.appendChild(tag);
+      updateHiddenInput();
+    }
+
+
+    // input 기반 태그 추가 (한글 체크 포함)
+    function addTagFromInput() {
+      const value = input.value.trim();
+      const tagText = `#${value}`;
+
+      if (!value) return;
+
+      if (!HANGUL_REGEX.test(value)) {
+        alert("한글만 입력 가능합니다.");
+        return;
+      }
+
+      addTag(tagText);
+      input.value = "";
+    }
+
+    // Enter 키로 입력
+    input.addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        addTagFromInput();
+      }
+    });
+
+    // + 버튼 클릭
+    addBtn.addEventListener("click", addTagFromInput);
+
+    // 아래 해시태그 클릭 시 추가
+    tagLinks.forEach(link => {
+      link.addEventListener("click", function(e) {
+        e.preventDefault();
+        const tagText = this.textContent.trim();
+
+        if (addedTags.size >= MAX_TAGS && !this.classList.contains("clicked")) {
+          alert("최대 8개의 태그만 선택할 수 있습니다.");
+          return;
+        }
+
+        addTag(tagText);
+
+        this.classList.add("clicked");
+      });
+    });
+
+  </script>
+
+<!-- 그룹 비밀번호 관련 기능 추가:
+  1) 공개여부-비공개 select 선택 시 비밀번호 설정부분 표시됨.
+  2) 숫자 외 글자 입력시 차단(alert표시)
+  3)  실시간 안내 UX (4~10자리만 입력 가능)
+  4) 길이 초과 시 자르기 (11자리부터 미입력됨)
+  5) 눈 아이콘 on/off 기능
+  -->
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const selectEl = document.getElementById("is_public");
+    const pwRow = document.querySelector(".pw_hide");
+    const pwInput = document.getElementById("group_pw");
+    const toggleIcon = document.getElementById("togglePw");
+    const pwMsg = document.getElementById("pw_message");
+
+    // 공개/비공개 선택 시 비밀번호 입력칸 표시
+    selectEl.addEventListener("change", function () {
+      if (this.value === "private") {
+        pwRow.style.display = "table-row";
+
+        // DOM이 렌더링되고 난 후에 input 활성화를 위해 약간의 여유를 줌
+        setTimeout(() => {
+          pwInput.focus();
+          pwInput.scrollIntoView({ behavior: "smooth", block: "center" });
+        }, 50); // 50~100ms가 대부분 안정적
+      } else {
+        pwRow.style.display = "none";
+        pwInput.value = "";
+        pwInput.type = "password";
+        toggleIcon.classList.remove("fa-eye");
+        toggleIcon.classList.add("fa-eye-slash");
+        pwMsg.textContent = "";
+        pwMsg.className = "pw-message";
+      }
+    });
+
+    // 숫자 외 입력 차단
+    let alertShown = false;
+    pwInput.addEventListener("keydown", function (e) {
+      const allowed =
+        (e.key >= "0" && e.key <= "9") ||
+        ["Backspace", "Tab", "ArrowLeft", "ArrowRight", "Delete"].includes(e.key);
+
+      if (!allowed) {
+        e.preventDefault();
+
+        if (!alertShown) {
+          alertShown = true;
+          alert("숫자만 입력 가능합니다.");
+          setTimeout(() => (alertShown = false), 500);
+        }
+      }
+    });
+
+    // 실시간 유효성 검사
+    pwInput.addEventListener("input", function () {
+      const len = pwInput.value.length;
+
+      if (len === 0) {
+        pwMsg.textContent = "";
+        pwMsg.className = "pw-message";
+      } else if (len < 4) {
+        pwMsg.textContent = "비밀번호는 4~10자리로 입력 가능합니다.";
+        pwMsg.className = "pw-message invalid";
+      } else {
+        pwMsg.textContent = "사용 가능한 비밀번호입니다.";
+        pwMsg.className = "pw-message valid";
+      }
+
+      // 혹시라도 maxlength 초과 입력 시 자동 자르기
+      if (len > 10) {
+        pwInput.value = pwInput.value.slice(0, 10);
+      }
+    });
+
+    // 비밀번호 보기/숨기기 토글
+    toggleIcon.addEventListener("click", function () {
+      const isHidden = pwInput.type === "password";
+
+      pwInput.type = isHidden ? "text" : "password";
+      toggleIcon.classList.toggle("fa-eye-slash", !isHidden);
+      toggleIcon.classList.toggle("fa-eye", isHidden);
+    });
+  });
+  </script>
+
+
+<!-- 취소/완료 버튼 alert -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const cancelBtn = document.getElementById("group_button_1");
+      const submitBtn = document.getElementById("group_button_2");
+
+      // 취소 버튼 클릭 시
+      cancelBtn.addEventListener("click", function() {
+        alert("그룹 만들기가 취소되었습니다.")
+        // (위치 이동 없이, 단순 알림만)
+      });
+      // 완료 버튼 클릭 시
+      submitBtn.addEventListener("click", function() {
+        alert("그룹 만들기가 완료되었습니다.");
+      });
+    });
+  </script>
+
+
+<!-- --------------------------------------------------------------------- -->
+
+
+</html>
