@@ -234,7 +234,7 @@ hr {
     font-size:22px;
 }
 
-p>span{
+.totalReview>p>span{
     font-weight:700;
     padding:0 10px;
     font-size: 23px;

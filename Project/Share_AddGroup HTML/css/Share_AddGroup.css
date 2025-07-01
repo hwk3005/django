@@ -111,7 +111,7 @@ form[name='addgroupFrm'] {
     color: #A0A0A0;
 }
 
-/* 책 주제 검색 */
+/* 책 선택 */
 .group_search {
     width: 91%;
 }
@@ -150,16 +150,16 @@ form[name='addgroupFrm'] {
   position: relative;
   max-width: 600px;
   width: 90%;
-  margin: 80px auto;
+  margin: 125px auto;
   background: #fff;
   padding: 25px 20px;
   border-radius: 7px;
   z-index: 10000;
 }
 .modal_content h2 {
-    padding-left: 10px;
-    color: #1a1a1a;
-    font-size: 25px;
+  padding-left: 8px;
+  color: #1a1a1a;
+  font-size: 25px;
 
 }
 
@@ -176,13 +176,13 @@ form[name='addgroupFrm'] {
 /* 검색 input+버튼 정렬 */
 .modal_input_wrap {
   display: flex;
-  gap: 7px;
-  margin-bottom: 20px;
+  padding: 5px 0 15px;
+  gap: 8px;
 }
 .modal_search {
   flex: 1;
   padding: 10px;
-  font-size: 15px;
+  font-size: 16px;
   color: #1a1a1a;
 }
 .modal_search_btn {
@@ -202,45 +202,78 @@ form[name='addgroupFrm'] {
 
 /* 결과 */
 .modal_results {
-    padding: 10px;
-  max-height: 300px;
+  max-height: 500px;
   overflow-y: auto;
+}
+
+.modal_result {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 20px 10px;
+  max-height: 250px;
+  display: flex;
+  justify-content: space-between;
+}
+.modal_book_item {
+  margin-bottom: 20px;
+  width: 140px;
+  height: 210px;
+  object-fit: cover;
   display: flex;
 }
-.book_item {
-    display: flex;
-    width: 118px;
-    height: 172px;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-.book_item img {
+.modal_book_item img {
   width: 100%;
   height: 100%;
-  overflow: auto;
-  border-radius: 5px;
+  object-fit: cover;
+  border-radius: 7px;
 }
-.book_info {
+.modal_book_info {
   flex: 1;
-  margin-left:20px;
+  height:210px; /* 고정 높이 */
+  padding:0 20px;
 }
-.book_info h3 {
-  margin: 0 0 8px;
-  font-size: 17px;
+.modal_book_info h3 {
+  margin: 0 0 13px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
 }
-.book_info p {
-  margin: 3px 0;
+.modal_book_info p {
+  margin-top: 5px;
   font-size: 14px;
-  color: #444;
+  font-weight: 400;
+  color: #636363;
 }
-.book_select_btn {
-  margin-top: 8px;
-  padding: 5px 10px;
+.modal_book_info .modal_description {
+  margin-top:10px;
   font-size: 13px;
-  background-color: #2D7868;
-  color: white;
+  font-weight: 400;
+  color: #636363;
+  text-align: justify; /* 양쪽 정렬 */
+  line-height: 1.5;     /* 줄간격 여유 */
+
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;     /* 최대 3줄만 표시 */
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  
+}
+.modal_book_select {
+  padding:0 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal_book_select_btn {
+  padding: 5px 10px;
   border: none;
-  border-radius: 5px;
+  background-color: #f0f0f0;
+  width:51.14px;
+  height:29px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #333;
+  border-radius: 7px;
   cursor: pointer;
 }
 
