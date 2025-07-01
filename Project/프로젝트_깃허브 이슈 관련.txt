@@ -1,0 +1,37 @@
+
+[Feat] Share_Main HTML  #4  #7
+[Feat] Share_AddGroup HTML  11
+
+
+------------------------------------------------------
+< Commit 요약 >
+●●●●●●●●●●●●●●●●●●●●●●●
+250701 [ Share_AddGroup : 책 선택(검색) 모달창 html 완료, 모달창 위치 수정, 슬비님 comment 적용 ]
+---------------------------
+1. 책 검색 모달창 html 완료
+ (아직 기능 구현 제대로 안 됨 - 임시로 html 2개 나눠놓음)
+  < Share_AddGroup.html >
+  1) 검색 아이콘 클릭 시 모달창 표시
+  2) 모달창 내 책 검색 (Enter키, 검색버튼 클릭 둘다 가능)
+  3) 검색목록 표시 및 선택 버튼
+  4) 모달창 내 paginator 적용 (1p에 10개씩)
+
+  < Share_AddGroup_after.html >
+  5) 선택한 책 표시
+  6) 검색버튼 회색으로 연하게 변경
+  7) 책 선택 후에도 다시 검색해서 변경 가능
+
+2. 모달창 위치 화면 정중앙으로 수정
+  1) 153행 .modal_content { margin: 80px auto → 125px auto; }
+
+3. select focus-outline 적용
+  1) .group_table select:focus { outline:1.5px solid gray; }
+
+●●●●●●●●●●●●●●●●●●●●●●●
+250701 [ Share_Main : paginator 수정본으로 변경 ]
+---------------------------
+0. paginator 수정본으로 변경
+
+1. 참여 중인 그룹: 수정x
+2. 교환독서 그룹 목록: 수정x
+
