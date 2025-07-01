@@ -81,11 +81,9 @@ form[name='addgroupFrm'] {
     transition: border-color 0.2s;
 }
 .group_table input:focus,
+.group_table select:focus,
 .group_table textarea:focus {
     outline:1.5px solid gray;
-}
-.group_table select:focus {
-    outline:none;
 }
 
 
