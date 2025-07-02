@@ -119,18 +119,18 @@
                               <!-- <input type="text" class="group_search" id="book_search_input" placeholder="책 제목을 검색해주세요."> -->
                               <!-- 여기에 선택된 책 표시 -->
                               <div id="selected-book-display" class="selected_book_display">
-                                <div class="selected_book_img">
-                                  <img src="https://image.aladin.co.kr/product/36582/74/cover150/k232039558_1.jpg" alt="">
-                                </div>
+                                <a href="#" id="book_search_trigger">
+                                  <div class="selected_book_img">
+                                    <div class="tooltip_wrapper">
+                                      <img src="https://image.aladin.co.kr/product/36582/74/cover150/k232039558_1.jpg" alt="example">
+                                      <div class="custom_tooltip">변경<br></div>
+                                    </div>
+                                  </div>
+                                </a>
                                 <div class="selected_book_text">
                                   <span> 어린 왕자 - 순수함을 찾아주는</span>
                                   <p> 앙투안 드 생텍쥐페리 지음, 김설아 옮김</p>
                                 </div>
-                                <a href="#" id="book_search_trigger">
-                                  <div class="group_search_button">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                  </div>
-                                </a>
                               </div>
                               <!-- 선택된 책 표시 끝 -->
                             </td>
@@ -634,7 +634,7 @@
             <p>${author.replace("저자:", "").trim()}</p>
           </div>
           <a href="#" id="book_search_trigger">
-            <div class="group_search_button">
+            <div class="selected_book_img">
               <i class="fa-solid fa-magnifying-glass"></i>
             </div>
           </a>

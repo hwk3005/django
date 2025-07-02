@@ -18,7 +18,6 @@ body, input, select, textarea, button {
     width: 1137px;
 }
 .feed__add_title{
-    padding-left: 15px;
     font-size: 40px;
     font-weight: 700;
     color: #1a1a1a;
@@ -109,23 +108,36 @@ form[name='addgroupFrm'] {
     color: #A0A0A0;
 }
 
+
 /* 책 선택 */
-.group_search {
-    width: 91%;
+
+/* 책 변경 tooltip */
+.tooltip_wrapper {
+  position: relative;
+  display: inline-block;
 }
-.group_search_button {
-  padding: 0;
-  width: 45px;
-  height: 45px;
-  font-size: 18px;
+.custom_tooltip {
   background-color: #f0f0f0;
-  color: #333;
+  position: absolute;
+  padding: 5px 10px;
+  height: 29px;
+  bottom: 8%;
+  left: 70%;
   border-radius: 7px;
-  border: none;
+  font-size: 13px;
+  color: #333;
+  opacity: 0;
+  visibility: hidden;
+  white-space: nowrap;
+  transition: opacity 0.1s ease-in;
+  transform: translateX(-50%);
+  z-index: 99;
   display: flex;
-  justify-content: center;
   align-items: center;
-  cursor: pointer;
+}
+.tooltip_wrapper:hover .custom_tooltip {
+  opacity: 1;
+  visibility: visible;
 }
 
 /* 책 검색 모달 스타일 */
@@ -280,7 +292,6 @@ form[name='addgroupFrm'] {
   padding-right: 25px;
   flex: 1;
   display: flex;
-  justify-content: space-between;
 }
 .selected_book_img img {
   width: 118px;
@@ -290,7 +301,7 @@ form[name='addgroupFrm'] {
   box-shadow: 0 4px 4px #797e8480;
 }
 .selected_book_text {
-  margin-left: -410px;
+  margin:0 25px;
 }
 .selected_book_text span {
   font-size: 16px;
