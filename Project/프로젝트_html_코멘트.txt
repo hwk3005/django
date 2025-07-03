@@ -1,10 +1,212 @@
 
-[ 마이페이지 ]
-5
-1. paginator랑 footer 사이 간격이 넓어서 줄이면 좋을 것 같아요.
-  (클래스 left_side랑 main에 height 들어가 있네요.)
-2. 내 리뷰 옆에 total 색 #636363 회색으로 바꾸면 좋을 것 같아요.
-  (클래스 total)
+● 공유현님 (approve 모두 완료)
+1. 메인페이지
+  1) 메인배너 그림자넣기 .mainBanner {box-shadow: 0 4px 8px #f0f0f0; }
+  2) 랭킹타이틀 들여쓰기 .ranking__title {padding-left: 10px; padding-top: 30px; }
+  3) 랭킹타이틀 글씨크기 키우기(25→30) .ranking__title {font-size: 30px; }
+  4) 랭킹타이틀 수정 top 5 → Top 5
+  5) 랭킹타이틀 좌측에 폰트어썸 icon 넣어줘도 좋을 것 같음 (리뷰/조회수/북마크 구분 잘 되게)
+  6) 랭킹별 구분되게 bottom 구분선 넣기 .CIirP0cq {border-bottom: 1px solid #f0f0f0; }
+  7) 랭킹 책표지-제목 사이 간격 넓히기 .bVUVO8nJ {margin-top: 12px; }
+  8) 랭킹 책제목-평점 사이 간격 넓히기 .rating {padding-top: 10px; }
+  9) 평점 or 별점? 명칭 통일하기 (도서상세페이지-별점 사용함)
+2. 1:1문의 - 코멘트x
+3. 게시판 - 코멘트x
+4. 게시판 상세
+  1) 뷰컨텐츠 padding-bottom 살짝 답답해보여서 늘리면 좋을 것 같습니다! (40→100)
+	.viewContents {padding: 30px 28px 100px; }
+==========================================
+● 김슬비님 (approve 모두 완료)
+1. 마이페이지-리뷰리스트
+  1) 도서 상세페이지와 리뷰부분 css 동일하게 됐는지 체크해주세요!
+      (도서 상세페이지 기준으로 적었습니다.)
+    - 책이름과 닉네임 간격 넓히기 (6→8px)
+	=> .badge_box { margin-right: 8px; }
+    - 책이름 옆에 닉네임,일자,삭제 부분 글씨크기 수정 (12→13px)
+	=> .user_info_box .info_item { font-size: 13px; }
+    - 좋아요/댓글 버튼 hover 없애기
+	=> .comment_footer button: hover
+  2) 추후에 리뷰리스트 1page에 리뷰 몇 개씩 넣을 건지 고민해보시면 좋을 것 같아요! (paginator)
+2. 마이페이지-북마크 : 구두로 전함.
+3. 마이페이지-교환독서_approve 완료
+  1) 그룹목록
+.my_group {
+    text-align: justify;
+    display: grid;
+    /* grid-template-columns: repeat(auto-fill, minmax(558px, 1fr)); */
+    gap: 10px;
+    justify-content: space-between;
+    max-width: 1137px;
+    /* margin: 0 auto; */
+    grid-template-columns: repeat(auto-fill, 559px);
+}
+  2) 그룹별
+.bookbox {
+    position: relative;
+    display: flex;
+    width: 555px;
+    height: 200px;
+    /* border: 1px solid #f0f0f0; */
+    border-radius: 7px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    /* margin: 0 auto; */
+    margin-bottom: 30px;
+}
+  3) 책 표지 (책 표지별 크기가 달라서 크기 맞추면 좋을 것 같습니다.)
+.bookbox_cover {
+    width: 110px;
+    height: 160px;
+    /* border: 1px solid black; */
+    display: flex;
+    position: relative;
+    margin-right: 25px;
+    /* justify-content: center; */
+    object-fit: cover;
+    align-items: center;
+}
+.bookbox_cover img {
+    margin: 0 auto;
+    border-radius: 7px;
+    width: 110px;
+    height: 160px;
+    object-fit: cover;
+}
+  3) 그룹 text 부분
+.group_info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    /* justify-content: center; */
+    gap: 10px;
+}
+  4) 그룹명
+.booktitle {
+    display: -webkit-box;
+    max-height: 48px;
+    line-height: 24px;
+    overflow: hidden;
+    /* margin-left: 10px; */
+    margin-bottom: 15px;
+}
+#group_name {
+    color: #1a1a1a;
+    font-size: 21px;
+    font-weight: 600;
+}
+  5) 그룹 인원수
+#group_count {
+    padding-left: 8px;
+    font-size: 15px;
+    font-weight: 400;
+    color: #A0A0A0;
+}
+  6) 책제목, 그룹소개, 그룹장
+.bookauthor {
+    /* margin-top: 4px; */
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+    color: #636363;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /* margin-left: 10px; */
+}
 
-9
-10
+==========================================
+● 이승민님 (approve - 메인페이지 남음)
+1. 도서검색페이지
+  1) 상단 h2 padding-top 조금 더 늘리면 좋을 것 같아요! (지금 살짝 좁아 보입니담)
+	=> h2 style="padding-top: 10px;"
+  2) 도서 정보 부분 padding 좀 더 주면 좋을 것 같고,
+      제목,저자 글자수에 상관없이 별점 위치는 움직이지 않고 고정이었으면 좋겠습니다!
+	=> .sui-book__inform-container { justify-content: space-between; padding: 12px 17px; }
+  3) 선택전 북마크 두께가 좀 더 얇았으면 좋겠지만 수정 불가로 알고 있어서 이건 패스하겠습니다.ㅎㅎ
+
+2. 검색 상세페이지
+  1) 상단 title - h1과 북마크button 높이가 달라서 한 줄에 정렬되게 하면 좋을 것 같습니다.
+	=> .right .title h1 { margin: 7px 5px 0 3px; } (마진 bottom→top)
+	=> .fa-bookmark { top: 5px; }
+  2) 상단 리뷰 box - border색이 좀 진한 것 같아서 이렇게 연하게 바꾸면 좋을 것 같습니다.
+	=> .prod_review_box { border: 1px solid #e0e0e0; }
+  3) 상단 책 표지 - 리뷰박스 하단 선 높이가 일자로 일치하면 좋을 것 같습니다.
+  4) 이 책이 주제인 교환 독서 그룹
+    - border색 변경, 섀도우 추가하면 좋을 것 같습니다.
+	=> .feed__join { border: 1px solid #f0f0f0; box-shadow: 0 0px 8px #f0f0f0; }
+    - 생각해보니 '수학 역사 퍼즐' 책 표지가 8개 나오게 될 텐데, 이상할 것 같아서.. 그룹명만 표시하는 등 수정이 필요해보입니다.!
+  5) 리뷰 펼치기 - 글씨색, 아이콘 63으로 연하게 하면 좋을 것 같습니다.
+	=> button[class^=btn_] .text, a[class^=btn_] .text { color: #636363; }
+	=> .fa-solid, .fas { color: #636363; }
+  6) 리뷰작성 모달창 - 등록 버튼 글씨크기,두께 수정하면 좋을 것 같습니다.
+	=> button[class^=btn_] .text, a[class^=btn_] .text { font-size: 15px; font-weight: 400; }
+  7) 상단 리뷰박스에 아래css주면 책 표지와 아래선 높이 동일해집니다!
+	=> .product_detail_area { margin-top: 20px; }
+  8) 차트 박스 테두리 radius: 7px로 변경 필요
+	=> .klover_review_wrap .klover_review_box { border-radius: 7px; }
+  9) 펼치기 버튼 backgroud-color: #f0f0f0;
+  10) 펼치기 버튼과 좋아요,댓글버튼 높이 동일하게 하면 깔끔할 것 같습니다.
+div class="right_area" 안으로  button class="btn_more_body" 옮기기
+.comment_util_box .right_area {
+    /* flex: 0 auto; */
+    margin-left: auto;
+    font-size: 0;
+    display: flex;
+    justify-content: space-between;
+    writing-mode: horizontal-tb;
+}
+.btn_more_body { display: block; margin-right: 1190px; background-color: #f0f0f0; }
+
+3. 리뷰페이지 (모달창) - detail bookScreen 페이지에 있는 걸로 확인하기
+
+==========================================
+○ 김민성님
+
+○ 신민철님
+●1. 회원가입-이용약관
+  1) 약관별 큰 틀
+.contract {
+    width: 1137px;
+    margin: 20px auto 80px;
+    padding: 30px 40px 35px;
+    border-radius: 7px;
+    background-color: #f5f5f5;
+    /* border: 1px solid #2D7868; */
+    box-shadow: 0 1px 4px #ccc;
+}
+  2) 약관 h1
+.contract h1 {
+    text-align: center;
+    color: #1a1a1a;
+    margin-bottom: 30px;
+    font-size: 25px;
+    font-weight: 700;
+}
+  3) 약관 text
+.contract .text {
+    width: 95%;
+    height: 230px;
+    background-color: #fafafa;
+    padding: 10px 45px;
+    white-space: pre-line;
+    overflow-y: scroll;
+    margin: 0 auto 30px;
+    box-shadow: 0 2px 8px #A0A0A0;
+    line-height: 1.8;
+}
+  4) 하단 약관 체크박스
+.contract .yes p {
+    /* color: #2D7868; */
+}
+
+2. 회원가입-사용자정보입력
+  1) input, select 박스 focus {border → outline }으로 변경
+  2) 
+.pw, .pw2 {
+    letter-spacing: 3px;
+}
+
+
+
+
