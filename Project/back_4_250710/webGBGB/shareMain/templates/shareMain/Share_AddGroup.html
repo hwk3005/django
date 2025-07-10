@@ -1,0 +1,566 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}교환독서 | 그룹 만들기{% endblock %}
+{% block extra_css %}
+  <link rel="stylesheet" type="text/css" href="/static/css/Share_AddGroup.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/paginator.css">
+{% endblock %}
+
+  {% block content %}
+    <!-- 교환독서 그룹만들기  -->
+    <div class="feed__content">
+      <!-- 참여중이 그룹 표시 -->
+      <div class="feed__add">
+          <div class="feed__add_title">
+              <i class="fa-solid fa-user-group"></i>
+              <span>교환독서 그룹 만들기</span>
+          </div>
+          <!-- form (addgroupFrm)-->
+          <form action="{% url 'shareMain:Share_AddGroup' %}" method="post" name="addgroupFrm" id="addgroupFrm">
+            {% csrf_token %}
+            <!-- 📌 숨겨진 input들로 책 정보 전달 -->
+            <input type="hidden" id="id_book_title" name="book_title">
+            <input type="hidden" id="id_book_author" name="book_author">
+            <input type="hidden" id="id_book_cover" name="book_cover">
+            <input type="hidden" id="id_book_isbn" name="book_isbn">
+            <input type="hidden" id="id_tag" name="tag">
+              <table class="group_table">
+                <tbody>
+                  <!-- 그룹명 -->
+                  <tr>
+                    <th>
+                      <label>그룹명</label>
+                      <span>*</span>
+                    </th>
+                    <td><input type="text" name="group_name" class="group_name" placeholder="그룹명을 입력해주세요." required></td>
+                  </tr>
+                  <!-- 그룹 인원 -->
+                  <tr>
+                    <th>
+                      <label>그룹 인원</label>
+                      <span>*</span>
+                    </th>
+                    <td>
+                      <div class="member">
+                        <select id="max_member" name="max_member" required >
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                          <option>6</option>
+                          <option>7</option>
+                          <option>8</option>
+                          <option>9</option>
+                          <option selected>10</option>
+                        </select>
+                        <span class="group_otherText">*최소 2명 ~ 최대 10명</span>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- 그룹 소개 -->
+                  <tr>
+                    <th>
+                      <label>그룹 소개</label>
+                      <span>*</span>
+                    </th>
+                    <td>
+                      <textarea name="description" class="group_description" rows="4" placeholder="그룹 소개글을 입력해주세요." required></textarea>
+                    </td>
+                  </tr>
+                  <!-- 책 선택 -->
+                  <script>
+                    const AJAX_SEARCH_URL = "{% url 'shareMain:ajax_search' %}";
+                  </script>
+                  <tr>
+                    <th>
+                      <label>책 선택</label>
+                      <span>*</span>
+                    </th>
+                    <td>
+                      <!-- 여기에 선택된 책 표시 -->
+                      <div id="selected-book-display">
+                        <div id="book_search_trigger" class="selected_book_img">
+                          <img src='/static/images/plusBtn.png'/>
+                        </div>
+                      </div>
+                      <!-- 선택된 책 표시 끝 -->
+                    </td>
+                  </tr>
+                  <!-- 책 검색 - 모달 전체 -->
+                  <div class="book_modal" id="book_search_modal">
+                    <div class="modal_overlay"></div>
+                    <div class="modal_content">
+                      <button type="button" class="modal_close">
+                        <i class="fa-solid fa-xmark"></i>
+                      </button>
+                      <h2>책 선택</h2>
+                      <!-- 모달 내부 검색 input -->
+                      <div class="modal_input_wrap">
+                        <input type="text" name="book" class="modal_search" id="book_search_input_modal" placeholder="책 제목/저자 검색">
+                        <button type="button" class="modal_search_btn" id="modal_search_btn">
+                          <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                      </div>
+                      <!-- 검색 결과 -->
+                      <div class="modal_results">
+                        <!-- 자바스크립트로 검색 결과 삽입 -->
+                      
+                        <!-- 모달창 paginator -->
+                        <div class="pg-container">
+                            <div class="paginator">
+                                <!-- 첫 페이지, 이전 페이지 버튼 -->
+                                <div class="pg-btns">
+                                    <button disabled>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M21.9323 22.5362C22.6042 21.8162 22.6042 20.7122 21.8842 20.0162L13.5562 12.0002L23.1562 2.76019L21.4762 1.00819L10.0282 12.0002L21.4763 22.9922L21.9323 22.5122L21.9323 22.5362Z" fill="currentColor"/>
+                                        <path d="M12.4786 22.5362C13.1506 21.8162 13.1506 20.7122 12.4306 20.0162L4.10256 12.0002L13.7266 2.76019L12.0466 1.00819L0.598563 12.0002L12.0226 22.9922L12.4786 22.5122L12.4786 22.5362Z" fill="currentColor"/>
+                                    </svg>
+                                    </button>
+                                    <button disabled>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M16.3325 1.47C17.0125 2.18 16.9925 3.3 16.2825 3.98L7.9425 12L17.5625 21.25L15.8825 23L4.4425 12L15.8825 1L16.3325 1.47Z" fill="currentColor"/>
+                                    </svg>
+                                    </button>
+                                </div>
+
+                                <!-- 페이지 번호 -->
+                                <div class="pg-numbers">
+                                    <a class="active">1</a>
+                                    <a>2</a>
+                                    <a>3</a>
+                                    <a>4</a>
+                                    <a>5</a>
+                                    <a>6</a>
+                                </div>
+
+                                <!-- 다음 페이지, 마지막 페이지 버튼 -->
+                                <div class="pg-btns">
+                                    <button disabled>
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M7.6675 1.47C6.9875 2.18 7.0075 3.3 7.7175 3.98L16.0575 12L6.4375 21.25L8.1175 23L19.5575 12L8.1175 1L7.6675 1.47Z" fill="currentColor"/>
+                                        </svg>
+                                    </button>
+                                    <button disabled>
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M2.06775 1.46381C1.39575 2.18381 1.39575 3.28781 2.11575 3.98381L10.4437 11.9998L0.84375 21.2398L2.52375 22.9918L13.9718 11.9998L2.52375 1.00781L2.06775 1.48781V1.46381Z" fill="currentColor"/>
+                                            <path d="M11.5214 1.46381C10.8494 2.18381 10.8494 3.28781 11.5694 3.98381L19.8974 11.9998L10.2734 21.2398L11.9534 22.9918L23.4014 11.9998L11.9774 1.00781L11.5214 1.48781V1.46381Z" fill="currentColor"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 모달창 paginator 끝 -->
+                        
+                      </div>
+                    </div>
+                  </div>
+                  <!-- 관련 해시태그 -->
+                  <tr>
+                    <th><label>관련 해시태그</label></th>
+                    <td>
+                        <div class="group_keyword">
+                            <div class="group_keyword_input">
+                                <input type="text" name="tag" placeholder="직접 입력 (ex. 시) ">
+                                <div class="add_tag_btn">
+                                    <i class="fa-solid fa-plus"></i>
+                                </div>
+                            </div>
+                            <div class="group_keyword_output">
+                                <!-- 생성된 태그가 여기에 들어감 -->
+                            </div>
+                            <!-- 폼 제출용 hidden input -->
+                            <input type="hidden" name="tag" id="group_keywords_hidden">
+                            <div class="tags">
+                                <a href=#>#시</a>
+                                <a href=#>#소설</a>
+                                <a href=#>#에세이</a>
+                                <a href=#>#인문</a>
+                                <a href=#>#경제</a>
+                                <a href=#>#자기계발</a>
+                                <a href=#>#과학</a>
+                                <a href=#>#청소년</a>
+                                <a href=#>#역사</a>
+                                <a href=#>#철학</a>
+                                <a href=#>#심리</a>
+                                <a href=#>#상담</a>
+                                <a href=#>#편하게이야기</a>
+                                <a href=#>#우리끼리</a>
+                                <a href=#>#독서초보환영</a>
+                                <a href=#>#미션</a>
+                                <a href=#>#글쓰기</a>
+                                <a href=#>#세계문학</a>
+                                <a href=#>#스토리텔링</a>
+                                <a href=#>#여행</a>
+                                <a href=#>#잡지</a>                                          
+                                <a href=#>#베스트셀러</a>
+                                <a href=#>#고전</a>
+                                <a href=#>#신간</a>
+                            </div>
+                        </div>
+                    </td>
+                  </tr>
+                  <!-- 공개 여부 -->
+                  <tr>
+                    <th>
+                        <label>공개 여부</label>
+                        <span>*</span>
+                    </th>
+                    <td>
+                        <select id="is_public" name="is_public" required>
+                            <option value="0">공개</option>
+                            <option value="1">비공개</option>
+                        </select>
+                    </td>
+                  </tr>
+                  <!-- 그룹 비밀번호 -->
+                  <tr class="pw_hide">
+                    <th>
+                        <label>그룹 비밀번호</label>
+                        <span>*</span>
+                    </th>
+                    <td>
+                      <div class="input-with-icon">
+                        <input type="password" name="password" class="group_pw" placeholder="비밀번호"
+                          id="group_pw" inputmode="numeric" pattern="\d*" maxlength="10">
+                        <i class="fa-solid fa-eye-slash toggle-visibility" id="togglePw"></i>
+                      </div>
+                      <span id="pw_message" class="pw-message"></span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- 하단 버튼 -->
+              <div class="group_button">
+                  <button type="button" id="group_button_1">취소</button>
+                  <button type="submit" id="group_button_2">완료</button>
+              </div>
+          </form>
+      </div>
+    
+    </div>          
+
+    {% endblock content %}
+
+  {% block extra_js %}
+<<<<<<< Updated upstream
+    <script src="{% static 'js/Share_AddGroup.js' %}"></script>
+=======
+
+<!-- 책 검색 (모달창) -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const triggerSelector = "book_search_trigger"; // 동적 요소를 위해 id 직접 할당
+    const modal = document.getElementById("book_search_modal");
+    const overlay = modal.querySelector(".modal_overlay");
+    const closeBtn = modal.querySelector(".modal_close");
+    const input = document.getElementById("book_search_input_modal");
+    const searchBtn = document.getElementById("modal_search_btn");
+    const results = document.getElementById("modal_book_result");
+    // 더미 데이터
+    const dummyBooks = [
+      {
+        title: "어린 왕자",
+        author: "앙투안 드 생텍쥐페리 지음, 김설아 옮김",
+        publisher: "단한권의책",
+        description: "어린이를 위한 철학동화. 순수함을 찾는 여정.",
+        image: "https://image.aladin.co.kr/product/22323/62/cover200/8932907503_1.jpg"
+      },
+      {
+        title: "모모의 여름 방학",
+        author: "야엘 아샤 지음, 박재연 옮김",
+        publisher: "불광출판사",
+        description: "모모는 지루함과 심심함에서 벗어나고 싶어졌다.",
+        image: "https://image.aladin.co.kr/product/32000/60/cover200/8901265032_1.jpg"
+      }
+    ];
+    // 모달 열기
+    function openModal() {
+      modal.style.display = "block";
+      input.focus();
+    }
+    // 모달 닫기
+    function closeModal() {
+      modal.style.display = "none";
+      results.innerHTML = "";
+      input.value = "";
+    }
+    // 검색 결과 렌더링
+    function renderBooks(filter = "") {
+      results.innerHTML = "";
+      const filtered = dummyBooks.filter(book =>
+        book.title.includes(filter)
+      );
+      if (filtered.length === 0) {
+        results.innerHTML = "<p>검색 결과가 없습니다.</p>";
+        return;
+      }
+      filtered.forEach(book => {
+        const div = document.createElement("div");
+        div.className = "modal_book_item";
+        div.innerHTML = `
+          <img src="${book.image}" alt="${book.title}">
+          <div class="modal_book_info">
+            <h3>${book.title}</h3>
+            <p class="modal_author"><strong>저자:</strong> ${book.author}</p>
+            <p><strong>출판사:</strong> ${book.publisher}</p>
+            <p>${book.description}</p>
+            <button class="modal_book_select_btn">선택</button>
+          </div>
+        `;
+        results.appendChild(div);
+      });
+    }
+    // 모달 열기 버튼 클릭
+    document.addEventListener("click", function (e) {
+      if (e.target.closest(`#${triggerSelector}`)) {
+        e.preventDefault();
+        openModal();
+      }
+    });
+    // 모달 닫기
+    overlay.addEventListener("click", closeModal);
+    closeBtn.addEventListener("click", closeModal);
+    // 검색 버튼 / 엔터 키 이벤트
+    searchBtn.addEventListener("click", () => renderBooks(input.value.trim()));
+    input.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        renderBooks(input.value.trim());
+      }
+    });
+    // 검색 결과 선택 버튼 클릭 시
+    results.addEventListener("click", function (e) {
+      if (e.target.classList.contains("modal_book_select_btn")) {
+        const bookItem = e.target.closest(".modal_book_item");
+        const img = bookItem.querySelector("img").getAttribute("src");
+        const title = bookItem.querySelector("h3").innerText;
+        const author = bookItem.querySelector(".modal_author").innerText;
+        const selectedDisplay = document.getElementById("selected-book-display");
+        selectedDisplay.innerHTML = `
+          <div class="selected_book_img">
+            <img src="${img}" alt="">
+          </div>
+          <div class="selected_book_text">
+            <span>${title}</span>
+            <p>${author.replace("저자:", "").trim()}</p>
+          </div>
+          <a href="#" id="book_search_trigger">
+            <div class="group_search_button">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+          </a>
+        `;
+        closeModal(); // 모달 닫기
+
+        // 새로 추가된 돋보기 아이콘에 다시 이벤트 연결
+        document.getElementById("book_search_trigger").addEventListener("click", function (e) {
+          e.preventDefault();
+          openModal();
+        });
+      }
+    });
+  });
+</script>
+
+<!-- 해시태그 기능 추가
+    1) input에서 Enter로 태그 추가
+    2) + 버튼 클릭으로 태그 추가
+    3) 한글만 입력 가능
+    4) 최대 8개까지만 추가 가능
+    5) 중복 태그 방지
+    6) 태그 삭제 가능
+    7) 폼 제출용 hidden input에 자동 저장
+    8) 태그 선택시 tags목록에도 hover유지
+    9) 태그 삭제시 hover유지 취소
+    10) 태그도 최대 8개까지만 hover유지, alert띄움
+     -->
+<script>
+  const input = document.querySelector("input[name='group_keyword_input']");
+  const addBtn = document.querySelector(".add_tag_btn");
+  const outputArea = document.querySelector(".group_keyword_output");
+  const hiddenInput = document.querySelector("#group_keywords_hidden");
+  const tagLinks = document.querySelectorAll(".tags a"); // 아래 해시태그 리스트
+  const addedTags = new Set();
+  const MAX_TAGS = 8;
+  const HANGUL_REGEX = /^[가-힣]+$/;
+  // hidden input에 저장
+  function updateHiddenInput() {
+    hiddenInput.value = Array.from(addedTags).join(",");
+  }
+  // 실제 태그 추가 함수 (중복, 제한 등 포함)
+  function addTag(tagText) {
+    if (!tagText || addedTags.has(tagText)) return;
+    if (addedTags.size >= MAX_TAGS) {
+      alert("최대 8개의 태그만 추가할 수 있습니다.");
+      return;
+    }
+    addedTags.add(tagText);
+    const tag = document.createElement("div");
+    tag.className = "added-tag";
+    tag.textContent = tagText;
+    const delBtn = document.createElement("span");
+    delBtn.className = "tag-delete";
+    delBtn.innerHTML = "&times;";
+    // ⬇ 삭제 버튼 기능은 이 안에!
+    delBtn.onclick = () => {
+      addedTags.delete(tagText);
+      tag.remove();
+      updateHiddenInput();
+      // ⬇ 아래 해시태그에서 hover 유지용 클래스도 제거
+      tagLinks.forEach(link => {
+        if (link.textContent.trim() === tagText) {
+          link.classList.remove("clicked");
+        }
+      });
+    };
+    tag.appendChild(delBtn);
+    outputArea.appendChild(tag);
+    updateHiddenInput();
+  }
+  // input 기반 태그 추가 (한글 체크 포함)
+  function addTagFromInput() {
+    const value = input.value.trim();
+    const tagText = `#${value}`;
+    if (!value) return;
+    if (!HANGUL_REGEX.test(value)) {
+      alert("한글만 입력 가능합니다.");
+      return;
+    }
+    addTag(tagText);
+    input.value = "";
+  }
+  // Enter 키로 입력
+  input.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      addTagFromInput();
+    }
+  });
+  // + 버튼 클릭
+  addBtn.addEventListener("click", addTagFromInput);
+  // 아래 해시태그 클릭 시 추가
+  tagLinks.forEach(link => {
+    link.addEventListener("click", function(e) {
+      e.preventDefault();
+      const tagText = this.textContent.trim();
+      if (addedTags.size >= MAX_TAGS && !this.classList.contains("clicked")) {
+        alert("최대 8개의 태그만 선택할 수 있습니다.");
+        return;
+      }
+      addTag(tagText);
+      this.classList.add("clicked");
+    });
+  });
+</script>
+
+<!-- 그룹 비밀번호 관련 기능 추가:
+  1) 공개여부-비공개 select 선택 시 비밀번호 설정부분 표시됨.
+  2) 숫자 외 글자 입력시 차단(alert표시)
+  3)  실시간 안내 UX (4~10자리만 입력 가능)
+  4) 길이 초과 시 자르기 (11자리부터 미입력됨)
+  5) 눈 아이콘 on/off 기능
+  -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const selectEl = document.getElementById("is_public");
+    const pwRow = document.querySelector(".pw_hide");
+    const pwInput = document.getElementById("group_pw");
+    const toggleIcon = document.getElementById("togglePw");
+    const pwMsg = document.getElementById("pw_message");
+
+    // 공개/비공개 선택 시 비밀번호 입력칸 표시
+    selectEl.addEventListener("change", function () {
+      if (this.value === "private") {
+        pwRow.style.display = "table-row";
+
+        // DOM이 렌더링되고 난 후에 input 활성화를 위해 약간의 여유를 줌
+        setTimeout(() => {
+          pwInput.focus();
+          pwInput.scrollIntoView({ behavior: "smooth", block: "center" });
+        }, 50); // 50~100ms가 대부분 안정적
+      } else {
+        pwRow.style.display = "none";
+        pwInput.value = "";
+        pwInput.type = "password";
+        toggleIcon.classList.remove("fa-eye");
+        toggleIcon.classList.add("fa-eye-slash");
+        pwMsg.textContent = "";
+        pwMsg.className = "pw-message";
+      }
+    });
+
+    // 숫자 외 입력 차단
+    let alertShown = false;
+    pwInput.addEventListener("keydown", function (e) {
+      const allowed =
+        (e.key >= "0" && e.key <= "9") ||
+        ["Backspace", "Tab", "ArrowLeft", "ArrowRight", "Delete"].includes(e.key);
+
+      if (!allowed) {
+        e.preventDefault();
+
+        if (!alertShown) {
+          alertShown = true;
+          alert("숫자만 입력 가능합니다.");
+          setTimeout(() => (alertShown = false), 500);
+        }
+      }
+    });
+
+    // 실시간 유효성 검사
+    pwInput.addEventListener("input", function () {
+      const len = pwInput.value.length;
+
+      if (len === 0) {
+        pwMsg.textContent = "";
+        pwMsg.className = "pw-message";
+      } else if (len < 4) {
+        pwMsg.textContent = "비밀번호는 4~10자리로 입력 가능합니다.";
+        pwMsg.className = "pw-message invalid";
+      } else {
+        pwMsg.textContent = "사용 가능한 비밀번호입니다.";
+        pwMsg.className = "pw-message valid";
+      }
+
+      // 혹시라도 maxlength 초과 입력 시 자동 자르기
+      if (len > 10) {
+        pwInput.value = pwInput.value.slice(0, 10);
+      }
+    });
+
+    // 비밀번호 보기/숨기기 토글
+    toggleIcon.addEventListener("click", function () {
+      const isHidden = pwInput.type === "password";
+
+      pwInput.type = isHidden ? "text" : "password";
+      toggleIcon.classList.toggle("fa-eye-slash", !isHidden);
+      toggleIcon.classList.toggle("fa-eye", isHidden);
+    });
+  });
+</script>
+
+
+<!-- 취소/완료 버튼 alert -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const cancelBtn = document.getElementById("group_button_1");
+    const submitBtn = document.getElementById("group_button_2");
+    // 취소 버튼 클릭 시
+    cancelBtn.addEventListener("click", function() {
+      const result = confirm("교환독서 메인페이지로 이동하시겠습니까?");
+      if (result) {
+        // 확인 누른 경우
+        console.log("이동");
+        window.location.href = "/shareMain/Share_Main/";
+      } else {
+        // 취소 누른 경우
+        console.log("이동 취소");
+      }
+    });
+    // 완료 버튼 클릭 시
+    submitBtn.addEventListener("click", function() {
+      alert("그룹 만들기가 완료되었습니다.");
+    });
+  });
+</script>
+>>>>>>> Stashed changes
+  {% endblock %}

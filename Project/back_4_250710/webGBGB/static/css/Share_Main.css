@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
+body, input, select, textarea, button {
+  font-family: 'Noto Sans KR', sans-serif !important;
+}
+
+
+/* --------------------------------------- */
+/* 교환독서 메인페이지 */
+.feed__content{
+    /* border:1px solid black; */
+    margin:0 auto;
+    width:100%;
+    height:100%;
+    /* padding: 0 63px; */
+}
+
+/* 참여 중인 그룹 표시부분 */
+.feed__join{
+    padding: 20px 50px 25px;
+    border: 1px solid #f0f0f0;
+    border-radius: 7px;
+    box-shadow: 0 4px 8px #f0f0f0;
+}
+.feed__join_title{
+    margin-bottom: 23px;
+    padding-left: 27px;
+    font-size: 25px;
+    font-weight: 700;
+    color: #1a1a1a;
+    align-items: center;
+}
+.feed__join_title #group_count {
+    padding-left: 8px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #A0A0A0;
+}
+.feed__join_body{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+/* 참여 중인 그룹 1개씩 */
+.feed__join_body_item{
+    margin: 0 25px;
+    width:118px;
+    
+}
+.join_body_item_book{
+    display: flex;
+    width:118px;
+    height:172px;
+    object-fit: cover;
+}
+.join_body_item_book img{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    border-radius: 7px;
+    box-shadow: 0 4px 4px #797e8480;
+}
+.join_body_item_groupName{
+    margin-top: 10px;
+    height: 45px;
+    font-size: 15px;
+    font-weight: 400;
+    color: #636363;
+}
+
+
+/* 꼬북꼬북 교환독서 그룹 List */
+.feed__tabs{
+    margin: 70px 0 50px;
+    padding-left: 10px;
+    height: 38px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;            /* 세로 중앙정렬 원하면 */
+}
+.feed__tabs_title{
+    padding-bottom: 5px;
+    height: 45px;
+    font-size: 35px;
+    font-weight: 700;
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+}
+/* 그룹 목록 상단 검색창 */
+.feed__tabs_search{
+    display: flex;
+    align-items: center;
+    margin-left: 560px;
+    padding: 15px;
+    width: 400px;
+    height: 45px;
+    border-radius: 7px;
+    border: 1px solid #ccc;
+}
+.feed__tabs_search i {
+    width: 15px;
+    height: 15px;
+    color: #a5a5a5;
+} 
+.feed__tabs_search_input{
+    border: none;
+    outline: none;
+    padding-left:11px;
+    font-size: 15px;
+    font-weight: 400;
+}
+/* 그룹 만들기 버튼 */
+.feed__tabs_button{
+    background-color: #2D7868;
+    width:118px;
+    height: 45px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    color: #fafafa;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+/* 그룹 목록 */
+.feed__preview{
+    border-left: 2px solid #A0A0A0;
+    padding-left: 20px;
+    height:172px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between; /* 좌우로 벌어지게 */
+    align-items: center;            /* 세로 중앙정렬 원하면 */
+}
+.feed__preview_text {
+    height:100%;
+    display: flex;
+    flex-direction: column;           /* 세로 방향으로 정렬 */
+}
+.feed__preview_tags_tag{
+    margin-right: 3px;
+    padding: 5px 10px;
+    font-size: 15px;
+    font-weight: 400;
+    background-color: #2f81ed1c;
+    color: #2F80ED;
+    border-radius: 7px;
+    cursor: pointer;
+}
+.group_name{
+    padding: 20px 0 25px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a1a;
+    align-items: center;
+}
+.group_leader{
+    font-size: 14px;
+    font-weight: 400;
+    color: #636363;
+    display: flex;
+}
+.group_leader img{
+    margin-right:5px;
+    width:20px;
+    height:20px;
+    border-radius: 20px;
+}
+.feed__preview_book{
+    flex-shrink: 0; /* 이미지 영역 줄어들지 않게 */
+    width:118px;
+    height:172px;
+    object-fit: cover;
+}
+.feed__preview_book img{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    border-radius: 7px;
+    box-shadow: 0 4px 4px #797e8480;
+}
+
+/* --------------------------------------- */

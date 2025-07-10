@@ -1,0 +1,247 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}교환독서 | 그룹 만들기{% endblock %}
+{% block extra_css %}
+  <link rel="stylesheet" type="text/css" href="/static/css/Share_AddGroup.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/paginator.css">
+{% endblock %}
+
+  {% block content %}
+    <!-- 교환독서 그룹만들기  -->
+    <div class="feed__content">
+      <!-- 참여중이 그룹 표시 -->
+      <div class="feed__add">
+          <div class="feed__add_title">
+              <i class="fa-solid fa-user-group"></i>
+              <span>교환독서 그룹 만들기</span>
+          </div>
+          <!-- form (addgroupFrm)-->
+          <form action="{% url 'shareMain:Share_AddGroup' %}" method="post" name="addgroupFrm" id="addgroupFrm" novalidate>
+            {% csrf_token %}
+            <!-- 📌 숨겨진 input들로 책 정보 전달 -->
+            <input type="hidden" id="id_book_title" name="book_title">
+            <input type="hidden" id="id_book_author" name="book_author">
+            <input type="hidden" id="id_book_cover" name="book_cover">
+            <input type="hidden" id="id_book_isbn" name="book_isbn">
+            <input type="hidden" id="id_tag" name="tag">
+            <input type="hidden" id="id_book_publisher" name="book_publisher">
+              <table class="group_table">
+                <tbody>
+                  <!-- 그룹명 -->
+                  <tr>
+                    <th>
+                      <label>그룹명</label>
+                      <span>*</span>
+                    </th>
+                    <td><input type="text" name="group_name" class="group_name" placeholder="그룹명을 입력해주세요."></td>
+                  </tr>
+                  <!-- 그룹 인원 -->
+                  <tr>
+                    <th>
+                      <label>그룹 인원</label>
+                      <span>*</span>
+                    </th>
+                    <td>
+                      <div class="member">
+                        <select id="max_member" name="max_member" >
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                          <option>6</option>
+                          <option>7</option>
+                          <option>8</option>
+                          <option>9</option>
+                          <option selected>10</option>
+                        </select>
+                        <span class="group_otherText">*최소 2명 ~ 최대 10명</span>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- 그룹 소개 -->
+                  <tr>
+                    <th>
+                      <label>그룹 소개</label>
+                      <span>*</span>
+                    </th>
+                    <td>
+                      <textarea name="description" class="group_description" rows="4" placeholder="그룹 소개글을 입력해주세요."></textarea>
+                    </td>
+                  </tr>
+                  <!-- 책 선택 -->
+                  <script>
+                    const AJAX_SEARCH_URL = "{% url 'shareMain:ajax_search' %}";
+                  </script>
+                  <tr>
+                    <th>
+                      <label>책 선택</label>
+                      <span>*</span>
+                    </th>
+                    <td>
+                      <!-- 여기에 선택된 책 표시 -->
+                      <div id="selected-book-display">
+                        <div id="book_search_trigger" class="selected_book_img">
+                          <img src='/static/images/plusBtn.png'/>
+                        </div>
+                      </div>
+                      <!-- 선택된 책 표시 끝 -->
+                    </td>
+                  </tr>
+                  <!-- 책 검색 - 모달 전체 -->
+                  <div class="book_modal" id="book_search_modal">
+                    <div class="modal_overlay"></div>
+                    <div class="modal_content">
+                      <button type="button" class="modal_close">
+                        <i class="fa-solid fa-xmark"></i>
+                      </button>
+                      <h2>책 선택</h2>
+                      <!-- 모달 내부 검색 input -->
+                      <div class="modal_input_wrap">
+                        <input type="text" name="book" class="modal_search" id="book_search_input_modal" placeholder="책 제목/저자 검색">
+                        <button type="button" class="modal_search_btn" id="modal_search_btn">
+                          <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                      </div>
+                      <!-- 검색 결과 -->
+                      <div class="modal_results">
+                        <!-- 자바스크립트로 검색 결과 삽입 -->
+                      
+                        <!-- 모달창 paginator -->
+                        <div class="pg-container">
+                            <div class="paginator">
+                                <!-- 첫 페이지, 이전 페이지 버튼 -->
+                                <div class="pg-btns">
+                                    <button disabled>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M21.9323 22.5362C22.6042 21.8162 22.6042 20.7122 21.8842 20.0162L13.5562 12.0002L23.1562 2.76019L21.4762 1.00819L10.0282 12.0002L21.4763 22.9922L21.9323 22.5122L21.9323 22.5362Z" fill="currentColor"/>
+                                        <path d="M12.4786 22.5362C13.1506 21.8162 13.1506 20.7122 12.4306 20.0162L4.10256 12.0002L13.7266 2.76019L12.0466 1.00819L0.598563 12.0002L12.0226 22.9922L12.4786 22.5122L12.4786 22.5362Z" fill="currentColor"/>
+                                    </svg>
+                                    </button>
+                                    <button disabled>
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M16.3325 1.47C17.0125 2.18 16.9925 3.3 16.2825 3.98L7.9425 12L17.5625 21.25L15.8825 23L4.4425 12L15.8825 1L16.3325 1.47Z" fill="currentColor"/>
+                                    </svg>
+                                    </button>
+                                </div>
+
+                                <!-- 페이지 번호 -->
+                                <div class="pg-numbers">
+                                    <a class="active">1</a>
+                                    <a>2</a>
+                                    <a>3</a>
+                                    <a>4</a>
+                                    <a>5</a>
+                                    <a>6</a>
+                                </div>
+
+                                <!-- 다음 페이지, 마지막 페이지 버튼 -->
+                                <div class="pg-btns">
+                                    <button disabled>
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M7.6675 1.47C6.9875 2.18 7.0075 3.3 7.7175 3.98L16.0575 12L6.4375 21.25L8.1175 23L19.5575 12L8.1175 1L7.6675 1.47Z" fill="currentColor"/>
+                                        </svg>
+                                    </button>
+                                    <button disabled>
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M2.06775 1.46381C1.39575 2.18381 1.39575 3.28781 2.11575 3.98381L10.4437 11.9998L0.84375 21.2398L2.52375 22.9918L13.9718 11.9998L2.52375 1.00781L2.06775 1.48781V1.46381Z" fill="currentColor"/>
+                                            <path d="M11.5214 1.46381C10.8494 2.18381 10.8494 3.28781 11.5694 3.98381L19.8974 11.9998L10.2734 21.2398L11.9534 22.9918L23.4014 11.9998L11.9774 1.00781L11.5214 1.48781V1.46381Z" fill="currentColor"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 모달창 paginator 끝 -->
+                        
+                      </div>
+                    </div>
+                  </div>
+                  <!-- 관련 해시태그 -->
+                  <tr>
+                    <th><label>관련 해시태그</label></th>
+                    <td>
+                        <div class="group_keyword">
+                          <div class="group_keyword_input">
+                            <input type="text" name="tag_input" placeholder="직접 입력 (ex. 시) ">
+                            <button type="button" class="add_tag_btn">
+                              <i class="fa-solid fa-plus"></i>
+                            </button>
+                          </div>
+                          <div class="group_keyword_output">
+                              <!-- 생성된 태그가 여기에 들어감 -->
+                          </div>
+                          <!-- 폼 제출용 hidden input -->
+                          <input type="hidden" name="tag" id="group_keywords_hidden">
+                          <div class="tags">
+                              <a href=#>#시</a>
+                              <a href=#>#소설</a>
+                              <a href=#>#에세이</a>
+                              <a href=#>#인문</a>
+                              <a href=#>#경제</a>
+                              <a href=#>#자기계발</a>
+                              <a href=#>#과학</a>
+                              <a href=#>#청소년</a>
+                              <a href=#>#역사</a>
+                              <a href=#>#철학</a>
+                              <a href=#>#심리</a>
+                              <a href=#>#상담</a>
+                              <a href=#>#편하게이야기</a>
+                              <a href=#>#우리끼리</a>
+                              <a href=#>#독서초보환영</a>
+                              <a href=#>#미션</a>
+                              <a href=#>#글쓰기</a>
+                              <a href=#>#세계문학</a>
+                              <a href=#>#스토리텔링</a>
+                              <a href=#>#여행</a>
+                              <a href=#>#잡지</a>                                          
+                              <a href=#>#베스트셀러</a>
+                              <a href=#>#고전</a>
+                              <a href=#>#신간</a>
+                          </div>
+                        </div>
+                    </td>
+                  </tr>
+                  <!-- 공개 여부 -->
+                  <tr>
+                    <th>
+                        <label>공개 여부</label>
+                        <span>*</span>
+                    </th>
+                    <td>
+                        <select id="is_public" name="is_public">
+                            <option value="0">공개</option>
+                            <option value="1">비공개</option>
+                        </select>
+                    </td>
+                  </tr>
+                  <!-- 그룹 비밀번호 -->
+                  <tr class="pw_hide">
+                    <th>
+                        <label>그룹 비밀번호</label>
+                        <span>*</span>
+                    </th>
+                    <td>
+                      <div class="input-with-icon">
+                        <input type="password" name="password" class="group_pw" placeholder="비밀번호"
+                          id="group_pw" inputmode="numeric" pattern="\d*" maxlength="10">
+                        <i class="fa-solid fa-eye-slash toggle-visibility" id="togglePw"></i>
+                      </div>
+                      <span id="pw_message" class="pw-message"></span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- 하단 버튼 -->
+              <div class="group_button">
+                  <button type="button" id="group_button_1">취소</button>
+                  <button type="submit" id="group_button_2">완료</button>
+              </div>
+          </form>
+      </div>
+    
+    </div>          
+
+    {% endblock content %}
+
+  {% block extra_js %}
+    <script src="{% static 'js/Share_AddGroup.js' %}"></script>
+  {% endblock %}

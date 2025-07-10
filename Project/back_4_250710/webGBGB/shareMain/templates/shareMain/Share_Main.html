@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}교환독서{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="/static/css/Share_Main.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/paginator.css">
+{% endblock %}
+
+{% block content %}
+    <!-- shareMain -->
+    <div class="feed__content">
+        <!-- 로그인한 경우에만 참여 그룹 섹션 보이기 -->
+        {% if join_groups %}
+        <div class="feed__join">
+            <div class="feed__join_title">
+                <span>회원님이 참여 중인 그룹</span>
+                <span id="group_count">{{ join_groups|length }}/8</span>
+            </div>
+            <div class="feed__join_body">
+                {% for group in join_groups %}
+                <div class="feed__join_body_item">
+                    <div class="join_body_item_book">
+                        <img src="{{ group.book.cover }}" alt="책 이미지"/>
+                    </div>
+                    <div class="join_body_item_groupName">
+                        {{ group.group_name }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+
+        <!-- 꼬북꼬북 교환독서 그룹 목록 표시 -->
+        <div class="feed__tabs">
+            <div class="feed__tabs_title">
+                꼬북꼬북 교환독서 그룹
+            </div>
+            <form method="get" action="{% url 'shareMain:search_groups' %}">
+                <div class="feed__tabs_search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" class="feed__tabs_search_input" name="q" placeholder="책, 그룹, 해시태그 검색" value="{{ request.GET.q }}">
+                </div>
+            </form>
+
+            <a href='/shareMain/Share_AddGroup/'>
+                <div class="feed__tabs_button">
+                    그룹 만들기
+                </div>
+            </a>
+        </div>
+        <div class="feed__list">
+            {% if groups %}
+                {% for group in groups %}
+                    <!-- 그룹 출력 코드 (지금처럼) -->
+                {% endfor %}
+            {% else %}
+                <p style="text-align:center; padding: 20px;">검색 결과가 없습니다.</p>
+            {% endif %}
+            
+            {% for group in groups %}
+            <div class="feed__preview">
+                <div class="feed__preview_text">
+                    <div class="feed__preview_tags">
+                        {% for tag in group.tags_list %}
+                            <span class="feed__preview_tags_tag">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                    <a href='#'> <!-- 그룹 상세창 연결 -->
+                        <div class="group_name">
+                            <span>{{ group.group_name }}</span>
+                        </div>
+                        <div class="group_leader">
+                            {{ group.user.username }}
+                            {{ group.description }}
+                        </div>
+                    </a>
+                </div>
+                <div class="feed__preview_book">
+                    <img src="{{ group.book.cover }}" alt="책 이미지"/>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <!-- paginator -->
+    <div class="pg-container">
+        <div class="paginator">
+            <!-- 첫 페이지, 이전 페이지 버튼 -->
+            <div class="pg-btns">
+                <button disabled>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M21.9323 22.5362C22.6042 21.8162 22.6042 20.7122 21.8842 20.0162L13.5562 12.0002L23.1562 2.76019L21.4762 1.00819L10.0282 12.0002L21.4763 22.9922L21.9323 22.5122L21.9323 22.5362Z" fill="currentColor"/>
+                    <path d="M12.4786 22.5362C13.1506 21.8162 13.1506 20.7122 12.4306 20.0162L4.10256 12.0002L13.7266 2.76019L12.0466 1.00819L0.598563 12.0002L12.0226 22.9922L12.4786 22.5122L12.4786 22.5362Z" fill="currentColor"/>
+                </svg>
+                </button>
+                <button disabled>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M16.3325 1.47C17.0125 2.18 16.9925 3.3 16.2825 3.98L7.9425 12L17.5625 21.25L15.8825 23L4.4425 12L15.8825 1L16.3325 1.47Z" fill="currentColor"/>
+                </svg>
+                </button>
+            </div>
+
+            <!-- 페이지 번호 -->
+            <div class="pg-numbers">
+                <a class="active">1</a>
+                <a>2</a>
+                <a>3</a>
+                <a>4</a>
+                <a>5</a>
+                <a>6</a>
+            </div>
+
+            <!-- 다음 페이지, 마지막 페이지 버튼 -->
+            <div class="pg-btns">
+                <button disabled>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M7.6675 1.47C6.9875 2.18 7.0075 3.3 7.7175 3.98L16.0575 12L6.4375 21.25L8.1175 23L19.5575 12L8.1175 1L7.6675 1.47Z" fill="currentColor"/>
+                    </svg>
+                </button>
+                <button disabled>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M2.06775 1.46381C1.39575 2.18381 1.39575 3.28781 2.11575 3.98381L10.4437 11.9998L0.84375 21.2398L2.52375 22.9918L13.9718 11.9998L2.52375 1.00781L2.06775 1.48781V1.46381Z" fill="currentColor"/>
+                        <path d="M11.5214 1.46381C10.8494 2.18381 10.8494 3.28781 11.5694 3.98381L19.8974 11.9998L10.2734 21.2398L11.9534 22.9918L23.4014 11.9998L11.9774 1.00781L11.5214 1.48781V1.46381Z" fill="currentColor"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- paginator 끝 -->
+
+{% endblock content %}
+
+
+{% block extra_js %}
+    <script src="{% static 'js/Share_Main.js' %}"></script>
+{% endblock %}
