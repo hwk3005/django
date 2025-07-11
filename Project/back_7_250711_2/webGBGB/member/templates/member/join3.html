@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/fin.css'%}">
+{% endblock %}
+{% block title %}회원가입완료{% endblock %}
+
+{% block content %}
+<div class="full">
+      
+      <div class="modal_right">
+        
+        <div class="right">
+          <div class="righttop">
+            <h2><strong>가입 완료</strong></h2>
+            <br>
+            <p>{{ signup_name }}님, 가입해주셔서 감사합니다.</p>
+          </div>
+            
+        
+        
+          <div class="zvzv">
+            <a href="/member/login"><button class="login-btn" id="loginBtn">로그인</button></a>
+            <a href="/"><button class="home-btn" id="home">홈으로</button></a>
+            <br><br><br><br>
+          </div>
+        
+        </div>
+    </div>
+    </div>
+{% endblock %}
+{% block extra_js %}
+{% endblock %}
