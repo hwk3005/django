@@ -20,7 +20,9 @@
                 {% for group in join_groups %}
                 <div class="feed__join_body_item">
                     <div class="join_body_item_book">
-                        <img src="{{ group.book.cover }}" alt="책 이미지"/>
+                         <a href="/sns_feed/{{group.book.book_id}}">
+                            <img src="{{ group.book.cover }}" alt="책 이미지"/>
+                        </a>
                     </div>
                     <div class="join_body_item_groupName">
                         {% if group.is_public|stringformat:"s" == '1' %}<!-- 비공개일 경우 잠금아이콘 추가 -->
@@ -45,7 +47,7 @@
             <form method="get" action="{% url 'shareMain:search_groups' %}">
                 <div class="feed__tabs_search">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" class="feed__tabs_search_input" name="q" placeholder="책, 저자, 그룹명, 그룹장, 해시태그 검색" value="{{ request.GET.q }}">
+                    <input type="text" class="feed__tabs_search_input" name="q" placeholder="책, 저자, 그룹명, 그룹장, 해시태그 검색" value="{{ query }}">
                 </div>
             </form>
 

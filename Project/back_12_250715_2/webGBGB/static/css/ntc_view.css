@@ -1,0 +1,173 @@
+/*--------1:1,notice,view공통영역------*/
+    
+.mainWrap{
+    display: flex;
+    justify-content:center;
+}
+
+    
+.fig-main{
+    display:flex;
+    justify-content: center;
+}
+    
+/* ---------내비게이션 바 스타일 ------------*/
+nav{
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+}
+.left_side{
+    width: 192px;
+    height:622px;
+    margin: 160px 0px 0px; 
+    margin-right: 30px;
+}
+.main{
+    width: 1137px;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.category {
+  color: #636363;
+  width: 191px;
+  height: 500px;
+  text-align: left;
+  margin-bottom: 10px;
+  padding: 0;
+  list-style: none;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  border-radius: 7px;
+  width: 140px;
+  height: 30px;
+  margin-left: 0;         /* 기본은 왼쪽 딱 붙임 */
+  margin-bottom: 12px;
+  font-size: 18px;
+  transition: all 0.2s ease; /* hover 시 부드럽게 이동 */
+}
+
+.icon i { 
+  margin-right: 8px;
+  margin-top: 2px;
+}
+
+.icon:hover{
+  color: #2d7868;
+  margin-left: 10px;      /* hover 또는 선택됐을 때만 오른쪽으로 튀어나옴 */
+  cursor: pointer;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.icon.checked {
+  background-color: #2d7868;
+  color: #fafafa;
+  margin-left: 10px;      /* hover 또는 선택됐을 때만 오른쪽으로 튀어나옴 */
+  cursor: pointer;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+}
+.category li{margin-bottom: 16px; 
+font-size: 18px;} 
+
+
+
+/*------------view페이지------------*/
+
+
+.subject{
+    font-size:27px;
+    font-weight:700;
+    color:#1a1a1a;
+}
+
+.day>p{
+    margin-top:10px;
+    font-size:14px;
+    font-weight:400px;
+    color:#a0a0a0;
+}
+
+.txt>span{
+    margin-left:15px;
+    margin-right:30px;
+}
+
+.viewHead{
+    width:1137px;
+    height: 78px;
+    border-bottom: 1px solid #ccc;
+}
+    
+.viewContents{
+    padding:30px 28px 70px;
+    border-bottom: 1px solid #1a1a1a;
+    color:#1a1a1a;
+}
+
+.fig-main table{
+    width:1137px;
+    border-collapse: collapse;
+    color:#1a1a1a;
+    font-size:15px;
+}
+
+.fig-main th,.fig-main td{
+    border-bottom:1px solid #CCC;
+    height:65px;
+}
+
+    
+.fig-main th {
+    padding: 16px;
+    width: 15%;
+    height:50px;
+    font-size:15px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.fig-main th>span{
+    margin-right:12px;
+}
+
+
+.content-area{
+    max-width: 1137px;
+    margin-top: 82px;
+}
+
+    
+.buttonWrap > button{
+    width:180px;
+    height:50px;
+    font-size: 15px;
+    font-weight: bold;
+    color:#fafafa;
+    border-radius: 7px;
+    border-style: hidden;
+    cursor:pointer
+}
+
+.listBtn {
+    background-color: #2D7868;
+}
+
+
+.buttonWrap{
+    width:1137px;
+    justify-content: center;
+    margin-top: 50px;
+    display: flex;
+    gap:8px;
+}
+
