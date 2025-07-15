@@ -89,22 +89,27 @@
                         {% endfor %}
                     </div>
                     <!-- 그룹 상세창 연결 링크 넣기 -->
-                    <div class="group_name">
-                        {% if group.is_public|stringformat:"s" == '1' %}<!-- 비공개일 경우 잠금아이콘 추가 -->
-                            <i class="fa-solid fa-lock"></i>
+                    <a
+                        {% if member %}
+                            href="/chatrooms/chatroom_detail/{{ group.id }}"  {% comment %} 로그인한 경우 상세페이지로 이동 {% endcomment %}
+                        {% else %}
+                            href="javascript:void(0);"               {% comment %} 로그인 안 한 경우 클릭 막기 {% endcomment %}
+                            onclick="alertAndRedirectLogin()"        {% comment %} JS로 alert + 이동 {% endcomment %}
                         {% endif %}
-                        <span class="group_ellipsis_1">{{ group.group_name }}</span>
-                    </div>
-                    <div class="group_leader">
-                        {% comment %} <span>· {{ group.book.title}}</span> <br/>
-                        <span>· {{ group.admin.name }}</span> <br/>
-                        <span class="group_ellipsis_2">· {{ group.description }}</span> {% endcomment %}
-                        
-                        <span><strong>· 책제목:</strong> {{ group.book.title}}</span> <br/>
-                        <span><strong>· 그룹장:</strong> {{ group.admin.name }}</span> <br/>
-                        <span class="group_ellipsis_2"><strong>· </strong>{{ group.description }}</span>
-                    </div>
-                    <!-- -->
+                    >
+                        <div class="group_name">
+                            {% if group.is_public|stringformat:"s" == '1' %}<!-- 비공개일 경우 잠금아이콘 추가 -->
+                                <i class="fa-solid fa-lock"></i>
+                            {% endif %}
+                            <span class="group_ellipsis_1">{{ group.group_name }}</span>
+                        </div>
+                        <div class="group_leader">
+                            <span><strong>· 책제목:</strong> {{ group.book.title}}</span> <br/>
+                            <span><strong>· 그룹장:</strong> {{ group.admin.name }}</span> <br/>
+                            <span class="group_ellipsis_2"><strong>· </strong>{{ group.description }}</span>
+                        </div>
+                    </a>
+                    <!-- 링크 끝 -->
                 </div>
                 <div class="feed__preview_book">
                     <!-- img 클릭 시 책 상세페이지로 이동 a태그 -->
