@@ -1,0 +1,177 @@
+
+{% extends 'base.html' %}
+{% load static%}
+
+{% block title %}도서 검색 목록{% endblock %}
+
+{% block extra_css %}
+<!-- <link rel="stylesheet" href="{% static 'css/example.css' %}"> -->
+<link rel="stylesheet" href="/static/css/booksearch.css"/>
+<link rel="stylesheet" href="/static/css/paginator.css"/>
+{% endblock %}
+
+{% block content %}
+<h2 style="text-align: center; font-size: 27px; padding-top: 10px;">
+  <span style="color: #2D7868; font-weight: bold; font-size: 27px;">{{query}}</span>
+  에 대한 검색결과입니다.
+</h2>
+<div class="rigrid-118wmkd">
+  <div class="rigrid-79elbk">
+    <div data-testid="HorizontalScrollContainer__scroller" class="rigrid-1iikmpa">
+      <div data-testid="HorizontalScrollContainer__marker--start" class="rigrid-abqlil"></div>
+      <div class="rigrid-lby2xw">
+        <ul class="rigrid-1r87qo0">
+          <li class="rigrid-1yictku">
+            <div class="rigrid-1x2e8r3">
+              <a href="/search?q=%ED%96%89%EB%B3%B5&amp;adult_exclude=n" class="rigrid-g1be25">
+                <span class="rigrid-vq4mjc">전체 ({{total_count}})</span>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div data-testid="HorizontalScrollContainer__marker--end" class="rigrid-3297jm"></div>
+    </div>
+  </div>
+</div>
+<div class="book_bookmark">
+  <main class="main">
+    <div class="items">
+      <home-search-book-list _nghost-ng-c2831665569="">
+        {% if books %}
+          {% for b in books %}
+            <div class="book--box ng-star-inserted">
+              <sui-book class="{{b.title}}">
+                <div class="sui-book__box">
+                  <div class="sui-book__cover-box">
+                    {% if member %}
+                    <button onclick="toggleBookmark(this)" 
+                      class="bookmarkBtn {% if b.book_id in bookmarks %} active{% endif %}" 
+                      data-book-id="{{ b.book_id }}">
+                      <i class="fa-{% if b.book_id in bookmarks %}solid{% else %}regular{% endif %} fa-bookmark"></i>
+                    </button>
+                    {% endif %}
+                    <a href="/booksearch/detail/{{b.book_id}}/" class="sui-book__cover-link">
+                      <img sui-book-cover="" class="sui-book-cover" tabindex="0" 
+                      src="{{b.cover}}" alt="{{b.title}}"
+                      onerror="this.onerror=null;this.src='/static/images/defaultimg.png';" >
+                    </a>
+                  </div>
+                  <a href="/booksearch/detail/{{b.book_id}}/" class="inform_a">
+                    <div class="sui-book__inform-container">
+                      <sui-book-title tabindex="0">{{b.title}}</sui-book-title>
+                      <sui-book-author tabindex="0">{{b.author}}</sui-book-author>
+                      <sui-book-genre tabindex="0">{{b.publisher}}</sui-book-genre>
+                      <sui-book-rating tabindex="0">별점 {{b.average|floatformat:1}}</sui-book-rating>
+                    </div>
+                  </a>
+                  <div class="sui-book__tags"></div>
+                  <div class="sui-book__tail-tags">
+                    <svg width="16" height="16" ...> ... </svg>
+                  </div>
+                </div>
+              </sui-book>
+            </div>
+          {% endfor %}
+        {% endif %}
+      </home-search-book-list>
+          <!-- paginator -->
+          <div class="pg-container">
+            <div class="paginator">
+              <div class="pg-btns">
+                <!-- 첫 페이지 버튼 -->
+                {% if books.number > 1 %}
+                  <button onclick="location.href='?query={{ query }}&page=1'">
+                    <!-- svg 코드 -->
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M21.9323 22.5362C22.6042 21.8162 22.6042 20.7122 21.8842 20.0162L13.5562 12.0002L23.1562 2.76019L21.4762 1.00819L10.0282 12.0002L21.4763 22.9922L21.9323 22.5122L21.9323 22.5362Z" fill="currentColor"/>
+                      <path d="M12.4786 22.5362C13.1506 21.8162 13.1506 20.7122 12.4306 20.0162L4.10256 12.0002L13.7266 2.76019L12.0466 1.00819L0.598563 12.0002L12.0226 22.9922L12.4786 22.5122L12.4786 22.5362Z" fill="currentColor"/>
+                    </svg>
+                  </button>
+                {% else %}
+                  <button disabled>
+                    <!-- svg 코드 -->
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M21.9323 22.5362C22.6042 21.8162 22.6042 20.7122 21.8842 20.0162L13.5562 12.0002L23.1562 2.76019L21.4762 1.00819L10.0282 12.0002L21.4763 22.9922L21.9323 22.5122L21.9323 22.5362Z" fill="currentColor"/>
+                      <path d="M12.4786 22.5362C13.1506 21.8162 13.1506 20.7122 12.4306 20.0162L4.10256 12.0002L13.7266 2.76019L12.0466 1.00819L0.598563 12.0002L12.0226 22.9922L12.4786 22.5122L12.4786 22.5362Z" fill="currentColor"/>
+                    </svg>
+                  </button>
+                {% endif %}
+
+                <!-- 이전 블록 버튼 -->
+                {% if page_obj.has_previous %}
+                  <button onclick="location.href='?query={{ query }}&page={{ books.previous_page_number }}'">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M16.3325 1.47C17.0125 2.18 16.9925 3.3 16.2825 3.98L7.9425 12L17.5625 21.25L15.8825 23L4.4425 12L15.8825 1L16.3325 1.47Z" fill="currentColor"/>
+                    </svg>
+                  </button>
+                {% else %}
+                  <button disabled>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M16.3325 1.47C17.0125 2.18 16.9925 3.3 16.2825 3.98L7.9425 12L17.5625 21.25L15.8825 23L4.4425 12L15.8825 1L16.3325 1.47Z" fill="currentColor"/>
+                    </svg>
+                  </button>
+                {% endif %}
+              </div>
+
+              <!-- 페이지 번호 -->
+              <div class="pg-numbers">
+                {% for i in page_range %}
+                  {% if i == books.number %}
+                    <a class="active">{{ i }}</a>
+                  {% else %}
+                    <a href="?query={{ query }}&page={{ i }}">{{ i }}</a>
+                  {% endif %}
+                {% endfor %}
+              </div>
+
+              <div class="pg-btns">
+                <!-- 다음 블록 버튼 -->
+                {% if page_obj.has_next %}
+                  <button onclick="location.href='?query={{ query }}&page={{ books.next_page_number }}'">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M7.6675 1.47C6.9875 2.18 7.0075 3.3 7.7175 3.98L16.0575 12L6.4375 21.25L8.1175 23L19.5575 12L8.1175 1L7.6675 1.47Z" fill="currentColor"/>
+                    </svg>
+                  </button>
+                {% else %}
+                  <button disabled>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M7.6675 1.47C6.9875 2.18 7.0075 3.3 7.7175 3.98L16.0575 12L6.4375 21.25L8.1175 23L19.5575 12L8.1175 1L7.6675 1.47Z" fill="currentColor"/>
+                    </svg>
+                  </button>
+                {% endif %}
+
+                <!-- 마지막 페이지 버튼 -->
+                {% if books.number != books.paginator.num_pages %}
+                  <button onclick="location.href='?query={{ query }}&page={{ books.paginator.num_pages }}'">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M2.06775 1.46381C1.39575 2.18381 1.39575 3.28781 2.11575 3.98381L10.4437 11.9998L0.84375 21.2398L2.52375 22.9918L13.9718 11.9998L2.52375 1.00781L2.06775 1.48781V1.46381Z" fill="currentColor"/>
+                      <path d="M11.5214 1.46381C10.8494 2.18381 10.8494 3.28781 11.5694 3.98381L19.8974 11.9998L10.2734 21.2398L11.9534 22.9918L23.4014 11.9998L11.9774 1.00781L11.5214 1.48781V1.46381Z" fill="currentColor"/>
+                    </svg>
+                  </button>
+                {% else %}
+                  <button disabled>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M2.06775 1.46381C1.39575 2.18381 1.39575 3.28781 2.11575 3.98381L10.4437 11.9998L0.84375 21.2398L2.52375 22.9918L13.9718 11.9998L2.52375 1.00781L2.06775 1.48781V1.46381Z" fill="currentColor"/>
+                      <path d="M11.5214 1.46381C10.8494 2.18381 10.8494 3.28781 11.5694 3.98381L19.8974 11.9998L10.2734 21.2398L11.9534 22.9918L23.4014 11.9998L11.9774 1.00781L11.5214 1.48781V1.46381Z" fill="currentColor"/>
+                    </svg>
+                  </button>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          <!--paginator 끝-->            
+          <div style="height: 1px;"></div> <!-- margin이 병합되지 않도록 차단 -->
+
+
+
+        </div>
+      </main>
+    </div>
+  </div>
+{% endblock %}
+
+
+{% block extra_js %}
+<script src="/static/js/booksearch.js"></script>
+{% endblock %}

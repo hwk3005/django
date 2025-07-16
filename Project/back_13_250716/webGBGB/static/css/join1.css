@@ -1,0 +1,105 @@
+.login-btn {
+    
+    width:180px;
+    height:50px;
+    background: #2D7868;
+    color:#fafafa;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 15px;
+    margin:0 auto;
+    font-weight: bold;
+
+    
+  }
+
+  .saveAgree,.chchch {
+      vertical-align: middle;
+      display: inline-block;
+      margin-top:-2px;
+      width: 16px;
+      height: 16px;
+      border: 1px solid #ccc;
+      background-color: #fafafa;
+      
+      cursor: pointer;
+      position: relative;
+      appearance: checkbox;
+      border-radius:7px;
+      accent-color: #2D7868;
+    }
+
+    
+
+    .contract {
+    width: 1137px;
+    margin: 20px auto 80px;
+    padding: 30px 40px 35px;
+    border-radius: 7px;
+    background-color: #f5f5f5;
+    /* border: 1px solid #2D7868; */
+    box-shadow: 0 1px 4px #ccc;
+    }
+    .contract h1 {
+    text-align: center;
+    color: #1a1a1a;
+    margin-bottom: 30px;
+    font-size: 25px;
+    font-weight: 700;
+    }
+    .contract .text {
+    width: 95%;
+    height: 230px;
+    background-color: #fafafa;
+    padding: 10px 45px;
+    white-space: pre-line;
+    overflow-y: scroll;
+    margin: 0 auto 30px;
+    box-shadow: 0 2px 8px #A0A0A0;
+    line-height: 1.8;
+    }
+    .contract .text p {text-align:left;}
+    .contract p {text-align: right; color: #1a1a1a;}
+    .contract .box {width: 100px; height: 40px;  padding: 8px; margin: 0 3px;}
+
+
+
+    form[name='agreeFrm'] {
+    margin-top: 20px;
+    padding-top: 40px;
+    border-top: 1px solid #1a1a1a;
+    }
+
+
+    .yes p {
+      margin-right:25px;
+    }
+
+    .saveAgree {
+      margin: 0 2px 0 -2px
+    }
+
+    .afaf {
+      margin:0 auto; text-align:center
+    }
+
+    .forch{
+      margin-bottom:20px;
+      text-align:center;
+    }
+    .chchch{
+      margin-right:8px;
+    }
+    .forch label{
+      color:#1a1a1a;
+    }
+
+    .kakao-login-button{
+      text-align:center;
+    }
+    .kBtn{
+      width:80px;
+      height:80px;
+      margin:100px auto;
+    }

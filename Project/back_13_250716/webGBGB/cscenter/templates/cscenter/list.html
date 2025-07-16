@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}공지사항{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="/static/css/ntc_list.css" />
+{% endblock %}
+{% block content %}
+      <div class="mainWrap">
+        <nav>
+          <div class="left_side">
+            <ul class="category">
+              <li class="icon checked" onclick="location.href='{% url "cscenter:list" %}'"><i class="fa-solid fa-bullhorn"></i>공지사항</li>
+              <li class="icon" onclick="location.href='{% url "cscenter:inquiry" %}'"><i class="fa-solid fa-envelope"></i>1:1문의</li>
+            </ul>
+          </div>
+        </nav>
+
+        <div class="content-area">
+            <p class="big_title">공지사항</p>
+
+            <div class='searchWrap'>
+              {% if search == 1 %}
+              <div class="ntc_count">검색결과 <span>{{notice.count}}</span>건</div>
+              {% else %}
+              <div class="ntc_count"><span>{{notice.count}}</span>건</div>
+              {% endif %}
+              
+              <form action='/cscenter/list/' name='ntc_searchFrm' method='get' role="search" class="fig-searchform et3830u0">
+                <div tabindex="-1" class="fig-tabindex">
+                  <div class="fig-q3rd3s et3830u1">
+                    <label class="fig-formlabel">
+                      <svg width="1em" height="1em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="fig-searchimage">
+                        <path fill-rule="evenodd" d="M13.28 8.18a5.1 5.1 0 11-10.2 0 5.1 5.1 0 0110.2 0zm-1.031 5.069a6.5 6.5 0 11.991-.989l4.695 4.695a.7.7 0 11-.99.99l-4.696-4.696z">
+                        </path>
+                      </svg>
+                      <span class="fig-instant">인스턴트 검색</span>
+                      <input type="text" name='search' maxlength="64" tabindex="-1" class="fig-forminput" value="">
+                    </label>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div>
+              <table>
+                <colgroup> 
+                  <col width="8%"/> 
+                  <col width="*"/> 
+                  <col width="8%"/> 
+                  <col width="12%"/> 
+                  <col width="8%"/> 
+              </colgroup>
+                <thead>
+                  <tr>
+                    <th>no.</th>
+                    <th>공지 제목</th>
+                    <th>작성자</th>
+                    <th>날짜</th>
+                    <th>조회수</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for n in list %}
+                  <tr>
+                    <td>{{n.ntcno}}</td>
+                    <td class="ntc_title"><a href="/cscenter/view/{{n.ntcno}}/">{{n.ntitle}}</a></td>
+                    <td>{{n.id}}</td>
+                    <td>{{n.ndate|date:'Y-m-d'}}</td>
+                    <td>{{n.nhit}}</td>
+                  </tr>
+                  {% endfor %}
+                  
+                </tbody>
+              </table>
+            </div>
+
+    
+    <!-- paginator -->
+      <div class="pg-container">
+        <div class="paginator">
+            <!-- 첫 페이지, 이전 페이지 버튼 -->
+            <div class="pg-btns">
+              {% if list.has_previous %}
+                <button onclick="location.href='?page=1&search={{search}}'">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M21.9323 22.5362C22.6042 21.8162 22.6042 20.7122 21.8842 20.0162L13.5562 12.0002L23.1562 2.76019L21.4762 1.00819L10.0282 12.0002L21.4763 22.9922L21.9323 22.5122L21.9323 22.5362Z" fill="currentColor"/>
+                    <path d="M12.4786 22.5362C13.1506 21.8162 13.1506 20.7122 12.4306 20.0162L4.10256 12.0002L13.7266 2.76019L12.0466 1.00819L0.598563 12.0002L12.0226 22.9922L12.4786 22.5122L12.4786 22.5362Z" fill="currentColor"/>
+                  </svg>
+                </button>
+                <button onclick="location.href='?page={{list.previous_page_number}}&search={{search}}'">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M16.3325 1.47C17.0125 2.18 16.9925 3.3 16.2825 3.98L7.9425 12L17.5625 21.25L15.8825 23L4.4425 12L15.8825 1L16.3325 1.47Z" fill="currentColor"/>
+                  </svg>
+                </button>
+                {% else %}
+                <button disabled>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M21.9323 22.5362C22.6042 21.8162 22.6042 20.7122 21.8842 20.0162L13.5562 12.0002L23.1562 2.76019L21.4762 1.00819L10.0282 12.0002L21.4763 22.9922L21.9323 22.5122L21.9323 22.5362Z" fill="currentColor"/>
+                      <path d="M12.4786 22.5362C13.1506 21.8162 13.1506 20.7122 12.4306 20.0162L4.10256 12.0002L13.7266 2.76019L12.0466 1.00819L0.598563 12.0002L12.0226 22.9922L12.4786 22.5122L12.4786 22.5362Z" fill="currentColor"/>
+                  </svg>
+                </button>
+                <button disabled>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M16.3325 1.47C17.0125 2.18 16.9925 3.3 16.2825 3.98L7.9425 12L17.5625 21.25L15.8825 23L4.4425 12L15.8825 1L16.3325 1.47Z" fill="currentColor"/>
+                  </svg>
+                </button>
+                {% endif %}
+            </div>
+
+            <!-- 페이지 번호 -->
+            <div class="pg-numbers">
+              {% for p in list.paginator.page_range %}
+                {% if p != page %}
+                <a href="?page={{p}}">{{p}}</a>
+                {% else %}
+                <a class="active">{{p}}</a>
+                {% endif %}
+              {% endfor %}
+            </div>
+
+            <!-- 다음 페이지, 마지막 페이지 버튼 -->
+            <div class="pg-btns">
+              {% if list.has_next %}
+                <button onclick="location.href='?page={{list.next_page_number}}&search={{search}}'">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M7.6675 1.47C6.9875 2.18 7.0075 3.3 7.7175 3.98L16.0575 12L6.4375 21.25L8.1175 23L19.5575 12L8.1175 1L7.6675 1.47Z" fill="currentColor"/>
+                    </svg>
+                </button>
+                <button onclick="location.href='?page={{list.paginator.num_pages}}&search={{search}}'">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M2.06775 1.46381C1.39575 2.18381 1.39575 3.28781 2.11575 3.98381L10.4437 11.9998L0.84375 21.2398L2.52375 22.9918L13.9718 11.9998L2.52375 1.00781L2.06775 1.48781V1.46381Z" fill="currentColor"/>
+                        <path d="M11.5214 1.46381C10.8494 2.18381 10.8494 3.28781 11.5694 3.98381L19.8974 11.9998L10.2734 21.2398L11.9534 22.9918L23.4014 11.9998L11.9774 1.00781L11.5214 1.48781V1.46381Z" fill="currentColor"/>
+                    </svg>
+                </button>
+                {% else %}
+                <button disabled>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M7.6675 1.47C6.9875 2.18 7.0075 3.3 7.7175 3.98L16.0575 12L6.4375 21.25L8.1175 23L19.5575 12L8.1175 1L7.6675 1.47Z" fill="currentColor"/>
+                    </svg>
+                </button>
+                <button disabled>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M2.06775 1.46381C1.39575 2.18381 1.39575 3.28781 2.11575 3.98381L10.4437 11.9998L0.84375 21.2398L2.52375 22.9918L13.9718 11.9998L2.52375 1.00781L2.06775 1.48781V1.46381Z" fill="currentColor"/>
+                        <path d="M11.5214 1.46381C10.8494 2.18381 10.8494 3.28781 11.5694 3.98381L19.8974 11.9998L10.2734 21.2398L11.9534 22.9918L23.4014 11.9998L11.9774 1.00781L11.5214 1.48781V1.46381Z" fill="currentColor"/>
+                    </svg>
+                </button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <!--paginator 끝-->
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/example.js' %}"></script>
+<script>
+  //f5 새로고침 시 파라미터 초기화
+  window.onkeydown = function() {
+  var kcode = event.keyCode;
+  if(kcode == 116) {
+  history.replaceState({}, null, location.pathname);
+  }
+  }
+</script>
+{% endblock %}

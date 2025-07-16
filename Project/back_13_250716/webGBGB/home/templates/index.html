@@ -1,0 +1,264 @@
+{% extends "base.html" %}
+{% load static %}
+  {% block title %}꼬북꼬북{% endblock %}
+  {% block extra_css %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+  <link rel="stylesheet" href="/static/css/mainpage.css" />
+  {% endblock %}
+{% block content %}
+
+    <div class="mainBanner">
+      <div class="swiper myBannerSwiper">
+        <div class="swiper-wrapper">
+          {% if mainBanner %}
+          {% for m in mainBanner%}
+          <!-- 슬라이드 {{forloop.counter}} -->
+          <div class="swiper-slide">
+            <a href='{{m.murl}}'>
+              <div class='mainBanner__image' style="background-image:url('{{m.mimg.url}}')"></div>
+              <div class='mainBanner__imagewhite'></div>
+              <div class='mainBanner__backdrop' style="background-color:rgba(0, 2,0, 0.1)"></div>
+              <div class="mainBanner__center">
+                <div class="mainBanner__center__text">
+                  <div class="mainBanner__center__title">{{m.mtitle}}<br>{{m.mtitle2}}</div>
+                  <div class="mainBanner__center__subtitle">{{m.msubtitle}}<br>{{m.msubtitle2}}</div>
+                </div>
+                <div class='mainBanner__bookcover'><img src="{{m.mimg.url}}"></div>
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+          {% else %}
+          <!-- 슬라이드 1 -->
+          <div class="swiper-slide" data-book-id="760">
+            <a href="/booksearch/detail/760/">
+              <div class='mainBanner__image' style="background-image: url('/static/images/home/banner_1.jpg')"></div>
+              <div class='mainBanner__backdrop' style="background-color:rgba(0, 2,0, 0.2)"></div>
+              <div class='mainBanner__imagewhite'></div>
+              <div class="mainBanner__center">
+                <div class="mainBanner__center__text">
+                  <div class="mainBanner__center__title">내일 모든 걸 잊는다 해도<br> 가장 행복한 '오늘'을 줄게</div>
+                  <div class="mainBanner__center__subtitle">레이디 그레이<br>잊지 못할 여름향기</div>
+                </div>
+                <div class='mainBanner__bookcover'><img src="/static/images/home/banner_1.jpg"></div>
+              </div>
+            </a>
+          </div>
+          <!-- 슬라이드 2 -->
+          <div class="swiper-slide" data-book-id="839">
+            <a href='/booksearch/detail/839/'>
+              <div class='mainBanner__image' style="background-image: url('/static/images/home/banner_2.jpg')"></div>
+              <div class='mainBanner__backdrop' style="background-color:rgba(0, 2,0, 0.2)"></div>
+              <div class='mainBanner__imagewhite'></div>
+              <div class="mainBanner__center">
+                <div class="mainBanner__center__text">
+                  <div class="mainBanner__center__title">똘병이의 스타성...<br>성공한 인형 똘병이</div>
+                  <div class="mainBanner__center__subtitle">똘병이가 좋아 내가 좋아?<br>불닭볶음면 닭 아닙니다</div>
+                </div>
+                <div class='mainBanner__bookcover'><img src="/static/images/home/banner_2.jpg"></div>
+              </div>
+            </a>
+          </div>
+          
+          <!-- 슬라이드 3 -->
+          <div class="swiper-slide" data-book-id="171">
+            <a href='/booksearch/detail/171/'>
+              <div class='mainBanner__image' style="background-image: url('/static/images/home/banner_3.jpg')"></div>
+              <div class='mainBanner__backdrop' style="background-color:rgba(0, 2,0, 0.2)"></div>
+              <div class='mainBanner__imagewhite'></div>
+              <div class="mainBanner__center">
+                <div class="mainBanner__center__text">
+                    <div class="mainBanner__center__title">'어떻게 성공할 것이냐'에서<br> '어떻게 살 것이냐'로</div>
+                    <div class="mainBanner__center__subtitle">삶은 성공이 아닌 성장의 이야기다<br>'리틀 미'의 가치를 되새기는 여정 </div>
+                  </div>
+                  <div class='mainBanner__bookcover'><img src="/static/images/home/banner_3.jpg"></div>
+              </div>
+            </a>
+          </div>
+          {% endif %}
+        </div>
+
+        
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    </div>
+
+{% if not request.session.user_id %}
+  <!--로그인 세션 없을때-->
+  <div class="exchngreading">
+    <!-- 참여중인 그룹 표시 -->
+    <div class="feed__join">
+      <div class="feed__join_main">
+        <h4>꼬북꼬북은 어떤 곳인가요?</h4>
+        <br>
+        <div>
+          <p>책을 읽고 사람들과 이야기를 나누는</p>
+          <p>“따뜻한 독서 커뮤니티 플랫폼”, 꼬북꼬북입니다.</p>
+          <p>당신의 감상을 들려주세요!</p>
+        </div>
+        <a href='/member/join1/'><button type='button'>회원가입</button></a>
+      </div>
+    </div>
+  </div>
+  
+{% else %}
+
+<!--로그인 세션 있을때-->
+<div class="exchngreading">
+    <!-- 참여중인 그룹 표시 -->
+    <div class="feed__join">
+        <div class="feed__join_title">
+            <span>최신 교환독서 그룹</span>
+        </div>
+        <div class="feed__join_body">
+          {% for s in sharegroup %}
+            <div class="feed__join_body_item">
+                <div class="join_body_item_book">
+                    {% if s.is_empty %}
+                    <img src="/static/images/defaultimg.png" alt="[꼬북꼬북] 교환독서 그룹 준비중">
+                    {% else %}
+                    <a href='/chatrooms/detail/{{s.id}}/'><img src="{{s.book.cover}}" alt="{{s.group_name}}"></a>
+                    {% endif %}
+                </div>
+                <div class="join_body_item_groupName">
+                  {% if s.is_public|stringformat:"s" == '1' %}<!-- 비공개일 경우 잠금아이콘 추가 -->
+                    <i class="fa-solid fa-lock"></i>
+                  {% endif %}
+                    {{ s.group_name }}
+
+                </div>
+            </div>
+          {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<section class="ranking">
+    <div>
+        <p class="ranking__title"><i class="fa-solid fa-fire"></i>교환 독서 그룹 인기 도서 Top5</p>
+    </div>
+    <div class="CIirP0cq">
+        <div class="listWrapper">
+            <ul>
+                {% for r in readinggroup %}
+                <li class="w_exposed_cell">
+                    <a title="{{r.book_id.title}}">
+                      <div class="book-cover-container">
+                          {% if r.is_empty %}
+                          <img class='book__cover' alt="준비중입니다" src="/static/images/defaultimg.png">
+                        </div>
+                          {% else %}
+                          <a href='{% url "booksearch:detail" r.book.book_id %}'><img class='book__cover' alt="{{r.book.title}} 표지 이미지" src="{{r.book.cover}}"></a>
+                          <div class="rank">{{forloop.counter}}</div>
+                        </div>
+                        <div class="bVUVO8nJ">
+                            <div class="book__title">{{r.book.title}}</div>
+                            <div class="rating"><i class="fa-solid fa-fire"></i>{{r.select_count}}</div>
+                        </div>
+                        {% endif %}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+
+<section class="ranking">
+    <div>
+        <p class="ranking__title"><i class="fa-solid fa-comment-dots"></i>리뷰 순위 Top 5</p>
+    </div>
+    <div class="CIirP0cq">
+        <div class="listWrapper">
+            <ul>
+                {% for r in review %}
+                <li class="w_exposed_cell">
+                    <a title="{{r.title}}">
+                      <div class="book-cover-container">
+                          {% if r.is_empty %}
+                          <img class='book__cover' alt="준비중입니다" src="/static/images/defaultimg.png">
+                        </div>
+                          {% else %}
+                          <a href='{% url "booksearch:detail" r.book_id %}'><img class='book__cover' alt="{{r.title}} 표지 이미지" src="{{r.cover}}"></a>
+                          <div class="rank">{{forloop.counter}}</div>
+                        </div>
+                        <div class="bVUVO8nJ">
+                            <div class="book__title">{{r.title}}</div>
+                            <div class="rating"><i class="fa-solid fa-comment-dots"></i>{{r.review_count}}</div>
+                        </div>
+                        {% endif %}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+
+    <div>
+      <p class="ranking__title"><i class="fa-solid fa-chart-simple"></i>조회수 순위 Top 5</p>
+    </div>
+    <div class="CIirP0cq">
+      <div class="listWrapper">
+        <ul>
+          {% for v in views %}
+          <li class="w_exposed_cell">
+            <a title="{{v.title}}">
+              <div class="book-cover-container">
+              {% if v.is_empty %}
+                <img class='book__cover' alt="준비중입니다" src="/static/images/defaultimg.png">
+              </div>
+              {% else %}
+                <a href='{% url "booksearch:detail" v.book_id %}'><img class='book__cover' alt="{{v.title}} 표지 이미지" src="{{v.cover}}"></a>
+                <div class="rank">{{forloop.counter}}</div>
+              </div>
+              <div class="bVUVO8nJ">
+                <div class="book__title">{{v.title}}</div>
+                <div class="rating"><i class="fa-solid fa-chart-simple"></i>{{v.views}}</div>
+              </div>
+              {% endif %}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <p class="ranking__title"><i class="fa-solid fa-bookmark"></i>북마크 순위 Top 5</p>
+    </div>
+    <div class="CIirP0cq">
+      <div class="listWrapper">
+        <ul>
+          {% for b in bookmark %}
+          <li class="w_exposed_cell">
+            <a title="{{b.title}}">
+              <div class="book-cover-container">
+                {% if b.is_empty %}
+                <img class='book__cover' alt="준비중입니다" src="/static/images/defaultimg.png">
+              </div>
+                {% else %}
+                <a href='{% url "booksearch:detail" b.book_id %}'><img class='book__cover' alt="{{b.title}} 표지 이미지" src="{{b.cover}}"></a>
+                <div class="rank">{{forloop.counter}}</div>
+              </div>
+              <div class="bVUVO8nJ">
+                <div class="book__title">{{b.title}}</div>
+                <div class="rating"><i class="fa-solid fa-bookmark"></i>{{b.bookmark_count}}</div>
+              </div>
+                {% endif %}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+{% endblock content %}
+{% block extra_js %}
+  <script src="/static/js/mainbanner.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+{% endblock %}

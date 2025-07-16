@@ -1,0 +1,233 @@
+/* 탭 부분 */
+.rigrid-79elbk {
+    position: relative;
+}
+.rigrid-1iikmpa {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: auto hidden;
+    scrollbar-width: none;
+}
+.rigrid-abqlil, .rigrid-3297jm {
+    flex: 0 0 auto;
+    width: 1px;
+    margin-left: -1px;
+}
+.rigrid-lby2xw {
+    display: flex;
+    flex: 1 0 auto;
+}
+.rigrid-1r87qo0 {
+    position: relative;
+    height: 48px;
+    display: flex;
+    width: 100%;
+    padding: 0 8px;
+}
+.rigrid-1yictku {
+    font-size: 15px;
+    color: #1a1a1a;
+    font-weight: 700;
+    height: 100%;
+}
+/* 탭 부분 */
+.rigrid-1x2e8r3 {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    color: #1a1a1a;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.05);
+    width: 100%;
+    height: 100%;
+}
+.rigrid-g1be25 {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0 8px;
+    gap: 4px;
+}
+.rigrid-vq4mjc {
+    font-weight: 700;
+    white-space: nowrap;
+    letter-spacing: -0.01em;
+}
+/* 구분선 */
+.rigrid-1r87qo0::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #2D7868;
+}
+.rigrid-abqlil, .rigrid-3297jm {
+    flex: 0 0 auto;
+    width: 1px;
+    margin-left: -1px;
+}
+
+/* 책 리스트 정렬 */
+[_nghost-ng-c2831665569] {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 100%;
+}
+
+/* 책 */
+.book--box {
+    width: 100%;
+    --sui-book-bg-box-width: 270px;
+    --sui-book-bg-box-height: 465px;
+    --sui-book-cover-width: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.sui-book__box {
+    background: #fff6;
+    position: relative;
+    width: var(--sui-book-bg-box-width);
+    height: var(--sui-book-bg-box-height);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sui-book__cover-box {
+    display: block;
+    width: 100%;
+    height: 320px;
+    display: flex;
+    position: relative;
+    background: #f0f0f0;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 북마크 버튼 */
+.bookmarkBtn {
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
+}
+.bookmarkBtn i {
+    transition: opacity 0.3s ease;
+}
+.fa-bookmark {
+    font-size: 30px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #2d7868;
+}
+
+/* 상단 부분 */
+.sui-book__cover-container {
+    cursor: pointer;
+    display: block;
+    width: auto;
+    position: relative;
+}
+.sui-book-cover {
+    display: block;
+    width: var(--sui-book-cover-width);
+    height: 220px;
+    max-height: calc(1.4943820225 * var(--sui-book-cover-width));
+    box-shadow: 0 4px 4px #797e8480;
+    margin: 0 auto;
+    border-radius: 7px;
+}
+.sui-book__tags {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+}
+.sui-book__tail-tags {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+    border-top-right-radius: 10px;
+}
+.sui-book__tail-tags .sui-book__tail-tags-tail:first-child {
+    display: none;
+}
+.sui-book__tail-tags .sui-book__tail-tags-tail {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+}
+
+/* 하단 부분 */
+.inform_a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+}
+.sui-book__inform-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 15px;
+    height: 145px;
+    width: 100%;
+}
+
+
+sui-book-title {
+    color: #1a1a1a;
+    font-size: 18px;
+    font-weight: 600;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    max-height: 48px;
+    line-height: 24px;
+    overflow: hidden;
+}
+sui-book-author {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 18px;
+    color: #333;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+sui-book-genre, sui-book-rating {
+    font-size: 14px;
+    line-height: 18px;
+    color: #636363;
+}
+sui-book-rating {
+    text-align: right;
+}

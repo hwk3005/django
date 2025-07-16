@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}교환독서{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="/static/css/Share_Main.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/paginator.css">
+{% endblock %}
+
+{% block content %}
+    <!-- shareMain -->
+    <div class="feed__content">
+        <!-- 참여 중인 그룹 - 로그인한 경우에만 참여 그룹 섹션 보이기 -->
+        {% if join_groups %}
+        <div class="feed__join">
+            <div class="feed__join_title">
+                <span>{% if member %}{{ member.name }}{% endif %}님이 참여 중인 그룹</span>
+                <span id="group_count">{{ join_groups|length }}/8</span>
+            </div>
+            <div class="feed__join_body">
+                {% for group in join_groups %}
+                <div class="feed__join_body_item">
+                    <div class="join_body_item_book">
+                         <a href="/feedpage/sns_feed/{{group.id}}">
+                            <img src="{{ group.book.cover }}" alt="책 이미지"
+                            onerror="this.onerror=null;this.src='/static/images/defaultimg.png';"/>
+                        </a>
+                    </div>
+                    <div class="join_body_item_groupName">
+                        {% if group.is_public|stringformat:"s" == '1' %}<!-- 비공개일 경우 잠금아이콘 추가 -->
+                            <i class="fa-solid fa-lock"></i>
+                        {% endif %}
+                        <span class="group_ellipsis_2">{{ group.group_name }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+
+        <!-- 그룹 목록 title -->
+        <div class="feed__tabs">
+            
+            <div class="feed__tabs_title">
+                <span>꼬북꼬북 교환독서 그룹</span>
+                <span id="total_group_count">{{ total_group_count }}</span>
+                <span id="total_group_count_text">개</span>
+            </div>
+            
+            <!-- 교환독서 메인페이지 - 검색창 -->
+            <form method="get" action="{% url 'shareMain:search_groups' %}">
+                <div class="feed__tabs_search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" class="feed__tabs_search_input" name="q" placeholder="책, 저자, 그룹명, 그룹장, 해시태그 검색" value="{{ request.GET.q }}">
+                </div>
+            </form>
+
+            <!-- 그룹 만들기 버튼 -->
+            {% if request.session.member_id %}
+                <!-- 로그인 했을 때: 그룹 만들기 페이지로 이동 -->
+                <a href="{% url 'shareMain:Share_AddGroup' %}" class="btn btn-create" id="create-group-btn">
+                    <div class="feed__tabs_button">
+                        그룹 만들기
+                    </div>
+                </a>
+            {% else %}
+                <!-- 로그인 안 했을 때: 로그인 페이지로 이동 -->
+                <a href="{% url 'member:login' %}?next={% url 'shareMain:Share_Main' %}" 
+                    class="btn btn-create" onclick="alert('로그인 후 이용 가능합니다.')">
+                    <div class="feed__tabs_button">
+                        그룹 만들기
+                    </div>
+                </a>
+            {% endif %}
+        </div>
+
+        <!-- 교환독서 그룹 목록 -->
+        <div class="feed__list">
+            {% if groups %}
+                {% for group in groups %}
+                    <!-- 그룹 출력 코드 (지금처럼) -->
+                {% endfor %}
+            {% else %}
+                <p>검색 결과가 없습니다.</p>
+            {% endif %}
+            
+            {% for group in groups %}
+            <div class="feed__preview">
+                <div class="feed__preview_text">
+                    <div class="feed__preview_tags">
+                        {% for tag in group.tag_list %}
+                            {% if tag %}
+                                <span class="feed__preview_tags_tag">{{ tag }}</span>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <!-- 그룹 상세창 연결 링크 넣기 -->
+                    <a
+                        {% if member %}
+                            href="/chatrooms/detail/{{ group.id }}"  {% comment %} 로그인한 경우 상세페이지로 이동 {% endcomment %}
+                        {% else %}
+                            href="javascript:void(0);"               {% comment %} 로그인 안 한 경우 클릭 막기 {% endcomment %}
+                            onclick="alertAndRedirectLogin()"        {% comment %} JS로 alert + 이동 {% endcomment %}
+                        {% endif %}
+                    >
+                        <div class="group_name">
+                            {% if group.is_public|stringformat:"s" == '1' %}<!-- 비공개일 경우 잠금아이콘 추가 -->
+                                <i class="fa-solid fa-lock"></i>
+                            {% endif %}
+                            <span class="group_ellipsis_1">{{ group.group_name }}</span>
+                        </div>
+                        <div class="group_leader">
+                            <span><strong>· 책제목:</strong> {{ group.book.title}}</span> <br/>
+                            <span><strong>· 그룹장:</strong> {{ group.admin.name }}</span> <br/>
+                            <span class="group_ellipsis_2"><strong>· </strong>{{ group.description }}</span>
+                        </div>
+                    </a>
+                    <!-- 링크 끝 -->
+                </div>
+                <div class="feed__preview_book">
+                    <!-- img 클릭 시 책 상세페이지로 이동 a태그 -->
+                    <a href="/booksearch/detail/{{group.book.book_id}}">
+                        <img src="{{ group.book.cover }}" alt="책 이미지"
+                        onerror="this.onerror=null;this.src='/static/images/defaultimg.png';"
+                        />
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+<!-- paginator -->
+<div class="pg-container">
+    <div class="paginator">
+        <div class="pg-btns">
+        {% if groups.has_previous %}
+            <button onclick="location.href='?page=1{% if query %}&q={{query}}{% endif %}'">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M21.9323 22.5362C22.6042 21.8162 22.6042 20.7122 21.8842 20.0162L13.5562 12.0002L23.1562 2.76019L21.4762 1.00819L10.0282 12.0002L21.4763 22.9922L21.9323 22.5122L21.9323 22.5362Z" fill="currentColor"/>
+                    <path d="M12.4786 22.5362C13.1506 21.8162 13.1506 20.7122 12.4306 20.0162L4.10256 12.0002L13.7266 2.76019L12.0466 1.00819L0.598563 12.0002L12.0226 22.9922L12.4786 22.5122L12.4786 22.5362Z" fill="currentColor"/>
+                </svg>
+            </button>
+            <button onclick="location.href='?page={{groups.previous_page_number}}{% if query %}&q={{query}}{% endif %}'">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M16.3325 1.47C17.0125 2.18 16.9925 3.3 16.2825 3.98L7.9425 12L17.5625 21.25L15.8825 23L4.4425 12L15.8825 1L16.3325 1.47Z" fill="currentColor"/>
+                </svg>
+            </button>
+        {% else %}
+            <button disabled>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M21.9323 22.5362C22.6042 21.8162 22.6042 20.7122 21.8842 20.0162L13.5562 12.0002L23.1562 2.76019L21.4762 1.00819L10.0282 12.0002L21.4763 22.9922L21.9323 22.5122L21.9323 22.5362Z" fill="currentColor"/>
+                    <path d="M12.4786 22.5362C13.1506 21.8162 13.1506 20.7122 12.4306 20.0162L4.10256 12.0002L13.7266 2.76019L12.0466 1.00819L0.598563 12.0002L12.0226 22.9922L12.4786 22.5122L12.4786 22.5362Z" fill="currentColor"/>
+                </svg>
+            </button>
+            <button disabled>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M16.3325 1.47C17.0125 2.18 16.9925 3.3 16.2825 3.98L7.9425 12L17.5625 21.25L15.8825 23L4.4425 12L15.8825 1L16.3325 1.47Z" fill="currentColor"/>
+                </svg>
+            </button>
+        {% endif %}
+        </div>
+        <div class="pg-numbers">
+        {% for p in groups.paginator.page_range %}
+            {% if p == groups.number %}
+            <a class="active">{{p}}</a>
+            {% else %}
+            <a href="?page={{p}}{% if query %}&q={{query}}{% endif %}">{{p}}</a>
+            {% endif %}
+        {% endfor %}
+        </div>
+        <div class="pg-btns">
+        {% if groups.has_next %}
+            <button onclick="location.href='?page={{groups.next_page_number}}{% if query %}&q={{query}}{% endif %}'">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M7.6675 1.47C6.9875 2.18 7.0075 3.3 7.7175 3.98L16.0575 12L6.4375 21.25L8.1175 23L19.5575 12L8.1175 1L7.6675 1.47Z" fill="currentColor"/>
+                </svg>
+            </button>
+            <button onclick="location.href='?page={{groups.paginator.num_pages}}{% if query %}&q={{query}}{% endif %}'">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M2.06775 1.46381C1.39575 2.18381 1.39575 3.28781 2.11575 3.98381L10.4437 11.9998L0.84375 21.2398L2.52375 22.9918L13.9718 11.9998L2.52375 1.00781L2.06775 1.48781V1.46381Z" fill="currentColor"/>
+                    <path d="M11.5214 1.46381C10.8494 2.18381 10.8494 3.28781 11.5694 3.98381L19.8974 11.9998L10.2734 21.2398L11.9534 22.9918L23.4014 11.9998L11.9774 1.00781L11.5214 1.48781V1.46381Z" fill="currentColor"/>
+                </svg>
+            </button>
+        {% else %}
+            <button disabled>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M7.6675 1.47C6.9875 2.18 7.0075 3.3 7.7175 3.98L16.0575 12L6.4375 21.25L8.1175 23L19.5575 12L8.1175 1L7.6675 1.47Z" fill="currentColor"/>
+                </svg>
+            </button>
+            <button disabled>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M2.06775 1.46381C1.39575 2.18381 1.39575 3.28781 2.11575 3.98381L10.4437 11.9998L0.84375 21.2398L2.52375 22.9918L13.9718 11.9998L2.52375 1.00781L2.06775 1.48781V1.46381Z" fill="currentColor"/>
+                    <path d="M11.5214 1.46381C10.8494 2.18381 10.8494 3.28781 11.5694 3.98381L19.8974 11.9998L10.2734 21.2398L11.9534 22.9918L23.4014 11.9998L11.9774 1.00781L11.5214 1.48781V1.46381Z" fill="currentColor"/>
+                </svg>
+            </button>
+        {% endif %}
+        </div>
+    </div>
+</div>
+<!--paginator 끝-->
+
+{% endblock content %}
+
+
+{% block extra_js %}
+    <script>
+        var joinGroupCount = {{ join_groups|length|default:0 }};
+    </script>
+    <script src="{% static 'js/Share_Main.js' %}"></script>
+{% endblock %}

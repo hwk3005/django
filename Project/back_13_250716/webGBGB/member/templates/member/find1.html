@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/find.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/Share_AddGroup.css'%}">
+{% endblock %}
+{% block title %}아이디 찾기{% endblock %}
+{% block content %}
+<div class="feed__content">
+    <div class="feed__add">
+        <div class="feed__add_title">
+            <span>아이디 찾기</span>
+        </div>
+        <form method="post" name="findFrm">
+            {% csrf_token %}
+            <div class="qrqr">
+                <div class="login-box">
+                    <!-- 1. 이름/이메일 입력 + 전송 버튼 -->
+                    <div class="inname">
+                        <p>이름</p>
+                        <input type="name" id="nameInput" class="idpw" placeholder="이름 입력" required>
+                        <p>이메일</p>
+                        <div class="qeqe">
+                          <input type="email" id="emailInput" class="idpw" placeholder="이메일 입력" required>
+                          <button type="button" id="sendEmailBtn" class="login-btn">전송</button>
+                        </div>
+                      </div>
+
+                    
+                    <!-- 2. 인증코드 입력 + 인증 버튼 -->
+                    <div class="innum" id="verificationSection">
+                        <p>인증번호</p>
+                        <input type="text" id="verificationInput" class="idpw" placeholder="인증번호 입력" maxlength="10">
+                        <button type="button" id="verifyBtn" class="login-btn">인증</button>
+                    </div><br><br>
+                    
+                    
+                    
+                    <!-- 3. 아이디 표시 영역 -->
+                    <div class="fid" id="foundIdSection">
+                        <p> 아이디 : <strong id="foundId"></strong> </p>
+                    </div>
+
+                    <!-- 4. 로그인 버튼 -->
+                    <br>
+                    <br>
+                    <div id="qwqw">
+                        <a href="/member/find2/"><button type="button" id="fffff" class="login-btn">비밀번호 찾기</button></a>
+                        <a href="/member/login/"><button type="button" id="ffff" class="login-btn">로그인</button></a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+  <script src="{% static 'js/find1.js' %}" defer></script>
+  {% endblock %}
