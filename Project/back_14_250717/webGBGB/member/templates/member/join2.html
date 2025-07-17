@@ -1,0 +1,208 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/Share_AddGroup.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/join2.css' %} ">
+{% endblock %}
+{% block title %}회원정보입력{% endblock %}
+
+{% block content %}
+<div class="feed__content">
+
+    <div class="feed__add">
+        <div class="feed__add_title">
+            <span>사용자 정보 입력</span>
+        </div>
+
+        <form action="{% url 'member:signup_process' %}" method="post" name="infoFrm">
+            {% csrf_token %}
+            {% if request.session.kakao_signup_data %}
+                <input type="hidden" name="is_kakao_signup" value="true">
+                <input type="hidden" name="kakao_id" value="{{ request.session.kakao_signup_data.kakao_id }}">
+                {% endif %}
+
+            <table class="group_table">
+                <tbody>
+                    <tr>
+                        <th>
+                            <label>이름</label>
+                            <span>*</span>
+                        </th>
+                        <td>
+                            <input type="text" name="name" class="name" required
+                                value="{% if request.session.kakao_signup_data %}{{ request.session.kakao_signup_data.nickname }}{% endif %}"
+                                {% if request.session.kakao_signup_data %}readonly{% endif %}>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label>아이디</label>
+                            <span>*</span>
+                        </th>
+                        <td>
+                            <input type="text" name="id" class="id" placeholder="영문,숫자,특수문자 사용 가능."
+                                {% if request.session.kakao_signup_data %}
+                                    value="kakao_{{ request.session.kakao_signup_data.kakao_id }}" readonly style="background-color: #e0e0e0;"
+                                {% endif %}>
+                            {% if not request.session.kakao_signup_data %}
+                            <button type="button" class="idch" id="checkIdButton">중복 확인</button>
+                            {% endif %}
+                            <p class="id_check_message" style="color:red;"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label>비밀번호</label>
+                            <span>*</span>
+                        </th>
+                        <td>
+                            <input type="password" name="pw" class="pw" placeholder="8자 이상 입력" autocomplete="off"
+                                {% if request.session.kakao_signup_data %}
+                                    value="KAKAO_PLACEHOLDER" readonly style="display: none;"
+                                {% endif %}>
+                            {% if request.session.kakao_signup_data %}
+                                <p style="color:#666; font-size:0.9em; margin-top:5px;">카카오 로그인 시 비밀번호는 자동으로 처리됩니다.</p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label>비밀번호 확인</label>
+                            <span>*</span>
+                        </th>
+                        <td>
+                            <input type="password" name="pw2" class="pw2" placeholder="비밀번호 확인" autocomplete="off"
+                                {% if request.session.kakao_signup_data %}
+                                    value="KAKAO_PLACEHOLDER" readonly style="display: none;"
+                                {% endif %}>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label>이메일</label>
+                            <span>*</span>
+                        </th>
+                        <td>
+                            <input type="text" name="email1" class="email1" 
+                                value="{% if request.session.kakao_signup_data %}{{ request.session.kakao_signup_data.email1 }}{% endif %}"
+                                {% if request.session.kakao_signup_data %}readonly{% endif %}>
+                            <span class="rhfqoddl">@</span>
+                            <input type="text" name="email2" class="email2" 
+                                value="{% if request.session.kakao_signup_data %}{{ request.session.kakao_signup_data.email2 }}{% endif %}"
+                                {% if request.session.kakao_signup_data %}readonly{% endif %}>
+                            <select name="email_select" class="email_select"
+                                {% if request.session.kakao_signup_data %}disabled{% endif %}>
+                                <option value="">직접 입력</option>
+                                <option value="naver.com" {% if request.session.kakao_signup_data and request.session.kakao_signup_data.email2 == 'naver.com' %}selected{% endif %}>naver.com</option>
+                                <option value="gmail.com" {% if request.session.kakao_signup_data and request.session.kakao_signup_data.email2 == 'gmail.com' %}selected{% endif %}>gmail.com</option>
+                                <option value="daum.net" {% if request.session.kakao_signup_data and request.session.kakao_signup_data.email2 == 'daum.net' %}selected{% endif %}>daum.net</option>
+                            </select>
+                            {% if not request.session.kakao_signup_data %}
+                            <button type="button" id="sendVerificationCode" class="mail_ch">인증번호 전송</button>
+                            {% endif %}
+                            <p class="email_warning" style="color:red; font-size:12px; margin-top:5px; display:none;">유효한 이메일 주소를 입력해주세요.</p>
+                        </td>
+                    </tr>
+                    {% if not request.session.kakao_signup_data %}
+                    <tr id="verificationCodeRow" style="display:none;">
+                        <th>
+                            <label>인증번호</label>
+                            <span>*</span>
+                        </th>
+                        <td>
+                            <input type="text" name="verification_code" id="verificationCodeInput" class="verification_code" placeholder="인증번호 입력" maxlength="6">
+                            <button type="button" id="verifyCodeButton" class="mail_ch">인증하기</button>
+                            <span id="timerDisplay" style="font-size: 15px; margin: 20px 0 0 20px; color: #2D7868;"></span>
+                            <p class="code_message" style="color:red; font-size:15px; margin:20px 0 0 0; display:none;"></p>
+                        </td>
+                    </tr>
+                    {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label>생년월일</label>
+                        </th>
+                        <td><input type="date" name="birth" class="birth" value="{% if request.session.kakao_signup_data.birth %}{{ request.session.kakao_signup_data.birth|date:'Y-m-d' }}{% endif %}"></td>
+                    </tr>
+                    <tr>
+                              <th>
+                                <label>성별</label>
+                              </th>
+                              <td>
+                                <div class="divgender">
+                                    <label class="lagen">
+                                    <input type="radio" class="gra" name="gender" value="남자">
+                                    남성
+                                    </label>
+                                    <label class="lagen">
+                                    <input type="radio" class="gra" name="gender" value="여자">
+                                    여성
+                                    </label>
+                                    <label class="lagen">
+                                    <input type="radio" class="gra" name="gender" value="미선택">
+                                    미선택
+                                    </label>
+                                </div>
+                              </td>
+                            </tr>
+                    <tr>
+                                <th id="favo"><label>관심 분야</label></th>
+                                <td>
+                                    <div class="group_keyword">
+                                        <div class="group_keyword_input">
+                                            <input type="text" name="group_keyword_input" placeholder="직접 입력">
+                                            <div class="add_tag_btn">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </div>
+                                        </div>
+                                        <div class="group_keyword_output">
+                                            </div>
+                                        <input type="hidden" name="group_keywords_hidden" id="group_keywords_hidden">
+                                        <div class="tags">
+                                            <a href="#">#소설</a>
+                                            <a href="#">#시/에세이</a>
+                                            <a href="#">#인문</a>
+                                            <a href="#">#역사/문화</a>
+                                            <a href="#">#종교</a>
+                                            <a href="#">#가정/육아</a>
+                                            <a href="#">#요리</a>
+                                            <a href="#">#건강</a>
+                                            <a href="#">#취미/실용/스포츠</a>
+                                            <a href="#">#여행</a>
+                                            <a href="#">#자기계발</a>
+                                            <a href="#">#경제/경영</a>
+                                            <a href="#">#정치/사회</a>
+                                            <a href="#">#기술/공학</a>
+                                            <a href="#">#과학</a>
+                                            <a href="#">#외국어</a>
+                                            <a href="#">#컴퓨터/IT</a>
+                                            <a href="#">#취업/수험서</a>
+                                            <a href="#">#대학교재</a>
+                                            <a href="#">#유아(0~7세)</a>
+                                            <a href="#">#어린이(초등)</a>
+                                            <a href="#">#초등참고서</a>
+                                            <a href="#">#청소년</a>
+                                            <a href="#">#중/고등참고서</a>
+                                            <a href="#">#예술/대중문화</a>
+                                            <a href="#">#잡지</a>
+                                            <a href="#">#만화</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+            <div class="group_button">
+                <button type="button" id="group_button_1">취소</button>
+                <button type="submit" id="group_button_2">완료</button>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+{% endblock %}
+{% block extra_js %}
+<script src="{% static 'js/join2.js' %}"></script>
+{% endblock %}

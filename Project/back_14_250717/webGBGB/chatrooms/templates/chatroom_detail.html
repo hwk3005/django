@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="https://kit.fontawesome.com/955e8c2313.js" crossorigin="anonymous"></script>
+
+  <title>교환독서 모임 상세</title>
+  <style>
+    @import url('https://fonts.google.com/selection/embed');
+    body {  
+      background-color: #fafafa;
+      margin: 0;
+      padding: 0;
+      border: 1px #ccc;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    #banner-close {
+      position: absolute;
+      top: 12px;    /* 배너 패딩에 맞춰 조절 */
+      right: 12px;
+      background: transparent;
+      border: none;
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+      color: #333;
+    }
+    #banner-close:hover {
+      color: #ddd;
+    }
+    .banner {
+      position: relative;
+      background-color: #fafafa;
+      color: #333;
+      padding: 30px;
+      border-radius: 7px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    .banner-text {
+      flex: 1;
+      font-size: 30px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+    }
+    .banner-text i {
+      margin-right: 8px;
+      font-size: 25px;
+    }
+    .banner h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+    .profile-upload {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .profile-upload img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #ccc;
+    }
+    .profile-upload input[type="file"] {
+      display: none;
+    }
+    .upload-label {
+      background: #f0f0f0;
+      color: #333;
+      padding: 4px 8px;
+      font-size: 12px;
+      border-radius: 7px;
+      cursor: pointer;
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    .info-row {
+      background-color: #fafafa;
+      padding: 15px 20px;
+      border-radius: 7px;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+    .info-row span {
+      color: #666;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .info-row strong {
+      color: #2D7868;
+    }
+
+    .info-row .tags {
+      margin-left: auto;       
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;          
+    }
+    .info-row .tags strong1 {
+      background-color: #2f81ed1c;
+      font-size: 14px;
+      font-weight: 400;
+      color: #2F80ED;
+      padding: 5px 10px;
+      border-radius: 7px;
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .description {
+      background-color: #fafafa;
+      color: #1a1a1a;
+      padding: 20px;
+      border-radius: 7px;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+      line-height: 1.6;
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+    .join-btn {
+      background-color: gray;
+      color: #fafafa;
+      padding: 14px 24px;
+      border: none;
+      border-radius: 7px;
+      font-size: 17px;
+      cursor: pointer;
+      width: 100%;
+      font-weight: 700;
+    }
+
+    .info-row > strong {
+      margin-left: auto;
+      font-size: 16px;
+    }
+    
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="banner">
+      <button id="banner-close" aria-label="닫기">&times;</button>
+      <div class="banner-text">
+        {% if readinggroup.is_public|stringformat:"s" == '1' %}<!-- 비공개일 경우 잠금아이콘 추가 -->
+          <i class="fa-solid fa-lock"></i>
+        {% endif %}
+          <span class="group_ellipsis_2">{{ readinggroup.group_name }}</span>
+      </div>
+    </div>
+
+    <div class="info">
+      <div class="info-row">
+        <span>📅 채팅방 생성 일시</span>
+        <strong>{{readinggroup.created_at|date:"Y-m-d"}}</strong>
+      </div>
+      <div class="info-row">
+        <span>🐢 꼬북태그</span>
+        <div class="tags">
+          {% for tag in tag_list %}
+          <strong1>{{tag}}</strong1>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="info-row">
+        <span>📖 책 제목</span>
+        <strong>『{{readinggroup.book.title}}』 - {{readinggroup.book.author}}</strong>
+      </div>
+      <div class="info-row">
+        <span>👥 인원</span>
+        <strong>{{readinggroup.member.count}}명 참여중 / 최대 {{readinggroup.max_member}}명</strong>
+      </div>
+    </div>
+
+    <div class="description">
+      {{readinggroup.description}}
+    </div>
+
+    <a href='/feedpage/sns_feed/{{readinggroup.id}}/'><button class="join-btn"> 가입 </button></a>
+  </div>
+
+</body>
+</html>
