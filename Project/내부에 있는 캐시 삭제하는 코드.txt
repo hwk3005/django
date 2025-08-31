@@ -1,0 +1,10 @@
+내부에 있는 캐시 삭제하는 코드
+git rm --cached -r */pycache/
+git rm --cached -r.pyc
+git commit -m "Remove pycache files from git tracking"
+git push origin [브랜치명]
+
+git add .
+git commit -m "Remove cached .pyc files and ignore pycache"
+
+git push origin [브랜치명]
