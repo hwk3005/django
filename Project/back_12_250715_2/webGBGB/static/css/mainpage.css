@@ -1,0 +1,347 @@
+/* -------- 배너 부분 -------- */
+
+.mainBanner{
+    box-sizing:border-box;
+    position: relative;
+    display:block;
+    color:#fafafa;
+    text-decoration:none;
+    overflow:hidden;
+    height:400px;
+    width:1300px;
+    border-radius:7px;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px #f0f0f0;
+}
+
+.swiper-slide{
+    overflow:hidden;
+}
+
+
+.mainBanner__imagewhite{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index:3;
+    background-size: cover;
+    background-position: center;
+    background-color:rgba(255,255,255, 0.1);
+}
+
+.mainBanner__backdrop{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+}
+.mainBanner__image{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index:1;
+    transform: scale(1.1);
+    background-size: cover;
+    background-position: center;
+    filter: blur(14px);
+}
+
+
+.mainBanner__center{
+    z-index:4;
+    position:relative;
+    height:100%;
+    width:1300px;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 156px 0 160px
+}
+.mainBanner__center__title{
+    font-size:36px;
+    font-weight:700;
+    line-height:48px
+}
+.mainBanner__center__subtitle{
+    font-size:20px;
+    font-weight:500;
+    line-height:28px;
+    margin-top:10px
+}
+
+.myBannerSwiper,.myBannerSwiper .swiper-slide {height: 100%;}
+
+.swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner-container {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-pagination-bullet-active {
+    background: #fafafa !important;
+    opacity: 1;
+}
+
+.swiper-button-next, .swiper-button-prev{
+    color:#fafafa;
+    transform: scale(0.7);
+}
+
+
+
+.mainBanner__bookcover{
+    width:180px; height:252px; margin-right:100px; border-radius: 7px;
+    overflow:hidden;
+    object-fit: cover;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.mainBanner__bookcover>img{
+    width:100%;
+    height:252px;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+/* ----------------랭킹 책표지---------------- */
+
+
+.listWrapper ul {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    list-style: none;
+    padding: 10px;
+    margin: 0 auto;
+    justify-content:space-between;
+}
+
+.listWrapper li {
+    flex: 0 0 auto;
+    width: 230px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.listWrapper img {
+    width: 100%;
+    display: block;
+}
+
+.bVUVO8nJ {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.bVUVO8nJ i{
+    margin-right:5px;
+}
+
+
+.CIirP0cq {
+    padding: 20px 0 40px;
+}
+
+
+.ranking__title {
+    font-size: 27px;
+    padding:30px 0 0 10px;
+    font-weight: 700;
+    color:#1a1a1a;
+}
+
+.ranking__title>i{
+    margin-right:15px;
+}
+
+
+/* 책 표지 컨테이너 */
+.book-cover-container {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    border-radius: 7px;
+    box-shadow: 0 4px 4px #797e8480;
+    width: 230px;
+    height: 325px;
+}
+
+.book__cover{
+    width: 230px;
+    height: 325px;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    object-fit: cover;
+}
+
+.book__cover:hover {
+    transform: scale(1.05);
+}
+
+
+/* 순위 - 회색 네모칸 */
+.rank {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fafafa;
+    width: 24px;
+    height: 24px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 10;
+}
+
+.book__title {
+    color: #1a1a1a;
+    font-size: 18px;
+    font-weight: 600;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width:230px;
+    height:24px;
+}
+
+.rating{
+    font-size: 14px;
+    line-height: 18px;
+    color: #636363;
+    padding-top:10px;
+}
+
+.ranking {
+    width: 1300px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+
+/*------------- 회색네모칸 -------------*/
+
+.exchngreading{
+    width:1300px;
+    display:flex;
+    margin:0 auto;
+    gap:70px;
+}
+
+/* 참여 중인 그룹 표시부분 */
+.feed__join{
+    margin-top:30px;
+    margin-bottom: 60px;
+    width:1300px;
+    height:330px;
+    padding: 20px 50px 25px;
+    border: 1px solid #f0f0f0;
+    border-radius: 7px;
+    box-shadow: 0 4px 8px #f0f0f0;
+}
+.feed__join_title{
+    margin-bottom: 20px;
+    padding-left: 27px;
+    font-size: 25px;
+    font-weight: 700;
+    color: #1a1a1a;
+    align-items: center;
+    text-align:center;
+}
+.feed__join_title #group_count {
+    padding-left: 8px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #A0A0A0;
+}
+.feed__join_body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 참여 중인 그룹 1개씩 */
+.feed__join_body_item{
+    margin: 0 15px;
+    width:118px;
+    
+}
+.join_body_item_book{
+    display: flex;
+    width:118px;
+    height:172px;
+    object-fit: cover;
+}
+.join_body_item_book img{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    border-radius: 7px;
+    box-shadow: 0 4px 4px #797e8480;
+}
+.join_body_item_groupName{
+    margin-top: 10px;
+    height: 45px;
+    font-size: 15px;
+    font-weight: 400;
+    color: #636363;
+}
+
+
+.feed__join_main{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+}
+
+.feed__join_main>h4{
+    font-family: 'HakgyoansimDunggeunmisoTTF-B';
+    color: #2d7868;
+    font-size: 30px;
+}
+
+.feed__join_main>div{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom:20px
+}
+
+.feed__join_main>div>p{
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 400;
+    color:#636363;
+}
+
+.feed__join_main button{
+    width:160px;
+    height:45px;
+    font-size: 15px;
+    font-weight: bold;
+    color:#fafafa;
+    background-color: #2d7868;
+    border-radius: 7px;
+    border-style: hidden;
+    cursor:pointer
+}

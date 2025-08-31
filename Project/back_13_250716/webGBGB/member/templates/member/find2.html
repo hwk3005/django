@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/find2.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/Share_AddGroup.css' %}">
+
+{% endblock %}
+{% block title %}비밀번호 찾기{% endblock %}
+{% block content %}
+<div class="feed__content">
+    <div class="feed__add">
+        <div class="feed__add_title">
+            <span>비밀번호 찾기</span>
+        </div><br><br>
+        <form method="post" name="findFrm">
+            {% csrf_token %}
+            <div class="qrqr">
+                <div class="login-box">
+                    <!-- 1. 아이디 입력 -->
+                    <div class="inid">
+                      <p>아이디</p>
+                        <input type="text" id="userIdInput" class="idpw" placeholder="아이디 입력" required>
+                    </div><br>
+
+                    <div class="inname">
+                      <p>이름</p>
+                        <input type="text" id="nameInput" class="idpw" placeholder="이름 입력" required>
+                    </div><br>
+                    
+                    <!-- 2. 이메일 입력 + 전송 버튼 -->
+                    <div class="inmail">
+                      <p>이메일</p>
+                        <input type="email" id="emailInput" class="idpw" placeholder="이메일 입력" required>
+                        <button type="button" id="sendEmailBtn" class="login-btn">전송</button>
+                    </div><br>
+                    
+                    <!-- 3. 인증코드 입력 + 인증 버튼 -->
+                    <div class="innum">
+                      <p>인증번호</p>
+                        <input type="text" id="verificationInput" class="idpw" placeholder="인증번호 입력" maxlength="10">
+                        <button type="button" id="verifyBtn" class="login-btn">인증</button>
+                    </div><br><br>
+                    
+                    
+                    
+                    <!-- 4. 비밀번호 재설정 완료 메시지 -->
+                    <div class="fid" id="passwordResetSection">
+                        <p><strong>임시 비밀번호를 이메일로 발송했습니다.</strong></p>
+                    </div>
+
+                    <!-- 5. 안내 메시지 + 로그인 버튼 -->
+                    <br>
+                    <div class="help">
+                        <p>로그인 하신 후 비밀번호를 변경해주세요.</p>
+                    </div><br>
+                    <div class="forbtn">
+                        <a href="/member/login/"><button type="button" class="login-btn">로그인</button></a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+  <script src="{% static 'js/find2.js' %}" defer></script>
+{% endblock %}

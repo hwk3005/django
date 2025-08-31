@@ -1,0 +1,157 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="https://kit.fontawesome.com/955e8c2313.js" crossorigin="anonymous"></script>
+  <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/base.css" />
+
+  <meta charset="UTF-8">
+  <title>{% block title %}내 사이트{% endblock %}</title>
+
+  {% block extra_css %}
+  <!-- 각 페이지별 추가 CSS 들어오는 자리 -->
+  {% endblock %}
+  
+ 
+
+</head>
+<body>
+  <header class="fig-header">
+    <nav class="fig-nav">
+      <div class="fig-header-left">
+        <div class="fig-one" rel="noreferrer">
+          <h1 class="fig-logo"><a href="/">꼬북꼬북</a></h1>
+          <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none"
+            xmlns="http://www.w3.org/2000/svg" class="fig-exchangeimage">
+            <path d="M4.5 7h15M4.5 12h15M4.5 17h15" stroke="#2D7868" stroke-width="1.3"
+            stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          <h4 class="fig-exchange-book"><a href="/shareMain/Share_Main/">교환 독서</a></h4>
+        </div>
+      </div>
+
+      <form action='/booksearch/search/' method='get' role="search" class="fig-searchform et3830u0">
+        <div tabindex="-1" class="fig-tabindex">
+          <div class="fig-q3rd3s et3830u1">
+            <label class="fig-formlabel">
+              <svg width="1em" height="1em" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="fig-searchimage">
+                <path fill-rule="evenodd" d="M13.28 8.18a5.1 5.1 0 11-10.2 0 5.1 5.1 0 0110.2 0zm-1.031 5.069a6.5 6.5 0 11.991-.989l4.695 4.695a.7.7 0 11-.99.99l-4.696-4.696z">
+                </path>
+              </svg>
+              <span class="fig-instant">인스턴트 검색</span>
+              <input type="text" name='query' maxlength="64" tabindex="-1" class="fig-forminput" value="">
+            </label>
+          </div>
+        </div>
+      </form>
+
+      <div class="fig-right">
+        {% if request.session.user_id %}
+          <div class="user-dropdown">
+            <a href="#" class="fig-r1" onclick="toggleDropdown(event)">
+              <span>{{ request.session.user_name }}</span>님
+            </a>
+            <div id="dropdownMenu" class="dropdown-content">
+              <a href="/mypage/review/">내가 쓴 리뷰</a>
+              <a href="/mypage/Bmark/">내 북마크</a>
+              <a href="/mypage/mygroup/">내 교환독서 그룹</a>
+            </div>
+          </div>
+          <a href="{% url 'member:logout' %}" class="fig-r2">로그아웃</a>
+        {% else %}
+          <a href="{% url 'member:join1' %}" class="fig-r1">회원가입</a>
+          <a href="{% url 'member:login' %}" class="fig-r2">로그인</a>
+        {% endif %}
+        <a href="{% url 'cscenter:list' %}" class="fig-r2">고객센터</a>
+      </div>
+
+    </nav>
+    <!-- Messages 표시 부분 추가 -->
+    {% if messages %}
+    {% for message in messages %}
+      <script>
+        alert('{{ message }}');
+      </script>
+    {% endfor %}
+    {% endif %}
+    <!-- Messages 표시 부분 여기까지 -->
+  </header> 
+  <hr class="fig-hr">
+  <div class="fig-main">
+
+  {% block content %}
+
+  {% endblock %}
+
+  </div>
+
+  <div class="footerWrap">
+    <div class="totalReview">
+      <p>꼬북꼬북 모은 리뷰<span>{{review_count}}</span>개</p>
+    </div>
+    <!--리뷰수 아래부분-->
+    <div class="footer">
+      <div class="footer-left">
+        <p>(주) 꼬북꼬북</p>
+        <div class="infoWrap">
+          <ul>
+            <li>대표자명: 꼬북이</li>
+            <li>사업자등록번호: 123-45-67890</li>
+            <li>통신판매업신고: 2025-하룰라라-01159</li>
+            <li>이메일: support@ggo.book</li>
+          </ul>
+          <ul>
+            <li>주소: 서울시 가산동 하룰라라로 궁전센터1차 123-01</li>
+            <li>Tel : 02-1991-1120</li>
+            <li>Fax : 02-1991-1120</li>
+          </ul>
+          <p>© 2025 꼬북꼬북 All rights reserved</p>
+        </div>
+        <div class="logos">
+          <a href="https://www.notion.so/2159caa5c33a8085bceacd5e9ed02374">
+            <img src="/static/images/logos_notion.png" id='notionLogo' style="width:30px;">
+          </a>
+          <a href="https://github.com/SMU-GGOBOOK">
+            <img src="/static/images/logos_github.png" id='githubLogo' style="width:30px;">
+          </a>
+          <a href="https://youtu.be/lArqN_zu5tw?si=CgSsYu4Qq4qDtb5-">
+            <img src="/static/images/logos_youtube.png" id='youtubeLogo' style="width:30px;">
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-right">
+        <p>고객센터 1234-5678 (발신자 부담)</p>
+        <div class="csWrap">
+          <a href='/cscenter/list/'><button class="ntcBtn">공지사항</button></a>
+          <a href='/cscenter/inquiry/'><button class="inqBtn">1:1문의</button></a>
+        </div>
+        <table class="gitIds">
+          <tbody>
+            <tr>
+              <td colspan="3">www.ggobookggobook.com</td>
+            </tr>
+            <tr>
+              <td>이승민 @null4848</td>
+              <td>김슬비 @kb4954</td>
+              <td>김민성 @LatteMeng</td>
+            </tr>
+            <tr>
+              <td>김혜원 @hwk3005</td>
+              <td>신민철 @resader1</td>
+              <td>공유현 @sharehyun</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!--리뷰수 아래부분-->
+  </div>
+  <script src='/static/js/base_dropdown.js'></script>
+  {% block extra_js %}
+  <!-- 각 페이지별 JS 들어오는 자리 -->
+  {% endblock %}
+</body>
+</html>

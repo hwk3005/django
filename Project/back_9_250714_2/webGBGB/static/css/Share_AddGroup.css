@@ -1,0 +1,489 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
+body, input, select, textarea, button {
+  font-family: 'Noto Sans KR', sans-serif !important;
+}
+
+/* --------------------------------------- */
+/* 교환독서 그룹만들기 */
+.feed__content{
+    margin-top: 82px;
+    display: flex;
+    justify-content: center;
+    /* width: 100%; */
+}
+/* 참여 중인 그룹 표시부분 */
+.feed__add{
+    width: 1137px;
+}
+.feed__add_title{
+    /* padding-left: 15px; */
+    font-size: 40px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.feed__add_title i {
+  font-size:35px;
+  margin-right:8px;
+}
+
+/* form */
+form[name='addgroupFrm'] {
+    margin-top: 20px;
+    padding-top: 40px;
+    border-top: 1px solid #1a1a1a;
+}
+.group_table {
+    padding-bottom: 20px;
+}
+
+.group_table th {
+    padding: 16px;
+    width: 20%;
+    height:50px;
+    color: #333;
+    text-align: left;
+    vertical-align: top;
+}
+.group_table th label{
+    font-size:18px;
+    font-weight: 700;
+    color:#1a1a1a
+}
+.group_table th span{
+    font-size:15px;
+    font-weight: 700;
+    color:#2D7868
+}
+.group_table td {
+    padding: 16px;
+    font-size: 15px;
+    display: flex;
+}
+.group_table input {
+    padding: 15px;
+    height: 45px;
+}
+.group_table select {
+    padding: 0 10px;
+    height: 45px;
+    color: #1a1a1a;
+}
+.group_table textarea {
+    padding: 10px 15px;
+    height: 135px;
+}
+.group_table input,
+.group_table textarea,
+.group_table select {
+    border: 1px solid #ccc;
+    font-size: 15px;
+    font-weight: 400;
+    border-radius: 7px;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+.group_table input:focus,
+.group_table select:focus,
+.group_table textarea:focus {
+    outline:1.5px solid gray;
+}
+
+
+
+/* 세부적인 클래스 css -------------*/
+
+/* 그룹명, 그룹소개 */
+.group_name,
+.group_table textarea{
+      resize: none;            /* 더 못 늘림 */
+      width: 97%;              /* form 안에 꽉 차게 */
+      box-sizing: border-box;  /* padding, border 포함한 전체 너비 */
+    }
+/* 그룹 인원 */
+.member{
+    display: flex;
+    align-items: center; /* 수직 가운데 정렬 */
+    gap: 8px;
+}
+#member_count,
+#is_public,
+#group_period {
+  width: 84px;
+}
+.group_otherText{
+    margin-left: 10px;
+    font-size: 14px;
+    color: #A0A0A0;
+}
+
+/* 책 선택 */
+/* 책 변경 tooltip */
+.tooltip_wrapper {
+  position: relative;
+  display: inline-block;
+}
+.custom_tooltip {
+  background-color: #f0f0f0;
+  position: absolute;
+  padding: 5px 10px;
+  height: 29px;
+  bottom: 8%;
+  left: 70%;
+  border-radius: 7px;
+  font-size: 14px;
+  color: #333;
+  opacity: 0;
+  visibility: hidden;
+  white-space: nowrap;
+  transition: opacity 0.1s ease-in;
+  transform: translateX(-50%);
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tooltip_wrapper:hover .custom_tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 책 검색 모달 스타일 */
+.book_modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.modal_overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+.modal_content {
+  position: relative;
+  max-width: 600px;
+  width: 90%;
+  margin: 80px auto;
+  background: #fff;
+  padding: 25px 20px;
+  border-radius: 7px;
+  z-index: 10000;
+}
+.modal_content h2 {
+  padding-left: 8px;
+  color: #1a1a1a;
+  font-size: 25px;
+
+}
+.modal_close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 25px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #2D7868;
+}
+
+/* 검색 input+버튼 정렬 */
+.modal_input_wrap {
+  display: flex;
+  padding: 5px 0 15px;
+  gap: 8px;
+}
+.modal_search {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  color: #1a1a1a;
+}
+.modal_search_btn {
+  padding-left: 2px;
+  width: 45px;
+  height: 45px;
+  font-size: 18px;
+  background-color: #2D7868;
+  color: white;
+  border-radius: 7px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* 책 검색 결과 */
+.modal_results {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.modal_result {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 20px 10px;
+  max-height: 250px;
+  display: flex;
+  justify-content: space-between;
+}
+.modal_book_item {
+  margin-bottom: 20px;
+  width: 140px;
+  height: 210px;
+  object-fit: cover;
+  display: flex;
+}
+.modal_book_item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 7px;
+  box-shadow: 0 4px 4px #797e8480;
+}
+.modal_book_info {
+  flex: 1;
+  height:210px; /* 고정 높이 */
+  padding:0 20px;
+}
+.modal_book_info h3 {
+  margin: 0 0 13px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+.modal_book_info p {
+  margin-top: 5px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #636363;
+}
+.modal_book_info .modal_description {
+  margin-top:10px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #636363;
+  text-align: justify; /* 양쪽 정렬 */
+  line-height: 1.5;     /* 줄간격 여유 */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;     /* 최대 3줄만 표시 */
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.modal_book_select {
+  padding:0 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal_book_select_btn {
+  padding: 5px 10px;
+  border: none;
+  background-color: #f0f0f0;
+  width:51.14px;
+  height:29px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #333;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+/* 선택한 책 표시 */
+.selected_book_img_js img {
+  width: 118px;
+  height: 172px;
+  object-fit: cover;
+  border-radius: 7px;
+  box-shadow: 0 4px 4px #797e8480;
+}
+/* 책 선택 모달창 열기 전 */
+#selected-book-display {
+  padding-right: 25px;
+  height:176px;
+  flex: 1;
+  display: flex;
+  /* justify-content: space-between; */
+}
+.selected_book_img {
+  position: relative;
+  display: inline-block;
+  width: 118px;
+  height: 172px;
+  border: 1px dashed #e5e5e5;
+  background-color: #f7f7f7;
+  cursor: pointer;
+  border-radius: 7px;
+  vertical-align: top;
+  box-sizing: border-box;
+  /* background-image: url(../images/plusBtn.png); */
+  display: flex;               /* 💡 flex 사용 */
+  align-items: center;         /* 세로 중앙 */
+  justify-content: center;     /* 가로 중앙 */
+}
+.selected_book_img img {
+  width: 16px;
+  height: 16px;
+}
+
+.selected_book_text {
+  margin: 0 20px;
+}
+.selected_book_text span {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+.selected_book_text p {
+  margin: 5px 0;
+  font-size: 14px;
+  font-weight: 400;
+  color: #636363;
+}
+
+/* 관련 해시태그 */
+.group_keyword_input {
+    display: flex;
+}
+.add_tag_btn {
+    border: none;
+    margin-left: 7px;
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #2D7868;
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* ---- 태그 추가 ---- */
+.group_keyword_output {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.added-tag {
+  background-color: #2f81ed1c;
+  color: #2F80ED;
+  padding: 5px 10px;
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.tag-delete {
+  margin-left: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #888;
+}
+    /* ------------------ */
+.tags {
+    margin-top: 10px;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.tags a {
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    color: #333;
+    font-size: 13px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.tags a:hover {
+    background-color: #2d7868;
+    color: #fff;
+}
+.tags a.clicked {
+  background-color: #2D7868 !important;  /* hover 시와 같은 색상 */
+  color: #fff !important;
+  border-radius: 7px;
+}
+
+/* 관련 해시태그, 비밀번호 input */
+.group_keyword_input input,
+.group_pw {
+    width: 230px;
+}
+
+/* 공개여부, 그룹 비밀번호 */
+.pw_hide {
+  display: none;
+}
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* input과 메시지 사이 간격 */
+}
+.input-with-icon input {
+  padding-right: 30px;
+  height: 45px;
+  flex: 1; /* 꽉 차게 */
+}
+.input-with-icon i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  z-index: 3; /* 아이콘 클릭 가능하도록 높임 */
+  cursor: pointer;
+  pointer-events: auto;
+}
+.pw-message {
+    margin: 12px 0 0 10px;
+    font-size: 14px;
+    color: #888;
+    white-space: nowrap;
+}
+.pw-message.valid {
+  color: #2F80ED;
+}
+.pw-message.invalid {
+  color: #ff0000e7;
+}
+
+
+/* 하단 버튼 (취소,완료) */
+.group_button {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;   /* 수평 가운데 정렬 */
+    gap: 15px;                 /* 버튼 사이 간격 */
+}
+.group_button button {
+    border-style: hidden;
+    width:180px;
+    height:50px;
+    font-size: 15px;
+    font-weight: bold;
+    color:#fafafa;
+    border-radius: 7px;
+    cursor: pointer;
+}
+.group_button #group_button_1 {
+    background-color: gray;
+}
+.group_button #group_button_2 {
+    background-color: #2D7868;
+}
+

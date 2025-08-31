@@ -1,0 +1,229 @@
+/*--------1:1,notice,view공통영역------*/
+
+.mainWrap{
+    display: flex;
+    justify-content:center;
+}
+
+.big_title{
+    font-size: 40px;
+    font-weight: 700;
+    color:#1a1a1a;
+}
+
+.fig-main{
+    display:flex;
+    justify-content: center;
+}
+
+/* ---------내비게이션 바 스타일 ------------*/
+nav{
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+}
+.left_side{
+    width: 192px;
+    height:622px;
+    margin: 160px 0px 0px; 
+    margin-right: 30px;
+}
+.main{
+    width: 1137px;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.category {
+  color: #636363;
+  width: 191px;
+  height: 500px;
+  text-align: left;
+  margin-bottom: 10px;
+  padding: 0;
+  list-style: none;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  border-radius: 7px;
+  width: 140px;
+  height: 30px;
+  margin-left: 0;         /* 기본은 왼쪽 딱 붙임 */
+  margin-bottom: 12px;
+  font-size: 18px;
+  transition: all 0.2s ease; /* hover 시 부드럽게 이동 */
+}
+
+.icon i { 
+  margin-right: 8px;
+  margin-top: 2px;
+}
+
+.icon:hover{
+  color: #2d7868;
+  margin-left: 10px;      /* hover 또는 선택됐을 때만 오른쪽으로 튀어나옴 */
+  cursor: pointer;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.icon.checked {
+  background-color: #2d7868;
+  color: #fafafa;
+  margin-left: 10px;      /* hover 또는 선택됐을 때만 오른쪽으로 튀어나옴 */
+  cursor: pointer;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+}
+.category li{margin-bottom: 16px; 
+font-size: 18px;} 
+
+
+
+
+/*----------------notice style------------------*/
+
+.content-area{
+    width: 1137px;
+    margin-top: 82px;
+}
+
+
+.content-area table{
+    width: 1137px;
+}
+
+
+.content-area th{
+    height:54px;
+    text-align: center;
+    border-top:1px solid black; 
+    border-bottom:1px solid #ddd;
+    font-weight: 400;
+    font-size: 14px;
+    color: #636363;
+    background-color: #f0f0f0;
+}
+
+.content-area td{
+    height:60px;
+    text-align: center;
+    font-size: 15px;
+    padding:15px;
+    color:#1a1a1a;
+    border-bottom:1px solid #ddd;
+}
+
+.content-area td:first-child{
+    font-weight:500;
+}
+
+.ntc_title {
+    text-align:left;
+    width:550px;
+}
+
+.ntc_count{
+    margin: 10px 0;font-size: 18px;
+}
+
+/* ------------검색박스----------- */
+
+.searchWrap{
+    margin-top:20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.fig-main form{
+    width:300px;
+}
+
+.fig-main .fig-formlabel{
+    border: 1px solid #ccc;
+    background-color: white;
+    min-height:32px;
+}
+
+
+/* 숫자 */
+.fig-main span {
+    color: #2d7868;
+    font-size:20px;
+    margin:0 5px;
+    font-weight:700;
+}
+
+
+
+/* paginator */
+.pg-container {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0 20px 0;
+    width: 100%
+}
+
+.paginator {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+}
+
+/* 버튼 그룹 */
+.pg-btns {
+    display: inline-flex;
+    margin: 0 10px;
+}
+
+.pg-btns button {
+    border: none;
+    margin: 0;
+    padding: 12px 0;
+    width: 24px;
+    background: transparent;
+    color: #ccc;
+    cursor: pointer;
+    font-size: 30px;
+    line-height: 0;
+}
+
+.pg-btns button:disabled {
+    cursor: default;
+}
+
+.pg-btns button {
+    color: #ccc;
+}
+
+/* 페이지 번호 */
+.pg-numbers {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.pg-numbers a {
+    margin: 0 5px;
+    color: #ccc;
+    font-size: 20px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.pg-numbers a.active {
+    color: #1a1a1a;
+}
+
+/* SVG 아이콘 */
+.pg-btns svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}공지사항 상세{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="/static/css/ntc_view.css" />
+{% endblock %}
+{% block content %}
+      <div class="mainWrap">
+        <nav>
+          <div class="left_side">
+            <ul class="category">
+              <li class="icon checked" onclick="location.href='{% url "cscenter:list" %}'"><i class="fa-solid fa-bullhorn"></i>공지사항</li>
+              <li class="icon" onclick="location.href='{% url "cscenter:inquiry" %}'"><i class="fa-solid fa-envelope"></i>1:1문의</li>
+            </ul>
+          </div>
+        </nav>
+        <div class="content-area">
+          <div class="viewDivMt">
+            <div class="viewHead">
+              <div class="subject">{{notice.ntitle}}</div>
+              <div class="day">
+                <p class="txt">작성일<span>{{notice.ndate|date:'Y.m.d'}}</span>조회수<span>{{notice.nhit}}</span></p>
+              </div>
+            </div>
+
+            <div class="viewContents">
+              {{notice.ncontent|linebreaksbr}}
+              <br>
+            {% if notice.nfile %}
+							<img src='/media/{{notice.nfile}}' style='width:50%'>
+						{% endif %}
+            </div>
+          </div>
+
+
+          <!-- 이전다음글 -->
+          <div class="udBtn">
+            <table>
+              <tr>
+                <th class="next"><span>▲</span>다음글</th>
+                {%if next_ntc %}
+                <td><a href="/cscenter/view/{{next_ntc.ntcno}}">{{next_ntc.ntitle}}</a></td>
+                {% else %}
+                <td>다음 글이 없습니다.</td>
+                {% endif %}
+              </tr>
+              <tr>
+                <th class="pre"><span>▼</span>이전글</th>
+                {% if pre_ntc %}
+                <td><a href="/cscenter/view/{{pre_ntc.ntcno}}">{{pre_ntc.ntitle}}</a></td>
+                {% else %}
+                <td>이전 글이 없습니다.</td>
+                {% endif %}
+              </tr>
+            </table>
+          </div>
+          <!-- //이전다음글 -->
+
+          <div class="buttonWrap">
+            <button type="button" class="listBtn">공지사항 목록</button>
+          </div>
+          <script>
+            $(".listBtn").click(function(){
+              location.href='{% url "cscenter:list" %}';
+            });//listBtn
+          </script>
+        </div>
+      </div>
+
+{% endblock content %}

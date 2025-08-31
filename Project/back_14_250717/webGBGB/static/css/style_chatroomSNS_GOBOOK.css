@@ -1,0 +1,1014 @@
+ @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
+
+    /* 기본 레이아웃: 전체 높이 및 플렉스 컬럼 */
+    body {font-family: 'Noto Sans KR', sans-serif;}
+
+    * {margin: 0; padding: 0; box-sizing: border-box; -moz-osx-font-smoothing: grayscale; -webkit-font-smoothing: antialiased;
+        text-decoration: none; list-style: none;
+    }
+
+    table,tr,td{
+        border-collapse:collapse;
+    }
+
+
+
+    input {
+        color: inherit; 
+        font-family: inherit; 
+        letter-spacing: inherit; 
+        appearance: none; 
+        background: none; 
+        border: 0; 
+        box-shadow: none; 
+        border-radius: 0; 
+        padding: 0; 
+        margin: 0;
+        outline:none;
+    }
+
+    a {
+        text-decoration: none; 
+        color: inherit; 
+        font-family: inherit; 
+        letter-spacing: inherit; 
+        cursor: pointer;
+    }
+
+    hr {
+        margin: 0; 
+        padding: 0;
+    }
+
+    /* header 부분 */
+    .fig-header,
+    /* 중앙 부분*/
+    .fig-main{
+        max-width: 78%; /* 건들지 마세용 */
+        padding-left: 16px; 
+        padding-right: 16px; 
+        margin: 0 auto;
+    }
+
+
+    .fig-main{
+        padding-top: 30px;
+        margin-bottom:120px;
+    }
+
+    .fig-nav{
+        display: grid; 
+        grid-template-columns: 1fr auto auto; 
+        align-items: center; 
+        padding: 16px 18px 8px 30px;
+    }
+
+    /* 로고 + 교환독서 탭 */
+    .fig-header-left {
+        display: flex;
+        align-items: center; 
+        gap: 12px; 
+    }
+    .fig-one{
+        display: inline-flex;
+        width: fit-content;
+        display: flex; 
+        align-items: center; 
+        gap: 0.5rem;
+    }
+
+
+    /*---------헤더 로고 글씨체----------*/
+
+    @font-face {
+        font-family: 'HakgyoansimDunggeunmisoTTF-B';
+        src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimDunggeunmisoTTF-B.woff2') format('woff2');
+        font-weight: 700;
+        font-style: normal;
+    }
+
+
+    .fig-logo{
+        font-family: 'HakgyoansimDunggeunmisoTTF-B';
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #2D7868;
+        margin: 0; 
+        font-size: 30px; 
+    }
+
+
+    .fig-exchangeimage {
+        height: 20px; 
+        margin-left: 20px; 
+        position: relative;
+    }
+
+
+    .fig-exchange-book{
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #2D7868;
+        margin: 0; 
+        font-size: 17px; 
+    }
+
+
+    /* 검색바 */
+    .fig-searchform {
+        position: absolute;
+        left: 700px;
+        width: 500px;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .fig-tabindex {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .fig-formlabel {
+        display: flex;
+        align-items: center;
+        padding: 6px 10px;
+        min-height: 40px;
+        background: #f5f5f5;
+        border-radius: 8px;
+    }
+
+    .fig-searchimage {
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+        margin-right: 12px;
+        color: #a5a5a5;
+        fill: currentColor;
+        display: inline-block;
+    }
+
+    .fig-instant {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        border: 0;
+        clip: rect(0, 0, 0, 0);
+    }
+
+    .fig-forminput {
+        flex: 1;
+        width: 0;
+        min-width: 0;
+        height: 100%;
+        font-size: 15px;
+        line-height: 18px;
+        color: #1a1a1a;
+        caret-color: #2D7868;
+    }
+
+    /* 로그인 회원가입 */
+    .fig-join {
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+    .fig-signup,
+    .fig-login {
+        padding: 11px 12px;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 18px;
+        text-align: center;
+        color: #2D7868;
+    }
+
+    /* header 구분선 */
+    .fig-hr{
+        display: block;
+        width: 100%;
+        height: 1px;
+        box-sizing: border-box;
+        border: none;
+        background: #f0f0f0;
+        margin-top: 5px;
+    }
+
+
+    /* ===== main 스타일 ===== */
+    .all-main { width:100%; 
+                min-height:550px; 
+                border:1px solid #f0f0f0; 
+                margin-top:5px; }
+    .fig-main { padding-top:30px; 
+                margin-bottom:120px; }
+    .container { max-width:1100px; 
+                 margin:50px auto; 
+                 background:white; 
+                 padding:50px; 
+                 border-radius:7px; 
+                 box-shadow:2px 4px 4px 1px #ccc; }
+    h2 { margin-bottom:7px; 
+         color:#1a1a1a; 
+         font-weight:700; 
+         font-size: 35px;
+         margin-left:5px; }
+    h3 { background-color: #2f81ed1c;
+         color: #2F80ED;
+         padding: 5px 10px;
+         font-size: 14px;
+         font-weight: 400;
+         border-radius: 7px;
+         display: inline-flex;
+         align-items: center;
+         position: relative;
+         letter-spacing: 1px;
+         margin-right: 1px;
+         cursor: pointer;
+         left: 7px;
+        }
+
+
+    /* POST & COMMENT BOX */
+    .post_item {
+    background: #fafafa;
+    border: 1px solid #f0f0f0;
+    border-radius: 7px;
+    padding: 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    line-height: 1.6;
+    color: #333;
+    height: 110%;
+    margin-top: 25px;
+    width: 100%;
+    }
+
+    .post-box, .comment-box { width:100%; 
+                              margin:5px 0; 
+                              display: flex;
+                              position:relative; }
+    
+    textarea { width: 90%;
+               border-radius:7px; 
+               padding:15px; 
+               border:1px solid #ccc; 
+               outline:1.5px solid gray; 
+               font-size:15px;
+               font-weight: 400; 
+               resize:vertical; 
+               margin:7px; 
+               font-family:'Do Hyeon', sans-serif; }
+    #post-input { width:98%;  }
+    .form_textarea { width:90%;  }
+    .reply_btn {
+    height: 63px;
+    width: 65px;
+}
+
+.user_info_box .info_item {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 1;
+    vertical-align: middle;
+}
+
+.user_info_box .gap {
+    display: inline-block;
+    width: 1px;
+    height: 10px;
+    background-color: #1a1a1a;
+    margin: 0 8px;
+    vertical-align: middle;
+}
+
+
+    .reply_box{
+        width: 90%;
+    }
+    button{
+        border:none; 
+        display:inline-flex; 
+        align-items:center; 
+        justify-content:center; 
+        border-radius:7px; 
+        cursor:pointer; 
+    }
+    .upload_btn{
+        font-size:15px; 
+        font-weight:500; 
+        padding:10px 16px; 
+    }
+    .submit_Btn { 
+        background-color:#2D7868; 
+        color:#fafafa; 
+    }
+
+    /* 댓글 입력창 전체를 감싸는 컨테이너 */
+    .comment-box {
+        display: flex; /* Flexbox 레이아웃 적용: 자식 요소들을 가로로 나란히 배치 */
+        align-items: center; /* 세로 방향으로 중앙 정렬 */
+        gap: 10px; /* 입력창과 버튼 사이의 간격 */
+        /* border-top: 1px solid #eee; /* 위쪽에 구분선 (선택 사항) */
+    }
+
+    /* 댓글 입력 텍스트 영역 (textarea) */
+    .reply_textarea {
+        flex-grow: 1; /* 남은 가로 공간을 모두 차지하도록 확장 */
+        padding: 8px 12px; /* 내부 여백 */
+        border: 1px solid #ddd; /* 테두리 */
+        border-radius: 20px; /* 둥근 모서리 */
+        font-size: 14px; /* 글꼴 크기 */
+        resize: none; /* 사용자가 크기를 조절하지 못하게 함 */
+        min-height: 38px; /* 최소 높이 설정 (버튼과 비슷한 높이로) */
+        box-sizing: border-box; /* 패딩과 테두리가 너비/높이에 포함되도록 */
+    }
+
+    /* 댓글 전송 버튼 (말풍선/전송 아이콘 버튼) */
+    .reply_btn {
+        background-color: #f0f0f0;
+        color: #1a1a1a; /* 아이콘 색상 */
+        border: none; /* 테두리 제거 */
+        border-radius: 7px; /* 원형 버튼을 위해 50% 설정 */
+        display: flex; /* 아이콘을 버튼 중앙에 정렬하기 위해 Flexbox 적용 */
+        justify-content: center; /* 가로 중앙 정렬 */
+        align-items: center; /* 세로 중앙 정렬 */
+        cursor: pointer; /* 마우스 오버 시 커서 모양 변경 */
+        font-size: 16px; /* 아이콘 크기 */
+        box-shadow: none; /* 부드러운 그림자 효과 */
+        transition: background-color 0.2s ease-in-out; /* 부드러운 호버 효과 */
+    }
+
+    /* 버튼에 마우스 오버 시 배경색 변경 */
+    .reply_btn:hover {
+        background-color: #e0e0e0;
+    }
+    .reply_write_area .post .reply_area .comment-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+    .reply_write_area .post .reply_area .comment-box .reply_textarea {
+        flex-grow: 1;
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        font-size: 14px;
+        resize: none;
+        min-height: 38px;
+        box-sizing: border-box;
+    }
+
+
+    /* 이미지 업로드 */
+
+    .post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+        margin-bottom: 12px;
+    }
+    .post-header img { width:36px; 
+                       height:36px; 
+                       border-radius:50%; }
+    .author { font-weight:400; 
+              color:#2D7868; }
+    .time { font-size:12px; 
+            color:#777; }
+    .like-count { font-size:14px; 
+                  color:#e91e63; 
+                  margin-top:8px; }
+    .post-actions { position:absolute; 
+                    top:10px; 
+                    right:10px; }
+
+    .comments { margin-top:10px; 
+                padding-left:10px; 
+                border-left:3px solid #2D7868; }
+    .comment { background:#fff; 
+               padding:8px; 
+               margin-top:8px; 
+               border-radius:6px; 
+               border:1px solid #ddd; }
+    .post > img {
+              max-width: 40% !important;    /* 컨테이너 너비의 60% */
+              max-height: 200px !important; /* 최대 높이 180px */
+              width: auto !important;       /* 비율 유지 */
+              height: auto !important;
+              object-fit: contain;          /* 비율 유지하며 빈 공간 처리 */
+              display: block;               /* 블록 레벨로 가운데 정렬 */
+              margin: 0 auto 8px;           /* 위0, 가운 가운데, 아래8px 여백 */
+            }
+
+    /* 업로드 이미지 클릭시 확대 */
+    .image-preview { width:100%; 
+                     max-height:150px; 
+                     margin-top:10px;
+                     margin-bottom: 5px; 
+                     overflow:hidden; 
+                     border-radius:10px; 
+                     text-align:center; }
+    .image-preview img { max-width:100%; 
+                         max-height:150px; 
+                         object-fit:contain; 
+                         border-radius:10px; }
+                         
+    .post_item .post_contents .post_text {
+        color: #1a1a1a;
+        font-size: 15px;
+        letter-spacing: -0.01em;
+        display: -webkit-box;
+        overflow: hidden;
+        max-height: 66px;
+        line-height: 22px;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        white-space: normal;
+        word-break: break-all;
+    }
+    /* ── 이미지 자동 사이즈 & 가운데 정렬 ── */
+    .comment_contents img.landscape {
+    display: block;
+    margin: 0 auto 8px !important;
+    max-width: 70% !important;
+    height: auto !important;
+    }
+    .comment_contents img.portrait {
+    display: block;
+    margin: 0 auto 8px !important;
+    max-width: 50% !important;
+    height: auto !important;
+    }
+    .upload-tab { position:absolute; 
+                  bottom:20px; 
+                  left:20px; 
+                  z-index:10; }
+    .upload-tab label {
+      display: inline-flex;
+      justify-content: center;
+      width: 30px;
+      color: #2D7868;
+      cursor: pointer;
+      font-size: 35px;
+      margin-left: 10px;
+    }
+    .upload-tab input { display:none; }
+
+
+    /* 이미지 모달창 기능 */
+    .image-modal { display:none; 
+                   position:fixed; 
+                   z-index:2000; 
+                   top:0; 
+                   left:0; 
+                   width:100%; 
+                   height:100%; 
+                   background:rgba(0,0,0,0.8); 
+                   overflow:hidden; 
+                   cursor:grab; }
+    .image-modal-close { position:absolute; 
+                         top:20px; 
+                         right:35px; 
+                         font-size:40px; 
+                         color:#fff; 
+                         cursor:pointer; 
+                         z-index:2001; }
+    .image-modal-content { position:absolute; 
+                           top:50%; 
+                           left:50%; 
+                           transform:translate(-50%, -50%) translate(0, 0) scale(1); 
+                           transform-origin:center center; 
+                           transition:transform 0.2s ease; 
+                           max-width:90%; 
+                           max-height:90%; 
+                           object-fit:contain; 
+                           border-radius:10px; }
+
+    .comment_contents img {
+    cursor: pointer;
+    }
+
+    .post-box textarea {
+      min-height: 120px;
+    }
+    .post-box .upload-tab,
+    .post-box > button {
+      position: static !important;
+      margin-top: 8px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .post-box {
+      margin-bottom: 40px;
+      position : relative;
+        display: contents;
+    }
+    .post-box .upload-tab {
+      margin-right: 8px;
+      align-items: center;
+        display: flex;
+        gap: 15px;
+        justify-content: flex-end;
+
+    }
+    .post { position: relative; }
+    .reply_wrap { display: none !important; }
+    .reply_wrap.active { display: block !important; }
+    .btn_reply .count { display: inline-block; 
+                        font-size: 12px; 
+                        border-radius: 12px; }
+    .reply_header { display: flex; align-items: center; }
+    .user_info_box { display: flex; align-items: center; }
+    .btn_reply_setting { font-size: 13px;
+    padding: 6px;
+    border: none;
+    border-radius: 7px;
+    color: #1a1a1a;
+    background-color: transparent;
+    cursor: pointer; }
+
+    /* ─── 1. 부모 위치 기준 만들기 ─── */
+    .post .post-actions .right_area,
+    .comment_item .post-actions .right_area {
+    position: relative;
+    }
+
+    /* ─── 2. 메뉴 공통 컨테이너 ─── */
+    .settings-menu,
+    .reply-settings-menu {
+    position: absolute;
+    top: 100%;           /* 버튼 바로 아래 */
+    right: 0;            /* 버튼 우측 정렬 */
+    margin-top: 4px;     /* 버튼과 메뉴 사이 여백 */
+    width: 61px;         /* 스크린샷과 동일 */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 버튼 가로 중앙 정렬 */
+    z-index: 1000;
+    }
+
+    /* ─── 3. 메뉴 버튼들 ─── */
+    .settings-menu button,
+    .reply-settings-menu button {
+    width: 61px;         /* 스크린샷과 동일 */
+    height: 40px;        /* 스크린샷과 동일 */
+    line-height: 40px;   /* 텍스트 세로 중앙 정렬 */
+    margin: 0;
+    padding: 0;
+    font-size: 14px;     /* 스크린샷과 동일 */
+    color: #333;
+    background: #fff;
+    border-radius: 7px; /* 높이의 절반으로 pill-shape */
+    cursor: pointer;
+    text-align: center;
+    }
+
+    /* ─── 4. 버튼 간 간격 ─── */
+    .settings-menu button + button,
+    .reply-settings-menu button + button {
+    margin-top: 5px;     /* 40 + 5 + 40 = 85px 전체 높이 */
+    }
+
+    /* ─── 5. 호버 효과 ─── */
+    .settings-menu button:hover,
+    .reply-settings-menu button:hover {
+    background: #f5f5f5;
+    }
+    /* ─── 피드 메뉴를 버튼보다 조금 더 오른쪽으로 이동 ─── */
+    .post .post-actions .right_area .settings-menu {
+    right: 10px;       /* 원하는 만큼 값 조정 가능 (예: -10px, -6px 등) */
+    }
+
+    /* ─── 댓글 메뉴를 버튼 바로 아래에 붙이기 ─── */
+    .comment_item .post-actions .right_area .reply-settings-menu {
+    margin-top: 0;     /* 기본 4px → 0으로 줄여서 바로 붙여 보이도록 */
+    right: 10px;
+    }
+    /* 1. 조정이 쉬운 변수 정의 */
+    :root {
+    --menu-gap: 4px;      /* 버튼 ↔ 메뉴 사이 간격 */
+    --menu-align: -10px;      /* 메뉴의 수평 오프셋 (px) */
+    }
+
+    /* 2. 버튼을 기준으로 메뉴 위치 */
+    .btn_setting,
+    .btn_reply_setting {
+    position: relative;
+    }
+
+    /* 3. 메뉴 기본 스타일 */
+    .settings-menu,
+    .reply-settings-menu {
+    position: absolute;
+    top: calc(100% + var(--menu-gap));
+    left: var(--menu-align);
+    /* 필요시 너비나 그림자 등 추가 */
+    }
+    .btn_reply_setting .reply-settings-menu {
+    left: -22px !important;   /* ← 원하는 만큼 px 값을 조정하세요 */
+    right: auto !important;   /* 기존 right:0 무시 */
+    }
+    /* 댓글 메뉴도 피드 메뉴와 똑같이 위치·간격·UI 적용 */
+    .reply-settings-menu {
+    position: absolute;           /* 기존 toggleMenu가 넣어주는 클래스에 적용 */
+    top: calc(100% + 4px) !important;  /* 버튼 바로 아래, 4px 간격 */
+    right: 10px !important;           /* 피드 메뉴와 동일하게 버튼 컨테이너 우측 10px */
+    left: auto !important;            /* 좌측 오프셋 무시 */
+    width: 61px !important;           /* 피드 메뉴 폭과 동일 */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    margin: 0 !important;
+    }
+    .reply-settings-menu button {
+    width: 61px !important;
+    height: 40px !important;
+    line-height: 40px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 14px !important;
+    background: #fff !important;
+    color: #333 !important;
+    border-radius: 7px !important;
+    text-align: center !important;
+    }
+    .reply-settings-menu button + button {
+    margin-top: 5px !important;      /* 40 + 5 + 40 = 85px 전체 높이 */
+    }
+    .reply-settings-menu button:hover {
+    background: #f5f5f5 !important;
+    }
+    .reply-settings-menu {
+    top: calc(100% + 1px) !important;  /* 버튼 바로 아래 2px 간격 */
+    }
+    .reply_header .reply-settings-menu {
+    top: 100% !important;       /* 버튼 바로 아래 */
+    margin-top: 0 !important;   /* 기존 4px → 0으로 줄여 간격 제거 */
+    }
+    .reply_header {
+    position: relative !important;
+    }
+
+    /* 2) 메뉴를 버튼 바로 밑·우측에 0px 간격으로 고정 */
+    .reply_header .reply-settings-menu {
+    top: 100% !important;      /* 헤더(버튼) 바로 아래 */
+    margin-top: 0 !important;   /* 여백 0 */
+    right: -22px !important;        /* 헤더(버튼) 우측 정렬 */
+    left: auto !important;      /* 좌측 오프셋 제거 */
+    }
+
+    .btn_like .text,
+    .btn_reply .count {
+    display: inline-block !important;
+    }
+
+    /* ─── 중첩 대댓글 포스트 스타일 그대로 적용 ─── */
+    /* 1) Nested reply 컨테이너는 들여쓰기 없이 풀폭 */
+    .reply_list.nested {
+    padding-left: 0 !important;
+    margin-top: 10px !important;    /* 상위 댓글과 동일한 간격 */
+    }
+    .reply_list.nested .reply_item {
+    margin-left: 0 !important;
+    width: 100% !important;
+    position: relative !important;  /* 버튼 위치 기준 */
+    }
+
+    /* 2) 댓글·대댓글 좋아요·말풍선 버튼 고정 */
+    .reply_list.nested .reply_item .comment_footer .right_area {
+    position: absolute !important;
+    top: 8px !important;            /* 박스 상단 근처 */
+    right: 10px !important;         /* 우측 끝에서 10px */
+    transform: none !important;      /* transform 제거 */
+    gap: 10px !important;
+    }
+    .reply_item .reply_actions {
+    margin-top: 5px;
+    text-align: right; /* "대댓글 달기" 버튼을 오른쪽으로 정렬 */
+    }
+
+    .btn_toggle_nested_reply {
+    font-size: 13px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 7px;
+    color: #1a1a1a;
+    background-color: #fafafa;
+    cursor: pointer;
+    }
+    .btn_toggle_nested_reply i {
+    line-height: 1; /* 아이콘 세로 정렬을 위해 */
+    margin-right: 3px; /* 아이콘과 숫자 사이 간격 */
+    }   
+    .btn_toggle_nested_reply{
+
+        padding: 6px 12px;
+        border: none;
+        border-radius: 7px;
+        color: #1a1a1a;
+        background-color: #f0f0f0;
+        cursor: pointer;
+    }
+    .auto_overflow_wrap .auto_overflow_footer {
+    display: none;
+}
+    .nested-reply-count {
+    display: inline-block;
+    position: relative;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    vertical-align: top;
+    padding-top: 1px;
+    }
+    .nested-reply-section {
+    margin-top: 10px;
+    display: none; /* 기본적으로 숨김 */
+    }
+
+    .nested-reply-section.active {
+    display: block; /* active 클래스 있을 때 표시 */
+    }
+
+    .nested-reply-write-area {
+    display: flex;
+    margin-bottom: 10px;
+    }
+
+    .nested-reply-textarea {
+    flex-grow: 1; /* 남은 공간을 모두 차지 */
+    border-radius: 5px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    font-size: 13px;
+    min-height: 40px; /* 대댓글 입력창의 최소 높이를 작게 */
+    margin: 0; /* 기존 textarea 규칙으로 인한 추가 마진 제거 */
+    resize: vertical; /* 세로 크기 조절 가능 */
+    }
+
+    .nested-reply-write-area .reply_btn {
+    height: 40px; /* textarea 높이와 맞춤 */
+    width: 50px; /* 대댓글 등록 버튼 크기 작게 */
+    margin-left: 5px;
+    font-size: 13px;
+    padding: 0;
+    }
+
+    .nested-reply-item {
+    margin-top: 10px; /* 대댓글 아이템 간 간격 */
+    background-color: #f9f9f9; /* 대댓글 아이템 배경색 약간 다르게 */
+    border-radius: 7px;
+    /* border: 1px solid #eee; */
+    }
+
+    /* 대댓글 내 설정 메뉴 위치 조정 */
+    .nested-reply-item .btn_reply_setting {
+    position: relative;
+    }
+
+    .nested-reply-item .reply-settings-menu {
+    top: 100% !important; /* 부모 버튼 아래로 */
+    margin-top: 0 !important;
+    right: -22px !important; /* 엘립시스 버튼에 맞춰 오른쪽 정렬 (필요시 조정) */
+    left: auto !important;
+    }
+
+    /* 기존 reply_list의 패딩 조정이 필요하다면 */
+    .reply_list {
+    padding-left: 0; /* 최상위 댓글이 들여쓰기 되지 않도록 */
+    }
+    .reply_list{
+        padding:8px;
+    }
+
+    /* 댓글 입력 텍스트 영역 (textarea) */
+    .reply_textarea {
+        flex-grow: 1;        /* 남은 공간을 텍스트 입력창이 모두 차지하도록 확장 */
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 20px; /* 둥근 모서리 */
+        font-size: 14px;
+        resize: none;        /* 사용자가 크기 조절 못하게 고정 */
+        min-height: 38px;    /* 최소 높이 설정 (버튼과 비슷한 높이로) */
+        box-sizing: border-box; /* 패딩과 테두리가 너비 계산에 포함되도록 */
+    }
+
+
+
+
+/*----------------footer시작-----------------*/
+
+    .footerWrap{    
+        background-color: #444;
+        width:100%;
+        height:300px;
+
+    }
+
+    .footer{
+        width:1400px;
+        height:200px;
+        margin:0 auto;
+        padding-top:20px;
+        display:flex;
+        justify-content: space-between;
+        color:#fafafa;
+        font-weight:300;
+        font-size:15px;
+    }
+
+    .totalReview{
+        text-align: center;
+        width:100%;
+        height:56px;
+    }
+
+    .totalReview>p{
+        color:#fafafa;
+        padding: 11px 0;
+        border-bottom:2px solid #333;
+        font-size:22px;
+    }
+
+    .totalReview>p>span{
+        font-weight:700;
+        padding:0 10px;
+        font-size: 23px;
+    }
+
+
+    .footer-left{
+        width:1000px;
+        display:flex;
+        justify-content:space-between;
+        flex-direction: column;
+    }
+
+
+    /*(주)꼬북꼬북부터 Fax까지*/
+    .footer-left>p, .footer-right>p{
+        font-size:20px;
+        font-weight:700;
+    }
+
+    .infoWrap > ul{
+        display:flex;
+        margin-bottom:5px;
+    }
+
+    .infoWrap > ul > li:not(:last-child)::after{
+        content: "|";
+        color: #ccc;
+        margin: 0 15px;
+        font-weight: 300;
+    }
+
+    /*노션,깃,유튜브 로고부분*/
+    .logos{
+        width: 120px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .infoWrap{
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+
+
+    /*----------오른쪽------------*/
+
+    .footer-right{
+      width:400px;
+      height:180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .csWrap{
+        width:380px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .csWrap > button{
+        cursor: pointer;
+        width:180px;
+        height:40px;
+        color:#f0f0f0;
+        background:#333;
+        border:1px solid #f0f0f0;
+        border-radius: 7px;
+    }
+
+    .footer-right>.gitIds>tbody>tr>td{
+        height:25px;
+    }
+
+/*----------------footer끝-----------------*/
+
+.comment_footer {
+  display: flex;
+}
+
+.comment_footer .right_area {
+  margin-left: auto;
+  display: flex;
+  gap: 15px;
+  align-items: flex-end;
+}
+.comment_footer button {
+    font-size: 13px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 7px;
+    color: #1a1a1a;
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.post-actions button {
+    font-size: 13px;
+    padding: 6px;
+    border: none;
+    border-radius: 7px;
+    color: #1a1a1a;
+    cursor: pointer;
+    background-color: #fafafa;
+}
+
+.reply_wrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* .btn_wrapper{
+    /* margin-left: auto; */
+ */
+
+.btn_like .fa-thumbs-up {
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    line-height: 20px;
+}
+.btn_like .text, .btn_reply .count {
+    display: inline-block;
+    position: relative;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    vertical-align: top;
+    padding-top: 1px;
+}
+.btn_like .fa-thumbs-up {
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+    background-size: 20px 20px;
+    line-height: 20px;
+}
+.btn_reply .fa-comment-dots {
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+    background-size: 20px 20px;
+    line-height: 20px;
+}
+
+.btn_toggle_nested_reply .fa-comment-dots{
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+    background-size: 20px 20px;
+    line-height: 20px;
+}
+
+.btn_setting .fa-ellipsis {
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+    background-size: 20px 20px; 
+    line-height: 20px;
+   
+}
+
+.btn_reply_setting .fa-ellipsis {
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    line-height: 20px;
+}

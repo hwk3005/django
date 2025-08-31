@@ -1,0 +1,1198 @@
+div{
+    display: block;
+    unicode-bidi: isolate;
+}
+
+/* 리뷰 작성 페이지 */
+/* 틀 */
+html:not(.ios) body.dialog_open .dialog_wrapper.open {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.modal .dialog_wrapper.open {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 20px);
+    padding: 10px 0;
+    overflow-y: hidden;
+}
+.modal .dialog_wrapper {
+    display: none;
+    min-width: 1440px;
+    z-index: 1000;
+    align-items: center;
+}
+.modal .dialog_wrapper .ui-dialog .dialog_wrap.ui-dialog-content.has_btn {
+    padding-bottom: 30px;
+}
+.modal .dialog_wrapper .ui-dialog .dialog_wrap.ui-dialog-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    display: -webkit-flex;
+    -moz-box-orient: vertical;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    overflow: hidden;
+    width: 100% !important;
+    max-height: 750px !important;
+    padding: 0 30px 34px;
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid #2D7868;
+    box-sizing: border-box;
+}
+.modal .ui-dialog .ui-dialog-content {
+    position: relative;
+    border: 0;
+    padding: .5em 1em;
+    background: 0 0;
+    overflow: auto;
+}
+.modal .dialog_wrapper .ui-dialog {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    display: -webkit-flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: start;
+    -moz-box-align: start;
+    -ms-flex-align: start;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+    -moz-box-orient: vertical;
+    -moz-box-direction: reverse;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    position: relative;
+    width: 560px;
+    max-height: 750px;
+    margin: 0 auto;
+    padding: 0;
+    border: none;
+    color: #1a1a1a;
+}
+.modal .ui-dialog {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: .2em;
+    outline: 0;
+}
+.modal .ui-front {
+    z-index: 100;
+}
+.modal .dialog_wrapper .ui-dialog .ui-dialog-titlebar {
+    display: none;
+}
+.modal .ui-dialog .ui-dialog-titlebar {
+    padding: .4em 1em;
+    position: relative;
+}
+
+/* 닫기 버튼 */
+.modal .btn_dialog_close {
+    width: 24px;
+    height: 24px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 28px;
+    right: 30px;
+    width: 24px;
+    height: 24px;
+}
+.modal .hidden {
+    position: absolute;
+    visibility: hidden;
+    overflow: hidden;
+    height: 0;
+    line-height: 0;
+    width: 0;
+    margin: 0;
+    padding: 0;
+    font: 0 / 0 Arial;
+}
+/* 리뷰 이벤트 헤더 */
+.modal .dialog_wrapper .ui-dialog .dialog_wrap.no_title_line .dialog_header {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+.modal .dialog_wrapper .ui-dialog .dialog_wrap.ui-dialog-content .dialog_header {
+    flex-shrink: 0;
+    padding: 25px 30px 20px 0;
+    text-align: left;
+    background: #fff;
+    border-bottom: 1px solid #eaeaea;
+}
+.modal .dialog_wrapper .ui-dialog .dialog_wrap.ui-dialog-content .dialog_header .dialog_title {
+    font-size: 23px;
+    line-height: 30px;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+    overflow: hidden;
+    display: block;
+    max-width: 100%;
+    height: auto;
+    max-height: none;
+    -webkit-box-orient: inherit;
+    -webkit-line-clamp: inherit;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 리뷰 컨텐츠 */
+.modal .dialog_wrapper .ui-dialog .dialog_wrap.no_title_line.has_btn .dialog_contents {
+    max-height: 557px;
+}
+.modal .dialog_wrapper .ui-dialog .dialog_wrap.ui-dialog-content.has_btn .dialog_contents {
+    max-height: 600px;
+}
+.modal .dialog_wrapper .ui-dialog .dialog_wrap.no_title_line .dialog_contents {
+    max-height: 631px;
+    margin-top: 30px;
+}
+.modal .dialog_wrapper .ui-dialog .dialog_wrap.ui-dialog-content .dialog_contents {
+    flex: 1 1 auto;
+    overflow: hidden;
+    overflow-y: auto;
+    position: relative;
+    max-height: 616px;
+    background: #fff;
+    padding: 0;
+    margin-top: 24px;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+}
+.modal .dialog_wrapper .ui-dialog .dialog_wrap.ui-dialog-content .dialog_contents .custom_scroll_wrap {
+    max-height: inherit;
+}
+.modal .scroll_wrap.active {
+    overflow-y: visible !important; 
+    max-height: none !important;
+}
+.modal .custom_scroll_wrap {
+    width: 600px;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+.modal [data-simplebar] {
+    position: relative;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+}
+.modal .simplebar-wrapper {
+    overflow: hidden;
+    width: inherit;
+    height: inherit;
+    max-width: inherit;
+    max-height: inherit;
+}
+.modal .simplebar-height-auto-observer-wrapper {
+    box-sizing: inherit !important;
+    height: 100%;
+    width: 100%;
+    max-width: 1px;
+    position: relative;
+    float: left;
+    max-height: 1px;
+    overflow: hidden;
+    z-index: -1;
+    padding: 0;
+    margin: 0;
+    pointer-events: none;
+    flex-grow: inherit;
+    flex-shrink: 0;
+    flex-basis: 0;
+}
+.modal .simplebar-height-auto-observer {
+    box-sizing: inherit;
+    display: block;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1000%;
+    width: 1000%;
+    min-height: 1px;
+    min-width: 1px;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+}
+.modal .simplebar-height-auto-observer {
+    box-sizing: inherit;
+    display: block;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1000%;
+    width: 1000%;
+    min-height: 1px;
+    min-width: 1px;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+}
+.modal .simplebar-mask {
+    direction: inherit;
+    position: absolute;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: auto !important;
+    height: auto !important;
+    z-index: 0;
+}
+.modal .simplebar-offset {
+    direction: inherit !important;
+    box-sizing: inherit !important;
+    resize: none !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding: 0;
+    margin: 0;
+    -webkit-overflow-scrolling: touch;
+}
+.modal .simplebar-content-wrapper {
+    overflow: visible !important;
+    height: auto !important;
+}
+.modal .dialog_wrapper .ui-dialog .dialog_wrap.ui-dialog-content .dialog_contents .custom_scroll_wrap .simplebar-content {
+    height: 100%;
+}
+
+/* 도서 정보 */
+.modal .dialog_wrapper .ui-dialog .dialog_wrap.ui-dialog-content .dialog_contents .thumbnail_round_box {
+    padding: 16px;
+    border: 1px solid #eaeaea;
+    border-radius: 7px;
+}
+.modal .prod_area.horizontal {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    display: -webkit-flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -moz-box-orient: horizontal;
+    -moz-box-direction: normal;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+}
+
+/* 도서 이미지 */
+.modal .prod_area.horizontal .prod_thumb_box.size_xs {
+    width: 64px;
+}
+.modal .prod_area.horizontal .prod_thumb_box {
+    overflow: hidden;
+    flex-shrink: 0;
+    width: 100px;
+}
+.modal .prod_area .prod_thumb_box.size_xs {
+    width: 100px;
+}
+.modal .prod_area .prod_thumb_box {
+    position: relative;
+    overflow: hidden;
+    width: 142px;
+}
+.prod_area .prod_thumb_box .prod_link {
+    display: block;
+    height: 100%;
+}
+
+.modal .prod_area .prod_thumb_box .img_box {
+    overflow: hidden;
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    border: 1px solid #eaeaea;
+}
+.modal .prod_area.horizontal .prod_thumb_box.size_xs .img_box img {
+    max-height: calc((64px - 2px) * 1.618 - 10px);
+}
+
+.modal .prod_area.horizontal .prod_thumb_box .img_box img {
+    max-height: calc((100px - 2px) * 1.618 - 10px);
+}
+.modal .prod_area .prod_thumb_box.size_xs .img_box img {
+    max-height: calc((100px - 2px) * 1.618 - 10px);
+}
+.modal .prod_area .prod_thumb_box .img_box img {
+    width: 100%;
+    max-height: calc((100% - 2px) * 1.618 - 10px);
+}
+.modal .prod_area .prod_thumb_box img {
+    width: 100%;
+}
+.modal img {
+    vertical-align: middle;
+}
+.modal img, fieldset {
+    border: 0;
+}
+.modal img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+/* 도서 정보 */
+.modal .dialog_wrapper .ui-dialog .dialog_wrap.ui-dialog-content .dialog_contents .thumbnail_round_box .prod_area .prod_info_box {
+    overflow: visible;
+}
+.modal .prod_area.horizontal .prod_info_box.size_sm {
+    margin-left: 12px;
+}
+.modal .prod_area.horizontal .prod_info_box {
+    overflow: hidden;
+    margin-left: 16px;
+}
+.modal .prod_area .prod_info_box .prod_info {
+    display: block;
+    height: 100%;
+    font-size: 0;
+}
+.modal .dialog_wrapper .ui-dialog .dialog_wrap.ui-dialog-content .dialog_contents .thumbnail_round_box:not(.size_md) .prod_area .prod_info_box .prod_name {
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    max-height: 44px;
+}
+.modal .prod_area .prod_info_box.size_sm .prod_name:not(.ellipsis_single) {
+    max-height: calc(22px * 2);
+}
+.modal .prod_area .prod_info_box.size_sm .prod_name {
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+}
+.modal .prod_area .prod_info_box .prod_name {
+    display: block;
+    display: -webkit-box;
+    overflow: hidden;
+    max-height: 46px;
+    line-height: 23px;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    text-overflow: -o-ellipsis-lastline;
+    white-space: normal;
+    word-break: break-all;
+    font-size: 15px;
+    line-height: 23px;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+}
+
+/* 별점 */
+.modal .rating-container.rating-lg {
+    margin-left: -2px;
+}
+.modal .rating-container {
+    position: relative;
+    display: flex;
+    text-align: left;
+    font-size: 0;
+    vertical-align: top;
+    margin-left: -2px;
+}
+.modal .rating-container .clear-rating {
+    display: none;
+}
+.modal .rating-container .clear-rating {
+    color: #aaa;
+    cursor: not-allowed;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 60%;
+    padding-right: 5px;
+}
+.modal .clear-rating-active {
+    cursor: pointer !important;
+}
+.modal .rating-container.has_caption .rating-stars-review {
+    margin-top: 2px;
+}
+.modal .rating-container .rating-stars-review {
+    position: relative;
+    cursor: pointer;
+    vertical-align: middle;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.modal .rating-stars-review .star {
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    background-image: url('/static/images/booksearch/ico_star_nonecilck.svg');
+    background-size: cover;
+    cursor: pointer;
+    transition: background-image 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
+}
+
+.modal .rating-stars-review .star.active {
+    background-image: url('/static/images/booksearch/ico_star_cilck.svg');
+}
+
+.modal .rating-stars-review .star i.fading-out {
+    opacity: 0;
+}
+
+.modal .rating-stars-review .star {
+    margin: 0 2px;
+}
+.modal .capton-review {
+    margin-top: 3px;
+}
+
+.modal .capton-review {
+    display: inline-block;
+    margin: 0 0 0 6px;
+    vertical-align: top;
+    font-size: 0;
+}
+.modal .capton-review {
+    color: #999;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+    margin-left: 5px;
+    margin-right: 0;
+}
+.modal .capton-review .capton-review-badge {
+    padding: 0;
+    border-radius: 0;
+    font-size: 0;
+    background: none;
+    font-family: "Roboto", "Noto Sans KR", "PingFang SC", "Apple SD Gothic Neo", "Microsoft YaHei UI", "Malgun Gothic", sans-serif;
+}
+.modal .caption-review-badge {
+    font-family: Arial, Helvetica, sans-serif;
+    display: inline-block;
+    padding: .35em .65em;
+    font-size: .75em;
+    font-weight: 700;
+    color: #fff;
+    white-space: nowrap;
+    vertical-align: baseline;
+}
+.modal .caption-review-badge, .caption-review .label {
+    margin-top: 4px;
+    line-height: 1;
+    text-align: center;
+    border-radius: .25rem;
+}
+.modal .rating-container.has_caption .caption-review .caption-review-badge .val {
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: -0.01em;
+    color: #2d7868;
+    font-weight: 700;
+    line-height: 1;
+    margin-top: 4px;
+    margin-left: 4px;
+}
+.modal .rating-container.has_caption .caption-review .caption-review-badge .total {
+
+    padding-top: 5px;
+    margin-left: 5px;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    color: #767676;
+    font-weight: 400;
+    line-height: 1;
+}
+.modal .rating-container.has_caption .caption-review .caption-review-badge .total:before {
+    content: "/";
+    margin-right: 1px;
+}
+.modal .rating-input {
+    position: absolute;
+    cursor: pointer;
+    width: 100%;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    font-size: 1px;
+    opacity: 0;
+    padding: 0;
+    margin: 0;
+    outline: 0;
+    pointer-events: none;
+    border: none;
+    box-shadow: none;
+    background: 0 0;
+}
+.kbb-recent-contents button, input, optgroup, select, textarea {
+    font-family: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    font-size: 100%;
+    font-weight: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+/* 감성태그 리뷰작성 파일 */
+.modal .dialog_wrapper .ui-dialog .dialog_wrap .dialog_contents .info_text_box ~ .form_wrap {
+    margin-top: 20px;
+}
+/* 폼 틀 */
+.modal .form_wrap .form_box .form_title {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    display: -webkit-flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -moz-box-orient: horizontal;
+    -moz-box-direction: normal;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.modal .form_wrap.type_md, .form_box{
+    margin-top: 20px;
+}
+.modal .form_wrap.type_md .form_box .form_title .form_label {
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+}
+.modal .form_label {
+    display: inline-block;
+    color: #1a1a1a;
+    font-size: 15px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+    cursor: default;
+}
+.modal .form_label .required {
+    color: #2d7868;         
+    font-size: 14px; 
+    margin-left: 2px; 
+    vertical-align: baseline; 
+}
+.modal .form_wrap .form_box .form_title .info_text {
+    width: 100%;
+    margin: 7px 0 2px;
+}
+.modal .info_text.font_size_xxs {
+    font-size: 15px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+}
+.modal .info_text {
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    color: #636363;
+}
+.modal .form_wrap.type_md .form_box .form_cont {
+    margin-top: 10px;
+}
+.modal .form_wrap .form_box .form_cont {
+    margin-top: 8px;
+    color: #636363;
+}
+.modal .tag_wrap {
+    margin: -4px -3px;
+    font-size: 0;
+}
+
+/* 태그 */
+.modal .tag_wrap.size_lg .tag {
+    all: unset;
+    padding: 7px 16px 7px;
+    font-size: 13px;
+    line-height: 22px;
+    background: #f0f0f0;
+    border-radius: 7px;
+    color: #333;
+    cursor: pointer;
+    margin: 5px 5px;
+    display: inline-block;
+    letter-spacing: -0.01em;
+    box-sizing: border-box;
+    transition: background 0.3s ease, color 0.3s ease;
+    outline: none;                  /* 기본 outline 제거 */
+    box-shadow: none;
+}
+.modal .tag_wrap.size_lg .tag:hover{
+    background: #2D7868;
+    color: #fafafa;
+}
+.modal .tag_wrap.size_lg .tag.active {
+    background: #2D7868;
+    color: #fafafa;
+}
+.modal .tag_wrap.size_lg .tag:focus,
+.modal .tag_wrap.size_lg .tag:focus-visible,
+.modal .tag_wrap.size_lg .tag:focus-within {
+outline: none !important;
+box-shadow: none !important;
+border-color: transparent !important;
+}
+
+.modal .tag_wrap.size_lg .tag:focus {
+    outline: none; /* 클릭 후 포커스 테두리도 제거 */
+}
+
+.modal .tag_wrap .tag .text {
+    position: relative;
+}
+
+/* 리뷰 작성 폼 */
+.modal .byte_check_wrap {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #d5d5d5;
+    border-radius: 7px;
+    background: #fff;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+.modal .byte_check_wrap .form_textarea {
+    border: none;
+    padding: 11px 14px 0;
+}
+.modal .form_textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px 14px;
+    color: #1a1a1a;
+    border: 1px solid #d5d5d5;
+    border-radius: 7px;
+    font-size: 15px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    background-color: #fff;
+    box-sizing: border-box;
+    outline: 0;
+    overflow-y: auto;
+    resize: none;
+}
+.modal .byte_check_wrap .byte_check_footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    display: -webkit-flex;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -moz-box-orient: horizontal;
+    -moz-box-direction: normal;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    padding: 10px 10px 10px 14px;
+    text-align: right;
+    transition: background-color 0.2s ease-out;
+}
+.modal .byte_check_wrap .byte_check {
+    display: inline-block;
+    line-height: 1;
+    font-size: 0;
+}
+.modal .byte_check_wrap .byte_check .count {
+    display: inline-block;
+    color: #2D7868;
+}
+.modal .byte_check_wrap .byte_check .count, .byte_check_wrap .byte_check .total {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: -0.01em;
+}
+.modal .byte_check_wrap .byte_check .total:before {
+    content: "/";
+}
+
+/* 사진 첨부 */
+.modal .form_wrap .form_box .form_title {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    display: -webkit-flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -moz-box-orient: horizontal;
+    -moz-box-direction: normal;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.modal .form_label {
+    display: inline-block;
+    color: #1a1a1a;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+    cursor: default;
+}
+.modal .form_wrap.type_md .form_box .form_title .file_attach_val {
+    padding-top: 4px;
+}
+.modal .file_attach_val {
+    display: inline-block;
+    font-size: 0;
+    vertical-align: top;
+    line-height: 1;
+    font-weight: 400;
+}
+.modal .file_attach_val .val {
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    color: #1a1a1a;
+}
+.modal .file_attach_val .total {
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    color: #636363;
+}
+.modal .form_wrap.type_md .form_box .form_title .modify_file_attach_val {
+    padding-top: 4px;
+}
+.modal .modify_file_attach_val {
+    display: inline-block;
+    font-size: 0;
+    vertical-align: top;
+    line-height: 1;
+    font-weight: 400;
+}
+.modal .modify_file_attach_val .val {
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    color: #1a1a1a;
+}
+.modal .modify_file_attach_val .total {
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    color: #636363;
+}
+.modal .form_wrap.type_md .form_box .form_cont {
+    margin-top: 10px;
+}
+.modal .form_wrap .form_box .form_cont {
+    margin-top: 8px;
+    color: #636363;
+}
+.modal .file_list {
+    font-size: 0;
+}
+.modal .modify_file_list {
+    font-size: 0;
+}
+.modal .kbb-recent-contents ol, ul, menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.modal .file_list .list_item:last-child {
+    margin-right: 0;
+}
+.modal .file_list .list_item {
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: top;
+}
+.modal .file_list .file_item {
+    position: relative;
+    display: inline-block;
+}
+.modal .file_list .file_item .btn_box {
+    position: relative;
+    display: inline-block;
+    width: 94px;
+    height: 94px;
+    border: 1px dashed #e5e5e5;
+    background-color: #f7f7f7;
+    cursor: pointer;
+    border-radius: 6px;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+.modal .file_list .file_item .btn_box input[type=file] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+.modal .file_list .file_item .btn_box label {
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-size: 0 !important;
+    border-radius: 7px;
+    background-size: 16px 16px;
+    background-image: url(/static/images/booksearch/btn_attached_add@2x.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.modal .file_list .file_item.attached .btn_box label {
+  background-image: none !important;
+}
+.modal .form_wrap .form_box .form_cont .file_list + .bul_item_asterisk, .form_wrap .form_box .form_cont .file_list_box + .bul_item_asterisk {
+    margin-top: 10px;
+}
+.modal .form_wrap .form_box .form_cont [class^=bul_item_] {
+    color: #767676;
+}
+[class^=bul_item_].font_size_xxs {
+    font-size: 15px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+}
+.modal .file_list ~ .bul_item_asterisk {
+    margin-top: 10px;
+}
+.modal .modify_file_list .list_item:last-child {
+    margin-right: 0;
+}
+.modal .modify_file_list .list_item {
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: top;
+}
+.modal .modify_file_list .file_item {
+    position: relative;
+    display: inline-block;
+}
+.modal .modify_file_list .file_item .btn_box {
+    position: relative;
+    display: inline-block;
+    width: 94px;
+    height: 94px;
+    border: 1px dashed #e5e5e5;
+    background-color: #f7f7f7;
+    cursor: pointer;
+    border-radius: 6px;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+.modal .modify_file_list .file_item .btn_box input[type=file] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+.modal .modify_file_list .file_item .btn_box label {
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-size: 0 !important;
+    border-radius: 7px;
+    background-size: 16px 16px;
+    background-image: url(/static/images/booksearch/btn_attached_add@2x.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.modal .modify_file_list .file_item.attached .btn_box label {
+  background-image: none !important;
+}
+.modal .form_wrap .form_box .form_cont .modify_file_list + .bul_item_asterisk, .form_wrap .form_box .form_cont .file_list_box + .bul_item_asterisk {
+    margin-top: 10px;
+}
+.modal .form_wrap .form_box .form_cont [class^=bul_item_] {
+    color: #767676;
+}
+[class^=bul_item_].font_size_xxs {
+    font-size: 15px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+}
+.modal .modify_file_list ~ .bul_item_asterisk {
+    margin-top: 10px;
+}
+.modal .bul_item_asterisk {
+    color: #767676;
+    padding-left: 8px;
+}
+[class^=bul_item_] {
+    position: relative;
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    color: #636363;
+    font-weight: 400;
+    text-align: left;
+}
+.modal .bul_item_asterisk:before {
+    content: "*";
+    color: #474c98;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.modal .simplebar-content:after, .simplebar-content:before {
+    content: ' ';
+    display: table;
+}
+.modal .kbb-recent-contents :before, :after {
+    --tw-content: "";
+}
+
+/* footer*/
+.modal .dialog_wrapper .ui-dialog .dialog_wrap.ui-dialog-content .dialog_footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    display: -webkit-flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -moz-box-orient: horizontal;
+    -moz-box-direction: normal;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    margin-top: 34px;
+}
+.modal .dialog_wrapper .ui-dialog .dialog_wrap.ui-dialog-content .dialog_footer a[class^=btn_], .dialog_wrapper .ui-dialog .dialog_wrap.ui-dialog-content .dialog_footer button[class^=btn_] {
+    flex: 0 auto;
+}
+.modal a.btn_primary[disabled], .modal a.btn_primary[aria-disabled], .modal a.btn_primary.disabled, .modal button.btn_primary[disabled], 
+.modal button.btn_primary[aria-disabled], .modal button.btn_primary.disabled, .modal a.btn_line_primary.active[disabled], 
+.modal a.btn_line_primary.active[aria-disabled], .modal a.btn_line_primary.active.disabled, .modal button.btn_line_primary.active[disabled], 
+.modal button.btn_line_primary.active[aria-disabled], .modal button.btn_line_primary.active.disabled {
+    color: #fff;
+    background: #2d7868;
+    border-color: #2d7868;
+}
+.modal a.btn_md, button.btn_md {
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    display: -webkit-inline-flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -moz-box-orient: horizontal;
+    -moz-box-direction: normal;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    min-width: 160px;
+    height: 45px;
+    padding: 0 23px 1px;
+    border-radius: 7px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 23px;
+    letter-spacing: -0.01em;
+}
+button[class^=btn_], a[class^=btn_] {
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+a[disabled], a[aria-disabled=true], a.disabled, button[disabled], button[aria-disabled=true], button.disabled {
+    pointer-events: none !important;
+    cursor: default !important;
+    text-decoration: none !important;
+}
+
+/* 사진 추가 */
+.modal .file_list .list_item:last-child {
+    margin-right: 0;
+}
+.modal .file_list .list_item {
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: top;
+}
+.modal .file_list .file_item {
+    position: relative;
+    display: inline-block;
+}
+.modal .file_list .file_item.attached.attached .attach_img_box {
+    display: inline-block;
+}
+.modal .file_list .file_item.attached .attach_img_box {
+    display: inline-block; /* 기본 보이도록 변경 */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: default;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    border-radius: 6px;
+    overflow: hidden;
+}
+.modal .file_list .file_item.attached .attach_img_box .attach_img_view {
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    font-size: 0 !important;
+    left: 0;
+    top: 0;
+}
+.modal .file_list .file_item.attached .attach_img_box .btn_remove_img {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    background-size: 8px 8px;
+    background-image: url(/static/images/booksearch/btn_attached_remove@2x.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 0 6px;
+    font-size: 0 !important;
+    pointer-events: auto;
+    right: 0;
+    top: 0;
+}
+.modal .modify_file_list .list_item:last-child {
+    margin-right: 0;
+}
+.modal .modify_file_list .list_item {
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: top;
+}
+.modal .modify_file_list .file_item {
+    position: relative;
+    display: inline-block;
+}
+.modal .modify_file_list .file_item.attached.attached .attach_img_box {
+    display: inline-block;
+}
+.modal .modify_file_list .file_item.attached .attach_img_box {
+    display: inline-block; /* 기본 보이도록 변경 */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: default;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    border-radius: 6px;
+    overflow: hidden;
+}
+.modal .modify_file_list .file_item.attached .attach_img_box .attach_img_view {
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    font-size: 0 !important;
+    left: 0;
+    top: 0;
+}
+.modal .modify_file_list .file_item.attached .attach_img_box .btn_remove_img {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    background-size: 8px 8px;
+    background-image: url(/static/images/booksearch/btn_attached_remove@2x.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 0 6px;
+    font-size: 0 !important;
+    pointer-events: auto;
+    right: 0;
+    top: 0;
+}

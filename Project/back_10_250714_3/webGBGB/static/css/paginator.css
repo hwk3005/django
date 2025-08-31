@@ -1,0 +1,63 @@
+.pg-container {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0 20px 0;
+    width: 100%
+}
+
+.paginator {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+}
+
+/* 버튼 그룹 */
+.pg-btns {
+    display: inline-flex;
+    margin: 0 10px;
+}
+
+.pg-btns button {
+    border: none;
+    margin: 0;
+    padding: 12px 0;
+    width: 24px;
+    background: transparent;
+    color: #ccc;
+    cursor: pointer;
+    font-size: 30px;
+    line-height: 0;
+}
+
+.pg-btns button:disabled {
+    cursor: default;
+}
+
+.pg-btns button {
+    color: #ccc;
+}
+
+/* 페이지 번호 */
+.pg-numbers {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.pg-numbers a {
+    margin: 0 5px;
+    color: #ccc;
+    font-size: 20px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.pg-numbers a.active {
+    color: #1a1a1a;
+}
+
+/* SVG 아이콘 */
+.pg-btns svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}

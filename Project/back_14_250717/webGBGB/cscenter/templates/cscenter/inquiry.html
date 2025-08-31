@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}1:1문의{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="/static/css/inquiry.css" />
+{% endblock %}
+{% block content %}
+<div class="mainWrap">
+  <nav>
+    <div class="left_side">
+      <ul class="category">
+        <li class="icon" onclick="location.href='{% url "cscenter:list" %}'"><i class="fa-solid fa-bullhorn"></i>공지사항</li>
+        <li class="icon checked" onclick="location.href='{% url "cscenter:inquiry" %}'"><i class="fa-solid fa-envelope"></i>1:1문의</li>
+      </ul>
+    </div>
+  </nav>
+  <div class="content-area">
+    <p class="big_title">1:1 문의</p>
+    <div>
+      <form action="{% url 'cscenter:submit' %}" method="post" name="inqFrm" id="inquiryForm" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+          <tr>
+            <th>
+              <label for="ctgr_inq">문의 유형</label><span>*</span>
+            </th>
+            <td class="inputBoxdiv">
+              <select name="category_inq" id="ctgr_inq" class="ctgr_inq">
+                  <option value="none">문의 유형을 선택해주세요</option>
+                  <option value="search_function">도서 검색 기능 관련</option>
+                  <option value="exchange_group_feed">교환독서 피드 관련</option>
+                  <option value="system_inconvenience">시스템불편사항</option>
+                  <option value="personal_infringe">개인정보침해신고</option>
+                  <option value="else">기타</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <label for="title_inq">제목</label><span>*</span>
+            </th>
+            <td class="inputBoxdiv">
+              <input type="text" id="title_inq" name="title_inq" placeholder="제목을 입력해 주세요.">
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <label for="content_inq">상세 내용</label><span>*</span>
+            </th>
+            <td class="inputBoxdiv">
+              <div><textarea id="content_inq" name="content_inq" placeholder="문의 내용을 입력해 주세요."></textarea></div>
+            </td>
+          </tr>
+          <tr id="inq_end">
+            <th>
+              <label for="image_inq">사진 첨부</label>
+              <span class="file_attach_val">
+                <span class="val">0</span>
+                <span class="total"> / 3</span>
+              </span>
+            </th>
+            <td class="inputBoxdiv lastone">
+              <input type="file" name="file1" id="file1" style="display:none;" accept="image/*">
+              <input type="file" name="file2" id="file2" style="display:none;" accept="image/*">
+              <input type="file" name="file3" id="file3" style="display:none;" accept="image/*">
+      
+              <div class="form_cont">
+                <ul class="file_list">
+                </ul>
+            </div>
+              </td>
+            </tr>
+        </table>
+
+            
+        <div class="notice-wrapper">
+            <div>
+                <strong>문의내용 답변 안내</strong>
+            </div>
+            <div>
+                <ul>
+                    <li><span>ㆍ</span>답변은 마이페이지 또는 회원정보에 등록된 이메일로 확인 가능합니다.</li>
+                    <li><span>ㆍ</span>설/추석 연휴 기간 동안은 고객센터 휴무로 인해 1:1 문의 답변이 불가합니다.</li>
+                    <li><span>ㆍ</span>연휴 기간에는 문의량이 급증하여 답변이 지연될 수 있습니다.</li>
+                </ul>
+            </div>
+        </div>
+            
+        <div class="buttonWrap">
+            <button type="button" class="cancelBtn">취소</button>
+            <button type="button" class="confirmBtn">문의 접수</button>
+        </div>
+        <div id="hiddenFileInputs" style="display: none;"></div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  if('{{request.session.user_id}}' == ''){
+    alert("로그인 후 1:1문의 작성이 가능합니다.")
+    history.back();
+  }
+</script>
+
+{% endblock %}
+{% block extra_js %}
+  <script src="/static/js/photoadd.js"></script>
+  <script src="/static/js/form_confirm.js"></script>
+{% endblock %}

@@ -1,0 +1,349 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
+body, input, select, textarea, button {
+  font-family: 'Noto Sans KR', sans-serif !important;
+}
+
+* {margin: 0; padding: 0; box-sizing: border-box; -moz-osx-font-smoothing: grayscale; -webkit-font-smoothing: antialiased;
+    text-decoration: none; list-style: none;
+}
+
+table,tr,td{
+    border-collapse:collapse;
+}
+
+input {
+    color: inherit; 
+    font-family: inherit; 
+    letter-spacing: inherit; 
+    appearance: none; 
+    background: none; 
+    border: 0; 
+    box-shadow: none; 
+    border-radius: 0; 
+    padding: 0; 
+    margin: 0;
+    outline:none;
+}
+
+a {
+    text-decoration: none; 
+    color: inherit; 
+    font-family: inherit; 
+    letter-spacing: inherit; 
+    cursor: pointer;
+}
+
+hr {
+    margin: 0; 
+    padding: 0;
+}
+
+/* header 부분 */
+.fig-header,
+/* 중앙 부분*/
+.fig-main{
+    max-width: 78%; /* 건들지 마세용 */
+    padding-left: 16px; 
+    padding-right: 16px; 
+    margin: 0 auto;
+}
+
+
+.fig-main{
+    padding-top: 30px;
+    margin-bottom:120px;
+}
+
+.fig-nav{
+    display:flex;
+    justify-content: space-between;
+    align-items: center; 
+    padding: 16px 18px 8px 30px;
+}
+
+/* 헤더 왼쪽 ------- 로고 + 교환독서 탭 */
+.fig-header-left {
+    align-items: center; 
+    width:453px;
+}
+.fig-one{
+    display: flex; 
+    align-items: center; 
+    gap: 0.5rem;
+}
+
+/*로고 글씨체*/
+@font-face {
+    font-family: 'HakgyoansimDunggeunmisoTTF-B';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimDunggeunmisoTTF-B.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+
+.fig-logo{
+    font-family: 'HakgyoansimDunggeunmisoTTF-B';
+    display: flex;
+    color: #2D7868;
+    margin: 0; 
+    font-size: 30px; 
+}
+
+
+.fig-exchangeimage {
+    margin-left: 20px; 
+}
+
+
+.fig-exchange-book{
+    color: #2D7868;
+    font-family: 'NanumSquareAcb';
+    font-size: 17px; 
+}
+
+
+/* 검색바 */
+.fig-searchform {
+    width: 500px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.fig-tabindex {
+    flex: 1;
+    min-width: 0;
+}
+
+.fig-formlabel {
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    min-height: 40px;
+    background: #f5f5f5;
+    border-radius: 8px;
+}
+
+.fig-searchimage {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    color: #a5a5a5;
+    fill: currentColor;
+    display: inline-block;
+}
+
+.fig-instant {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+}
+
+.fig-forminput {
+    flex: 1;
+    width: 0;
+    min-width: 0;
+    height: 100%;
+    font-size: 15px;
+    line-height: 18px;
+    color: #1a1a1a;
+    caret-color: #2D7868;
+}
+
+/* 로그인 회원가입 */
+.fig-right {
+    display: flex;
+    align-items: center;
+    font-family: 'NanumSquareAcb';
+    width:453px;
+    justify-content: end;
+}
+
+.fig-r1,
+.fig-r2 {
+    padding: 12px;
+    font-size: 16px;
+    font-weight:600;
+    line-height: 18px;
+    color: #2D7868;
+}
+
+.fig-r1{
+    text-align: right;
+    width:163px;
+    display: flex;
+    align-items:center;
+    justify-content: flex-end;
+}
+
+.fig-r1 span{
+    display:block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    
+}
+
+/*드롭다운*/
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 180px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1000;
+    border-radius: 8px;
+    overflow: hidden;
+    top: 100%;
+}
+
+.dropdown-content a {
+    color: #2D7868;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-weight: 400;
+    text-align: center;
+    font-size: 15px;
+}
+
+.dropdown-content a:hover {
+    background-color: #f0f9f7;
+}
+
+
+
+/* header 구분선 */
+.fig-hr{
+    display: block;
+    width: 100%;
+    height: 1px;
+    box-sizing: border-box;
+    border: none;
+    background: #f0f0f0;
+    margin-top: 5px;
+}
+
+
+
+/* ----------------footer----------------- */
+
+.footerWrap{    
+    background-color: #444;
+    width:100%;
+    height:300px;
+
+}
+
+.footer{
+    width:1400px;
+    height:200px;
+    margin:0 auto;
+    padding-top:20px;
+    display:flex;
+    justify-content: space-between;
+    color:#fafafa;
+    font-weight:300;
+    font-size:15px;
+}
+
+.totalReview{
+    text-align: center;
+    width:100%;
+    height:56px;
+}
+
+.totalReview>p{
+    color:#fafafa;
+    padding: 11px 0;
+    border-bottom:2px solid #333;
+    font-size:22px;
+}
+
+.totalReview>p>span{
+    font-weight:700;
+    padding:0 10px;
+    font-size: 23px;
+}
+
+
+.footer-left{
+    width:1000px;
+    display:flex;
+    justify-content:space-between;
+    flex-direction: column;
+}
+
+
+/*(주)꼬북꼬북부터 Fax까지*/
+.footer-left>p, .footer-right>p{
+    font-size:20px;
+    font-weight:700;
+}
+
+.infoWrap > ul{
+    display:flex;
+    margin-bottom:5px;
+}
+
+.infoWrap > ul > li:not(:last-child)::after{
+    content: "|";
+    color: #ccc;
+    margin: 0 15px;
+    font-weight: 300;
+}
+
+/*노션,깃,유튜브 로고부분*/
+.logos{
+    width: 120px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.infoWrap{
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+
+/*----------오른쪽------------*/
+
+.footer-right{
+  width:400px;
+  height:180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.csWrap{
+    width:380px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.csWrap button{
+    cursor: pointer;
+    width:180px;
+    height:40px;
+    color:#f0f0f0;
+    background:#333;
+    border:1px solid #f0f0f0;
+    border-radius: 7px;
+}
+
+.footer-right>.gitIds>tbody>tr>td{
+    height:25px;
+}
